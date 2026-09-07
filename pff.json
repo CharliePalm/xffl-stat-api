@@ -1,0 +1,3212 @@
+[
+  {
+    "pff_game_id": 31896,
+    "matchup_path": "/nfl/scores/2026/HF/carolina-panthers_at_arizona-cardinals_31896",
+    "week": "HF",
+    "home_team": "ARZ",
+    "away_team": "CAR",
+    "home_score": 30,
+    "away_score": 33,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31897,
+    "matchup_path": "/nfl/scores/2026/P1/detroit-lions_at_cincinnati-bengals_31897",
+    "week": "P1",
+    "home_team": "CIN",
+    "away_team": "DET",
+    "home_score": 16,
+    "away_score": 14,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31898,
+    "matchup_path": "/nfl/scores/2026/P1/green-bay-packers_at_pittsburgh-steelers_31898",
+    "week": "P1",
+    "home_team": "PIT",
+    "away_team": "GB",
+    "home_score": 28,
+    "away_score": 9,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31899,
+    "matchup_path": "/nfl/scores/2026/P1/indianapolis-colts_at_new-england-patriots_31899",
+    "week": "P1",
+    "home_team": "NE",
+    "away_team": "IND",
+    "home_score": 13,
+    "away_score": 13,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31900,
+    "matchup_path": "/nfl/scores/2026/P1/los-angeles-chargers_at_houston-texans_31900",
+    "week": "P1",
+    "home_team": "HST",
+    "away_team": "LAC",
+    "home_score": 7,
+    "away_score": 27,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31901,
+    "matchup_path": "/nfl/scores/2026/P1/arizona-cardinals_at_las-vegas-raiders_31901",
+    "week": "P1",
+    "home_team": "LV",
+    "away_team": "ARZ",
+    "home_score": 14,
+    "away_score": 27,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31907,
+    "matchup_path": "/nfl/scores/2026/P1/tennessee-titans_at_san-francisco-49ers_31907",
+    "week": "P1",
+    "home_team": "SF",
+    "away_team": "TEN",
+    "home_score": 13,
+    "away_score": 19,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31903,
+    "matchup_path": "/nfl/scores/2026/P1/denver-broncos_at_atlanta-falcons_31903",
+    "week": "P1",
+    "home_team": "ATL",
+    "away_team": "DEN",
+    "home_score": 7,
+    "away_score": 27,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31902,
+    "matchup_path": "/nfl/scores/2026/P1/tampa-bay-buccaneers_at_new-york-jets_31902",
+    "week": "P1",
+    "home_team": "NYJ",
+    "away_team": "TB",
+    "home_score": 16,
+    "away_score": 24,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31904,
+    "matchup_path": "/nfl/scores/2026/P1/miami-dolphins_at_washington-commanders_31904",
+    "week": "P1",
+    "home_team": "WAS",
+    "away_team": "MIA",
+    "home_score": 20,
+    "away_score": 7,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31908,
+    "matchup_path": "/nfl/scores/2026/P1/carolina-panthers_at_buffalo-bills_31908",
+    "week": "P1",
+    "home_team": "BUF",
+    "away_team": "CAR",
+    "home_score": 29,
+    "away_score": 14,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31905,
+    "matchup_path": "/nfl/scores/2026/P1/cleveland-browns_at_chicago-bears_31905",
+    "week": "P1",
+    "home_team": "CHI",
+    "away_team": "CLV",
+    "home_score": 34,
+    "away_score": 10,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31906,
+    "matchup_path": "/nfl/scores/2026/P1/minnesota-vikings_at_new-york-giants_31906",
+    "week": "P1",
+    "home_team": "NYG",
+    "away_team": "MIN",
+    "home_score": 10,
+    "away_score": 13,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31910,
+    "matchup_path": "/nfl/scores/2026/P1/los-angeles-rams_at_kansas-city-chiefs_31910",
+    "week": "P1",
+    "home_team": "KC",
+    "away_team": "LA",
+    "home_score": 12,
+    "away_score": 20,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31909,
+    "matchup_path": "/nfl/scores/2026/P1/jacksonville-jaguars_at_new-orleans-saints_31909",
+    "week": "P1",
+    "home_team": "NO",
+    "away_team": "JAX",
+    "home_score": 20,
+    "away_score": 24,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31911,
+    "matchup_path": "/nfl/scores/2026/P1/philadelphia-eagles_at_baltimore-ravens_31911",
+    "week": "P1",
+    "home_team": "BLT",
+    "away_team": "PHI",
+    "home_score": 24,
+    "away_score": 7,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31912,
+    "matchup_path": "/nfl/scores/2026/P1/dallas-cowboys_at_seattle-seahawks_31912",
+    "week": "P1",
+    "home_team": "SEA",
+    "away_team": "DAL",
+    "home_score": 7,
+    "away_score": 17,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31913,
+    "matchup_path": "/nfl/scores/2026/P2/las-vegas-raiders_at_houston-texans_31913",
+    "week": "P2",
+    "home_team": "HST",
+    "away_team": "LV",
+    "home_score": 20,
+    "away_score": 22,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31914,
+    "matchup_path": "/nfl/scores/2026/P2/san-francisco-49ers_at_los-angeles-chargers_31914",
+    "week": "P2",
+    "home_team": "LAC",
+    "away_team": "SF",
+    "home_score": 17,
+    "away_score": 41,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31915,
+    "matchup_path": "/nfl/scores/2026/P2/new-york-jets_at_pittsburgh-steelers_31915",
+    "week": "P2",
+    "home_team": "PIT",
+    "away_team": "NYJ",
+    "home_score": 0,
+    "away_score": 17,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31916,
+    "matchup_path": "/nfl/scores/2026/P2/carolina-panthers_at_jacksonville-jaguars_31916",
+    "week": "P2",
+    "home_team": "JAX",
+    "away_team": "CAR",
+    "home_score": 17,
+    "away_score": 34,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31917,
+    "matchup_path": "/nfl/scores/2026/P2/green-bay-packers_at_denver-broncos_31917",
+    "week": "P2",
+    "home_team": "DEN",
+    "away_team": "GB",
+    "home_score": 13,
+    "away_score": 33,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31918,
+    "matchup_path": "/nfl/scores/2026/P2/washington-commanders_at_detroit-lions_31918",
+    "week": "P2",
+    "home_team": "DET",
+    "away_team": "WAS",
+    "home_score": 17,
+    "away_score": 13,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31922,
+    "matchup_path": "/nfl/scores/2026/P2/buffalo-bills_at_cleveland-browns_31922",
+    "week": "P2",
+    "home_team": "CLV",
+    "away_team": "BUF",
+    "home_score": 7,
+    "away_score": 31,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31920,
+    "matchup_path": "/nfl/scores/2026/P2/atlanta-falcons_at_indianapolis-colts_31920",
+    "week": "P2",
+    "home_team": "IND",
+    "away_team": "ATL",
+    "home_score": 6,
+    "away_score": 34,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31921,
+    "matchup_path": "/nfl/scores/2026/P2/baltimore-ravens_at_minnesota-vikings_31921",
+    "week": "P2",
+    "home_team": "MIN",
+    "away_team": "BLT",
+    "home_score": 3,
+    "away_score": 13,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31923,
+    "matchup_path": "/nfl/scores/2026/P2/new-orleans-saints_at_los-angeles-rams_31923",
+    "week": "P2",
+    "home_team": "LA",
+    "away_team": "NO",
+    "home_score": 34,
+    "away_score": 0,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31924,
+    "matchup_path": "/nfl/scores/2026/P2/new-york-giants_at_miami-dolphins_31924",
+    "week": "P2",
+    "home_team": "MIA",
+    "away_team": "NYG",
+    "home_score": 3,
+    "away_score": 26,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31926,
+    "matchup_path": "/nfl/scores/2026/P2/chicago-bears_at_cincinnati-bengals_31926",
+    "week": "P2",
+    "home_team": "CIN",
+    "away_team": "CHI",
+    "home_score": 27,
+    "away_score": 9,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31925,
+    "matchup_path": "/nfl/scores/2026/P2/philadelphia-eagles_at_new-england-patriots_31925",
+    "week": "P2",
+    "home_team": "NE",
+    "away_team": "PHI",
+    "home_score": 24,
+    "away_score": 21,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31927,
+    "matchup_path": "/nfl/scores/2026/P2/kansas-city-chiefs_at_tampa-bay-buccaneers_31927",
+    "week": "P2",
+    "home_team": "TB",
+    "away_team": "KC",
+    "home_score": 16,
+    "away_score": 15,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31919,
+    "matchup_path": "/nfl/scores/2026/P2/dallas-cowboys_at_arizona-cardinals_31919",
+    "week": "P2",
+    "home_team": "ARZ",
+    "away_team": "DAL",
+    "home_score": 13,
+    "away_score": 34,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31928,
+    "matchup_path": "/nfl/scores/2026/P2/seattle-seahawks_at_tennessee-titans_31928",
+    "week": "P2",
+    "home_team": "TEN",
+    "away_team": "SEA",
+    "home_score": 19,
+    "away_score": 16,
+    "status": "Final"
+  },
+  {
+    "pff_game_id": 31929,
+    "matchup_path": "/nfl/scores/2026/P3/pittsburgh-steelers_at_buffalo-bills_31929",
+    "week": "P3",
+    "home_team": "BUF",
+    "away_team": "PIT",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 31930,
+    "matchup_path": "/nfl/scores/2026/P3/new-england-patriots_at_cleveland-browns_31930",
+    "week": "P3",
+    "home_team": "CLV",
+    "away_team": "NE",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 31931,
+    "matchup_path": "/nfl/scores/2026/P3/san-francisco-49ers_at_las-vegas-raiders_31931",
+    "week": "P3",
+    "home_team": "LV",
+    "away_team": "SF",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 31932,
+    "matchup_path": "/nfl/scores/2026/P3/los-angeles-rams_at_los-angeles-chargers_31932",
+    "week": "P3",
+    "home_team": "LAC",
+    "away_team": "LA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 31934,
+    "matchup_path": "/nfl/scores/2026/P3/washington-commanders_at_baltimore-ravens_31934",
+    "week": "P3",
+    "home_team": "BLT",
+    "away_team": "WAS",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 31933,
+    "matchup_path": "/nfl/scores/2026/P3/houston-texans_at_carolina-panthers_31933",
+    "week": "P3",
+    "home_team": "CAR",
+    "away_team": "HST",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 31935,
+    "matchup_path": "/nfl/scores/2026/P3/atlanta-falcons_at_miami-dolphins_31935",
+    "week": "P3",
+    "home_team": "MIA",
+    "away_team": "ATL",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 31936,
+    "matchup_path": "/nfl/scores/2026/P3/tampa-bay-buccaneers_at_jacksonville-jaguars_31936",
+    "week": "P3",
+    "home_team": "JAX",
+    "away_team": "TB",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 31937,
+    "matchup_path": "/nfl/scores/2026/P3/new-york-giants_at_new-york-jets_31937",
+    "week": "P3",
+    "home_team": "NYJ",
+    "away_team": "NYG",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 31941,
+    "matchup_path": "/nfl/scores/2026/P3/new-orleans-saints_at_dallas-cowboys_31941",
+    "week": "P3",
+    "home_team": "DAL",
+    "away_team": "NO",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 31943,
+    "matchup_path": "/nfl/scores/2026/P3/arizona-cardinals_at_green-bay-packers_31943",
+    "week": "P3",
+    "home_team": "GB",
+    "away_team": "ARZ",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 31939,
+    "matchup_path": "/nfl/scores/2026/P3/seattle-seahawks_at_kansas-city-chiefs_31939",
+    "week": "P3",
+    "home_team": "KC",
+    "away_team": "SEA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 31938,
+    "matchup_path": "/nfl/scores/2026/P3/cincinnati-bengals_at_philadelphia-eagles_31938",
+    "week": "P3",
+    "home_team": "PHI",
+    "away_team": "CIN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 31940,
+    "matchup_path": "/nfl/scores/2026/P3/minnesota-vikings_at_denver-broncos_31940",
+    "week": "P3",
+    "home_team": "DEN",
+    "away_team": "MIN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 31944,
+    "matchup_path": "/nfl/scores/2026/P3/detroit-lions_at_indianapolis-colts_31944",
+    "week": "P3",
+    "home_team": "IND",
+    "away_team": "DET",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 31942,
+    "matchup_path": "/nfl/scores/2026/P3/chicago-bears_at_tennessee-titans_31942",
+    "week": "P3",
+    "home_team": "TEN",
+    "away_team": "CHI",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30606,
+    "matchup_path": "/nfl/scores/2026/1/new-england-patriots_at_seattle-seahawks_30606",
+    "week": "1",
+    "home_team": "SEA",
+    "away_team": "NE",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30607,
+    "matchup_path": "/nfl/scores/2026/1/san-francisco-49ers_at_los-angeles-rams_30607",
+    "week": "1",
+    "home_team": "LA",
+    "away_team": "SF",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30609,
+    "matchup_path": "/nfl/scores/2026/1/chicago-bears_at_carolina-panthers_30609",
+    "week": "1",
+    "home_team": "CAR",
+    "away_team": "CHI",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30610,
+    "matchup_path": "/nfl/scores/2026/1/tampa-bay-buccaneers_at_cincinnati-bengals_30610",
+    "week": "1",
+    "home_team": "CIN",
+    "away_team": "TB",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30611,
+    "matchup_path": "/nfl/scores/2026/1/new-orleans-saints_at_detroit-lions_30611",
+    "week": "1",
+    "home_team": "DET",
+    "away_team": "NO",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30612,
+    "matchup_path": "/nfl/scores/2026/1/buffalo-bills_at_houston-texans_30612",
+    "week": "1",
+    "home_team": "HST",
+    "away_team": "BUF",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30613,
+    "matchup_path": "/nfl/scores/2026/1/baltimore-ravens_at_indianapolis-colts_30613",
+    "week": "1",
+    "home_team": "IND",
+    "away_team": "BLT",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30614,
+    "matchup_path": "/nfl/scores/2026/1/cleveland-browns_at_jacksonville-jaguars_30614",
+    "week": "1",
+    "home_team": "JAX",
+    "away_team": "CLV",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30615,
+    "matchup_path": "/nfl/scores/2026/1/atlanta-falcons_at_pittsburgh-steelers_30615",
+    "week": "1",
+    "home_team": "PIT",
+    "away_team": "ATL",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30616,
+    "matchup_path": "/nfl/scores/2026/1/new-york-jets_at_tennessee-titans_30616",
+    "week": "1",
+    "home_team": "TEN",
+    "away_team": "NYJ",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30617,
+    "matchup_path": "/nfl/scores/2026/1/arizona-cardinals_at_los-angeles-chargers_30617",
+    "week": "1",
+    "home_team": "LAC",
+    "away_team": "ARZ",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30618,
+    "matchup_path": "/nfl/scores/2026/1/miami-dolphins_at_las-vegas-raiders_30618",
+    "week": "1",
+    "home_team": "LV",
+    "away_team": "MIA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30619,
+    "matchup_path": "/nfl/scores/2026/1/green-bay-packers_at_minnesota-vikings_30619",
+    "week": "1",
+    "home_team": "MIN",
+    "away_team": "GB",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30620,
+    "matchup_path": "/nfl/scores/2026/1/washington-commanders_at_philadelphia-eagles_30620",
+    "week": "1",
+    "home_team": "PHI",
+    "away_team": "WAS",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30608,
+    "matchup_path": "/nfl/scores/2026/1/dallas-cowboys_at_new-york-giants_30608",
+    "week": "1",
+    "home_team": "NYG",
+    "away_team": "DAL",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30621,
+    "matchup_path": "/nfl/scores/2026/1/denver-broncos_at_kansas-city-chiefs_30621",
+    "week": "1",
+    "home_team": "KC",
+    "away_team": "DEN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30635,
+    "matchup_path": "/nfl/scores/2026/2/detroit-lions_at_buffalo-bills_30635",
+    "week": "2",
+    "home_team": "BUF",
+    "away_team": "DET",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30622,
+    "matchup_path": "/nfl/scores/2026/2/carolina-panthers_at_atlanta-falcons_30622",
+    "week": "2",
+    "home_team": "ATL",
+    "away_team": "CAR",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30623,
+    "matchup_path": "/nfl/scores/2026/2/new-orleans-saints_at_baltimore-ravens_30623",
+    "week": "2",
+    "home_team": "BLT",
+    "away_team": "NO",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30624,
+    "matchup_path": "/nfl/scores/2026/2/minnesota-vikings_at_chicago-bears_30624",
+    "week": "2",
+    "home_team": "CHI",
+    "away_team": "MIN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30625,
+    "matchup_path": "/nfl/scores/2026/2/cincinnati-bengals_at_houston-texans_30625",
+    "week": "2",
+    "home_team": "HST",
+    "away_team": "CIN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30626,
+    "matchup_path": "/nfl/scores/2026/2/pittsburgh-steelers_at_new-england-patriots_30626",
+    "week": "2",
+    "home_team": "NE",
+    "away_team": "PIT",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30627,
+    "matchup_path": "/nfl/scores/2026/2/green-bay-packers_at_new-york-jets_30627",
+    "week": "2",
+    "home_team": "NYJ",
+    "away_team": "GB",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30628,
+    "matchup_path": "/nfl/scores/2026/2/cleveland-browns_at_tampa-bay-buccaneers_30628",
+    "week": "2",
+    "home_team": "TB",
+    "away_team": "CLV",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30629,
+    "matchup_path": "/nfl/scores/2026/2/philadelphia-eagles_at_tennessee-titans_30629",
+    "week": "2",
+    "home_team": "TEN",
+    "away_team": "PHI",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30630,
+    "matchup_path": "/nfl/scores/2026/2/jacksonville-jaguars_at_denver-broncos_30630",
+    "week": "2",
+    "home_team": "DEN",
+    "away_team": "JAX",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30631,
+    "matchup_path": "/nfl/scores/2026/2/las-vegas-raiders_at_los-angeles-chargers_30631",
+    "week": "2",
+    "home_team": "LAC",
+    "away_team": "LV",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30632,
+    "matchup_path": "/nfl/scores/2026/2/seattle-seahawks_at_arizona-cardinals_30632",
+    "week": "2",
+    "home_team": "ARZ",
+    "away_team": "SEA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30633,
+    "matchup_path": "/nfl/scores/2026/2/washington-commanders_at_dallas-cowboys_30633",
+    "week": "2",
+    "home_team": "DAL",
+    "away_team": "WAS",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30634,
+    "matchup_path": "/nfl/scores/2026/2/miami-dolphins_at_san-francisco-49ers_30634",
+    "week": "2",
+    "home_team": "SF",
+    "away_team": "MIA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30636,
+    "matchup_path": "/nfl/scores/2026/2/indianapolis-colts_at_kansas-city-chiefs_30636",
+    "week": "2",
+    "home_team": "KC",
+    "away_team": "IND",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30637,
+    "matchup_path": "/nfl/scores/2026/2/new-york-giants_at_los-angeles-rams_30637",
+    "week": "2",
+    "home_team": "LA",
+    "away_team": "NYG",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30638,
+    "matchup_path": "/nfl/scores/2026/3/atlanta-falcons_at_green-bay-packers_30638",
+    "week": "3",
+    "home_team": "GB",
+    "away_team": "ATL",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30639,
+    "matchup_path": "/nfl/scores/2026/3/los-angeles-chargers_at_buffalo-bills_30639",
+    "week": "3",
+    "home_team": "BUF",
+    "away_team": "LAC",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30640,
+    "matchup_path": "/nfl/scores/2026/3/carolina-panthers_at_cleveland-browns_30640",
+    "week": "3",
+    "home_team": "CLV",
+    "away_team": "CAR",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30641,
+    "matchup_path": "/nfl/scores/2026/3/new-york-jets_at_detroit-lions_30641",
+    "week": "3",
+    "home_team": "DET",
+    "away_team": "NYJ",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30642,
+    "matchup_path": "/nfl/scores/2026/3/houston-texans_at_indianapolis-colts_30642",
+    "week": "3",
+    "home_team": "IND",
+    "away_team": "HST",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30643,
+    "matchup_path": "/nfl/scores/2026/3/new-england-patriots_at_jacksonville-jaguars_30643",
+    "week": "3",
+    "home_team": "JAX",
+    "away_team": "NE",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30644,
+    "matchup_path": "/nfl/scores/2026/3/kansas-city-chiefs_at_miami-dolphins_30644",
+    "week": "3",
+    "home_team": "MIA",
+    "away_team": "KC",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30645,
+    "matchup_path": "/nfl/scores/2026/3/tennessee-titans_at_new-york-giants_30645",
+    "week": "3",
+    "home_team": "NYG",
+    "away_team": "TEN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30646,
+    "matchup_path": "/nfl/scores/2026/3/cincinnati-bengals_at_pittsburgh-steelers_30646",
+    "week": "3",
+    "home_team": "PIT",
+    "away_team": "CIN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30647,
+    "matchup_path": "/nfl/scores/2026/3/seattle-seahawks_at_washington-commanders_30647",
+    "week": "3",
+    "home_team": "WAS",
+    "away_team": "SEA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30648,
+    "matchup_path": "/nfl/scores/2026/3/arizona-cardinals_at_san-francisco-49ers_30648",
+    "week": "3",
+    "home_team": "SF",
+    "away_team": "ARZ",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30649,
+    "matchup_path": "/nfl/scores/2026/3/minnesota-vikings_at_tampa-bay-buccaneers_30649",
+    "week": "3",
+    "home_team": "TB",
+    "away_team": "MIN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30650,
+    "matchup_path": "/nfl/scores/2026/3/baltimore-ravens_at_dallas-cowboys_30650",
+    "week": "3",
+    "home_team": "DAL",
+    "away_team": "BLT",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30651,
+    "matchup_path": "/nfl/scores/2026/3/las-vegas-raiders_at_new-orleans-saints_30651",
+    "week": "3",
+    "home_team": "NO",
+    "away_team": "LV",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30652,
+    "matchup_path": "/nfl/scores/2026/3/los-angeles-rams_at_denver-broncos_30652",
+    "week": "3",
+    "home_team": "DEN",
+    "away_team": "LA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30653,
+    "matchup_path": "/nfl/scores/2026/3/philadelphia-eagles_at_chicago-bears_30653",
+    "week": "3",
+    "home_team": "CHI",
+    "away_team": "PHI",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30654,
+    "matchup_path": "/nfl/scores/2026/4/pittsburgh-steelers_at_cleveland-browns_30654",
+    "week": "4",
+    "home_team": "CLV",
+    "away_team": "PIT",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30655,
+    "matchup_path": "/nfl/scores/2026/4/indianapolis-colts_at_washington-commanders_30655",
+    "week": "4",
+    "home_team": "WAS",
+    "away_team": "IND",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30656,
+    "matchup_path": "/nfl/scores/2026/4/tennessee-titans_at_baltimore-ravens_30656",
+    "week": "4",
+    "home_team": "BLT",
+    "away_team": "TEN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30657,
+    "matchup_path": "/nfl/scores/2026/4/new-england-patriots_at_buffalo-bills_30657",
+    "week": "4",
+    "home_team": "BUF",
+    "away_team": "NE",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30658,
+    "matchup_path": "/nfl/scores/2026/4/new-york-jets_at_chicago-bears_30658",
+    "week": "4",
+    "home_team": "CHI",
+    "away_team": "NYJ",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30659,
+    "matchup_path": "/nfl/scores/2026/4/jacksonville-jaguars_at_cincinnati-bengals_30659",
+    "week": "4",
+    "home_team": "CIN",
+    "away_team": "JAX",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30660,
+    "matchup_path": "/nfl/scores/2026/4/dallas-cowboys_at_houston-texans_30660",
+    "week": "4",
+    "home_team": "HST",
+    "away_team": "DAL",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30661,
+    "matchup_path": "/nfl/scores/2026/4/arizona-cardinals_at_new-york-giants_30661",
+    "week": "4",
+    "home_team": "NYG",
+    "away_team": "ARZ",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30662,
+    "matchup_path": "/nfl/scores/2026/4/los-angeles-rams_at_philadelphia-eagles_30662",
+    "week": "4",
+    "home_team": "PHI",
+    "away_team": "LA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30663,
+    "matchup_path": "/nfl/scores/2026/4/green-bay-packers_at_tampa-bay-buccaneers_30663",
+    "week": "4",
+    "home_team": "TB",
+    "away_team": "GB",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30664,
+    "matchup_path": "/nfl/scores/2026/4/miami-dolphins_at_minnesota-vikings_30664",
+    "week": "4",
+    "home_team": "MIN",
+    "away_team": "MIA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30665,
+    "matchup_path": "/nfl/scores/2026/4/kansas-city-chiefs_at_las-vegas-raiders_30665",
+    "week": "4",
+    "home_team": "LV",
+    "away_team": "KC",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30666,
+    "matchup_path": "/nfl/scores/2026/4/los-angeles-chargers_at_seattle-seahawks_30666",
+    "week": "4",
+    "home_team": "SEA",
+    "away_team": "LAC",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30667,
+    "matchup_path": "/nfl/scores/2026/4/denver-broncos_at_san-francisco-49ers_30667",
+    "week": "4",
+    "home_team": "SF",
+    "away_team": "DEN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30668,
+    "matchup_path": "/nfl/scores/2026/4/detroit-lions_at_carolina-panthers_30668",
+    "week": "4",
+    "home_team": "CAR",
+    "away_team": "DET",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30669,
+    "matchup_path": "/nfl/scores/2026/4/atlanta-falcons_at_new-orleans-saints_30669",
+    "week": "4",
+    "home_team": "NO",
+    "away_team": "ATL",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30670,
+    "matchup_path": "/nfl/scores/2026/5/tampa-bay-buccaneers_at_dallas-cowboys_30670",
+    "week": "5",
+    "home_team": "DAL",
+    "away_team": "TB",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30671,
+    "matchup_path": "/nfl/scores/2026/5/philadelphia-eagles_at_jacksonville-jaguars_30671",
+    "week": "5",
+    "home_team": "JAX",
+    "away_team": "PHI",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30672,
+    "matchup_path": "/nfl/scores/2026/5/cincinnati-bengals_at_miami-dolphins_30672",
+    "week": "5",
+    "home_team": "MIA",
+    "away_team": "CIN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30673,
+    "matchup_path": "/nfl/scores/2026/5/las-vegas-raiders_at_new-england-patriots_30673",
+    "week": "5",
+    "home_team": "NE",
+    "away_team": "LV",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30674,
+    "matchup_path": "/nfl/scores/2026/5/minnesota-vikings_at_new-orleans-saints_30674",
+    "week": "5",
+    "home_team": "NO",
+    "away_team": "MIN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30675,
+    "matchup_path": "/nfl/scores/2026/5/cleveland-browns_at_new-york-jets_30675",
+    "week": "5",
+    "home_team": "NYJ",
+    "away_team": "CLV",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30676,
+    "matchup_path": "/nfl/scores/2026/5/indianapolis-colts_at_pittsburgh-steelers_30676",
+    "week": "5",
+    "home_team": "PIT",
+    "away_team": "IND",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30677,
+    "matchup_path": "/nfl/scores/2026/5/houston-texans_at_tennessee-titans_30677",
+    "week": "5",
+    "home_team": "TEN",
+    "away_team": "HST",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30678,
+    "matchup_path": "/nfl/scores/2026/5/new-york-giants_at_washington-commanders_30678",
+    "week": "5",
+    "home_team": "WAS",
+    "away_team": "NYG",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30679,
+    "matchup_path": "/nfl/scores/2026/5/denver-broncos_at_los-angeles-chargers_30679",
+    "week": "5",
+    "home_team": "LAC",
+    "away_team": "DEN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30680,
+    "matchup_path": "/nfl/scores/2026/5/detroit-lions_at_arizona-cardinals_30680",
+    "week": "5",
+    "home_team": "ARZ",
+    "away_team": "DET",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30681,
+    "matchup_path": "/nfl/scores/2026/5/chicago-bears_at_green-bay-packers_30681",
+    "week": "5",
+    "home_team": "GB",
+    "away_team": "CHI",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30682,
+    "matchup_path": "/nfl/scores/2026/5/san-francisco-49ers_at_seattle-seahawks_30682",
+    "week": "5",
+    "home_team": "SEA",
+    "away_team": "SF",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30683,
+    "matchup_path": "/nfl/scores/2026/5/baltimore-ravens_at_atlanta-falcons_30683",
+    "week": "5",
+    "home_team": "ATL",
+    "away_team": "BLT",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30684,
+    "matchup_path": "/nfl/scores/2026/5/buffalo-bills_at_los-angeles-rams_30684",
+    "week": "5",
+    "home_team": "LA",
+    "away_team": "BUF",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30685,
+    "matchup_path": "/nfl/scores/2026/6/seattle-seahawks_at_denver-broncos_30685",
+    "week": "6",
+    "home_team": "DEN",
+    "away_team": "SEA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30686,
+    "matchup_path": "/nfl/scores/2026/6/houston-texans_at_jacksonville-jaguars_30686",
+    "week": "6",
+    "home_team": "JAX",
+    "away_team": "HST",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30687,
+    "matchup_path": "/nfl/scores/2026/6/chicago-bears_at_atlanta-falcons_30687",
+    "week": "6",
+    "home_team": "ATL",
+    "away_team": "CHI",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30688,
+    "matchup_path": "/nfl/scores/2026/6/baltimore-ravens_at_cleveland-browns_30688",
+    "week": "6",
+    "home_team": "CLV",
+    "away_team": "BLT",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30689,
+    "matchup_path": "/nfl/scores/2026/6/tennessee-titans_at_indianapolis-colts_30689",
+    "week": "6",
+    "home_team": "IND",
+    "away_team": "TEN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30690,
+    "matchup_path": "/nfl/scores/2026/6/new-york-jets_at_new-england-patriots_30690",
+    "week": "6",
+    "home_team": "NE",
+    "away_team": "NYJ",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30691,
+    "matchup_path": "/nfl/scores/2026/6/new-orleans-saints_at_new-york-giants_30691",
+    "week": "6",
+    "home_team": "NYG",
+    "away_team": "NO",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30692,
+    "matchup_path": "/nfl/scores/2026/6/carolina-panthers_at_philadelphia-eagles_30692",
+    "week": "6",
+    "home_team": "PHI",
+    "away_team": "CAR",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30693,
+    "matchup_path": "/nfl/scores/2026/6/pittsburgh-steelers_at_tampa-bay-buccaneers_30693",
+    "week": "6",
+    "home_team": "TB",
+    "away_team": "PIT",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30694,
+    "matchup_path": "/nfl/scores/2026/6/arizona-cardinals_at_los-angeles-rams_30694",
+    "week": "6",
+    "home_team": "LA",
+    "away_team": "ARZ",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30695,
+    "matchup_path": "/nfl/scores/2026/6/los-angeles-chargers_at_kansas-city-chiefs_30695",
+    "week": "6",
+    "home_team": "KC",
+    "away_team": "LAC",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30696,
+    "matchup_path": "/nfl/scores/2026/6/buffalo-bills_at_las-vegas-raiders_30696",
+    "week": "6",
+    "home_team": "LV",
+    "away_team": "BUF",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30697,
+    "matchup_path": "/nfl/scores/2026/6/dallas-cowboys_at_green-bay-packers_30697",
+    "week": "6",
+    "home_team": "GB",
+    "away_team": "DAL",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30698,
+    "matchup_path": "/nfl/scores/2026/6/washington-commanders_at_san-francisco-49ers_30698",
+    "week": "6",
+    "home_team": "SF",
+    "away_team": "WAS",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30699,
+    "matchup_path": "/nfl/scores/2026/7/new-england-patriots_at_chicago-bears_30699",
+    "week": "7",
+    "home_team": "CHI",
+    "away_team": "NE",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30700,
+    "matchup_path": "/nfl/scores/2026/7/pittsburgh-steelers_at_new-orleans-saints_30700",
+    "week": "7",
+    "home_team": "NO",
+    "away_team": "PIT",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30702,
+    "matchup_path": "/nfl/scores/2026/7/san-francisco-49ers_at_atlanta-falcons_30702",
+    "week": "7",
+    "home_team": "ATL",
+    "away_team": "SF",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30703,
+    "matchup_path": "/nfl/scores/2026/7/cincinnati-bengals_at_baltimore-ravens_30703",
+    "week": "7",
+    "home_team": "BLT",
+    "away_team": "CIN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30704,
+    "matchup_path": "/nfl/scores/2026/7/tampa-bay-buccaneers_at_carolina-panthers_30704",
+    "week": "7",
+    "home_team": "CAR",
+    "away_team": "TB",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30705,
+    "matchup_path": "/nfl/scores/2026/7/new-york-giants_at_houston-texans_30705",
+    "week": "7",
+    "home_team": "HST",
+    "away_team": "NYG",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30706,
+    "matchup_path": "/nfl/scores/2026/7/indianapolis-colts_at_minnesota-vikings_30706",
+    "week": "7",
+    "home_team": "MIN",
+    "away_team": "IND",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30701,
+    "matchup_path": "/nfl/scores/2026/7/miami-dolphins_at_new-york-jets_30701",
+    "week": "7",
+    "home_team": "NYJ",
+    "away_team": "MIA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30707,
+    "matchup_path": "/nfl/scores/2026/7/cleveland-browns_at_tennessee-titans_30707",
+    "week": "7",
+    "home_team": "TEN",
+    "away_team": "CLV",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30708,
+    "matchup_path": "/nfl/scores/2026/7/denver-broncos_at_arizona-cardinals_30708",
+    "week": "7",
+    "home_team": "ARZ",
+    "away_team": "DEN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30709,
+    "matchup_path": "/nfl/scores/2026/7/green-bay-packers_at_detroit-lions_30709",
+    "week": "7",
+    "home_team": "DET",
+    "away_team": "GB",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30710,
+    "matchup_path": "/nfl/scores/2026/7/los-angeles-rams_at_las-vegas-raiders_30710",
+    "week": "7",
+    "home_team": "LV",
+    "away_team": "LA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30711,
+    "matchup_path": "/nfl/scores/2026/7/kansas-city-chiefs_at_seattle-seahawks_30711",
+    "week": "7",
+    "home_team": "SEA",
+    "away_team": "KC",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30712,
+    "matchup_path": "/nfl/scores/2026/7/dallas-cowboys_at_philadelphia-eagles_30712",
+    "week": "7",
+    "home_team": "PHI",
+    "away_team": "DAL",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30713,
+    "matchup_path": "/nfl/scores/2026/8/carolina-panthers_at_green-bay-packers_30713",
+    "week": "8",
+    "home_team": "GB",
+    "away_team": "CAR",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30714,
+    "matchup_path": "/nfl/scores/2026/8/baltimore-ravens_at_buffalo-bills_30714",
+    "week": "8",
+    "home_team": "BUF",
+    "away_team": "BLT",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30715,
+    "matchup_path": "/nfl/scores/2026/8/tennessee-titans_at_cincinnati-bengals_30715",
+    "week": "8",
+    "home_team": "CIN",
+    "away_team": "TEN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30716,
+    "matchup_path": "/nfl/scores/2026/8/arizona-cardinals_at_dallas-cowboys_30716",
+    "week": "8",
+    "home_team": "DAL",
+    "away_team": "ARZ",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30717,
+    "matchup_path": "/nfl/scores/2026/8/minnesota-vikings_at_detroit-lions_30717",
+    "week": "8",
+    "home_team": "DET",
+    "away_team": "MIN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30718,
+    "matchup_path": "/nfl/scores/2026/8/indianapolis-colts_at_jacksonville-jaguars_30718",
+    "week": "8",
+    "home_team": "JAX",
+    "away_team": "IND",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30719,
+    "matchup_path": "/nfl/scores/2026/8/las-vegas-raiders_at_new-york-jets_30719",
+    "week": "8",
+    "home_team": "NYJ",
+    "away_team": "LV",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30720,
+    "matchup_path": "/nfl/scores/2026/8/cleveland-browns_at_pittsburgh-steelers_30720",
+    "week": "8",
+    "home_team": "PIT",
+    "away_team": "CLV",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30721,
+    "matchup_path": "/nfl/scores/2026/8/atlanta-falcons_at_tampa-bay-buccaneers_30721",
+    "week": "8",
+    "home_team": "TB",
+    "away_team": "ATL",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30722,
+    "matchup_path": "/nfl/scores/2026/8/los-angeles-chargers_at_los-angeles-rams_30722",
+    "week": "8",
+    "home_team": "LA",
+    "away_team": "LAC",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30723,
+    "matchup_path": "/nfl/scores/2026/8/kansas-city-chiefs_at_denver-broncos_30723",
+    "week": "8",
+    "home_team": "DEN",
+    "away_team": "KC",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30724,
+    "matchup_path": "/nfl/scores/2026/8/new-england-patriots_at_miami-dolphins_30724",
+    "week": "8",
+    "home_team": "MIA",
+    "away_team": "NE",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30725,
+    "matchup_path": "/nfl/scores/2026/8/philadelphia-eagles_at_washington-commanders_30725",
+    "week": "8",
+    "home_team": "WAS",
+    "away_team": "PHI",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30726,
+    "matchup_path": "/nfl/scores/2026/8/chicago-bears_at_seattle-seahawks_30726",
+    "week": "8",
+    "home_team": "SEA",
+    "away_team": "CHI",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30727,
+    "matchup_path": "/nfl/scores/2026/9/jacksonville-jaguars_at_baltimore-ravens_30727",
+    "week": "9",
+    "home_team": "BLT",
+    "away_team": "JAX",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30728,
+    "matchup_path": "/nfl/scores/2026/9/cincinnati-bengals_at_atlanta-falcons_30728",
+    "week": "9",
+    "home_team": "ATL",
+    "away_team": "CIN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30729,
+    "matchup_path": "/nfl/scores/2026/9/denver-broncos_at_carolina-panthers_30729",
+    "week": "9",
+    "home_team": "CAR",
+    "away_team": "DEN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30730,
+    "matchup_path": "/nfl/scores/2026/9/dallas-cowboys_at_indianapolis-colts_30730",
+    "week": "9",
+    "home_team": "IND",
+    "away_team": "DAL",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30731,
+    "matchup_path": "/nfl/scores/2026/9/new-york-jets_at_kansas-city-chiefs_30731",
+    "week": "9",
+    "home_team": "KC",
+    "away_team": "NYJ",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30732,
+    "matchup_path": "/nfl/scores/2026/9/detroit-lions_at_miami-dolphins_30732",
+    "week": "9",
+    "home_team": "MIA",
+    "away_team": "DET",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30733,
+    "matchup_path": "/nfl/scores/2026/9/cleveland-browns_at_new-orleans-saints_30733",
+    "week": "9",
+    "home_team": "NO",
+    "away_team": "CLV",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30734,
+    "matchup_path": "/nfl/scores/2026/9/new-york-giants_at_philadelphia-eagles_30734",
+    "week": "9",
+    "home_team": "PHI",
+    "away_team": "NYG",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30735,
+    "matchup_path": "/nfl/scores/2026/9/los-angeles-rams_at_washington-commanders_30735",
+    "week": "9",
+    "home_team": "WAS",
+    "away_team": "LA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30736,
+    "matchup_path": "/nfl/scores/2026/9/houston-texans_at_los-angeles-chargers_30736",
+    "week": "9",
+    "home_team": "LAC",
+    "away_team": "HST",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30737,
+    "matchup_path": "/nfl/scores/2026/9/las-vegas-raiders_at_san-francisco-49ers_30737",
+    "week": "9",
+    "home_team": "SF",
+    "away_team": "LV",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30738,
+    "matchup_path": "/nfl/scores/2026/9/green-bay-packers_at_new-england-patriots_30738",
+    "week": "9",
+    "home_team": "NE",
+    "away_team": "GB",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30739,
+    "matchup_path": "/nfl/scores/2026/9/arizona-cardinals_at_seattle-seahawks_30739",
+    "week": "9",
+    "home_team": "SEA",
+    "away_team": "ARZ",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30740,
+    "matchup_path": "/nfl/scores/2026/9/tampa-bay-buccaneers_at_chicago-bears_30740",
+    "week": "9",
+    "home_team": "CHI",
+    "away_team": "TB",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30741,
+    "matchup_path": "/nfl/scores/2026/9/buffalo-bills_at_minnesota-vikings_30741",
+    "week": "9",
+    "home_team": "MIN",
+    "away_team": "BUF",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30742,
+    "matchup_path": "/nfl/scores/2026/10/washington-commanders_at_new-york-giants_30742",
+    "week": "10",
+    "home_team": "NYG",
+    "away_team": "WAS",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30743,
+    "matchup_path": "/nfl/scores/2026/10/new-england-patriots_at_detroit-lions_30743",
+    "week": "10",
+    "home_team": "DET",
+    "away_team": "NE",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30744,
+    "matchup_path": "/nfl/scores/2026/10/kansas-city-chiefs_at_atlanta-falcons_30744",
+    "week": "10",
+    "home_team": "ATL",
+    "away_team": "KC",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30745,
+    "matchup_path": "/nfl/scores/2026/10/houston-texans_at_cleveland-browns_30745",
+    "week": "10",
+    "home_team": "CLV",
+    "away_team": "HST",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30746,
+    "matchup_path": "/nfl/scores/2026/10/minnesota-vikings_at_green-bay-packers_30746",
+    "week": "10",
+    "home_team": "GB",
+    "away_team": "MIN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30747,
+    "matchup_path": "/nfl/scores/2026/10/miami-dolphins_at_indianapolis-colts_30747",
+    "week": "10",
+    "home_team": "IND",
+    "away_team": "MIA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30748,
+    "matchup_path": "/nfl/scores/2026/10/carolina-panthers_at_new-orleans-saints_30748",
+    "week": "10",
+    "home_team": "NO",
+    "away_team": "CAR",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30749,
+    "matchup_path": "/nfl/scores/2026/10/buffalo-bills_at_new-york-jets_30749",
+    "week": "10",
+    "home_team": "NYJ",
+    "away_team": "BUF",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30750,
+    "matchup_path": "/nfl/scores/2026/10/jacksonville-jaguars_at_tennessee-titans_30750",
+    "week": "10",
+    "home_team": "TEN",
+    "away_team": "JAX",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30751,
+    "matchup_path": "/nfl/scores/2026/10/los-angeles-rams_at_arizona-cardinals_30751",
+    "week": "10",
+    "home_team": "ARZ",
+    "away_team": "LA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30752,
+    "matchup_path": "/nfl/scores/2026/10/seattle-seahawks_at_las-vegas-raiders_30752",
+    "week": "10",
+    "home_team": "LV",
+    "away_team": "SEA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30753,
+    "matchup_path": "/nfl/scores/2026/10/san-francisco-49ers_at_dallas-cowboys_30753",
+    "week": "10",
+    "home_team": "DAL",
+    "away_team": "SF",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30754,
+    "matchup_path": "/nfl/scores/2026/10/pittsburgh-steelers_at_cincinnati-bengals_30754",
+    "week": "10",
+    "home_team": "CIN",
+    "away_team": "PIT",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30755,
+    "matchup_path": "/nfl/scores/2026/10/los-angeles-chargers_at_baltimore-ravens_30755",
+    "week": "10",
+    "home_team": "BLT",
+    "away_team": "LAC",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30756,
+    "matchup_path": "/nfl/scores/2026/11/indianapolis-colts_at_houston-texans_30756",
+    "week": "11",
+    "home_team": "HST",
+    "away_team": "IND",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30758,
+    "matchup_path": "/nfl/scores/2026/11/miami-dolphins_at_buffalo-bills_30758",
+    "week": "11",
+    "home_team": "BUF",
+    "away_team": "MIA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30759,
+    "matchup_path": "/nfl/scores/2026/11/baltimore-ravens_at_carolina-panthers_30759",
+    "week": "11",
+    "home_team": "CAR",
+    "away_team": "BLT",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30760,
+    "matchup_path": "/nfl/scores/2026/11/new-orleans-saints_at_chicago-bears_30760",
+    "week": "11",
+    "home_team": "CHI",
+    "away_team": "NO",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30761,
+    "matchup_path": "/nfl/scores/2026/11/tennessee-titans_at_dallas-cowboys_30761",
+    "week": "11",
+    "home_team": "DAL",
+    "away_team": "TEN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30762,
+    "matchup_path": "/nfl/scores/2026/11/tampa-bay-buccaneers_at_detroit-lions_30762",
+    "week": "11",
+    "home_team": "DET",
+    "away_team": "TB",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30763,
+    "matchup_path": "/nfl/scores/2026/11/arizona-cardinals_at_kansas-city-chiefs_30763",
+    "week": "11",
+    "home_team": "KC",
+    "away_team": "ARZ",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30764,
+    "matchup_path": "/nfl/scores/2026/11/jacksonville-jaguars_at_new-york-giants_30764",
+    "week": "11",
+    "home_team": "NYG",
+    "away_team": "JAX",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30765,
+    "matchup_path": "/nfl/scores/2026/11/new-york-jets_at_los-angeles-chargers_30765",
+    "week": "11",
+    "home_team": "LAC",
+    "away_team": "NYJ",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30766,
+    "matchup_path": "/nfl/scores/2026/11/las-vegas-raiders_at_denver-broncos_30766",
+    "week": "11",
+    "home_team": "DEN",
+    "away_team": "LV",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30767,
+    "matchup_path": "/nfl/scores/2026/11/pittsburgh-steelers_at_philadelphia-eagles_30767",
+    "week": "11",
+    "home_team": "PHI",
+    "away_team": "PIT",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30757,
+    "matchup_path": "/nfl/scores/2026/11/minnesota-vikings_at_san-francisco-49ers_30757",
+    "week": "11",
+    "home_team": "SF",
+    "away_team": "MIN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30768,
+    "matchup_path": "/nfl/scores/2026/11/cincinnati-bengals_at_washington-commanders_30768",
+    "week": "11",
+    "home_team": "WAS",
+    "away_team": "CIN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30769,
+    "matchup_path": "/nfl/scores/2026/12/green-bay-packers_at_los-angeles-rams_30769",
+    "week": "12",
+    "home_team": "LA",
+    "away_team": "GB",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30770,
+    "matchup_path": "/nfl/scores/2026/12/chicago-bears_at_detroit-lions_30770",
+    "week": "12",
+    "home_team": "DET",
+    "away_team": "CHI",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30782,
+    "matchup_path": "/nfl/scores/2026/12/philadelphia-eagles_at_dallas-cowboys_30782",
+    "week": "12",
+    "home_team": "DAL",
+    "away_team": "PHI",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30771,
+    "matchup_path": "/nfl/scores/2026/12/kansas-city-chiefs_at_buffalo-bills_30771",
+    "week": "12",
+    "home_team": "BUF",
+    "away_team": "KC",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30772,
+    "matchup_path": "/nfl/scores/2026/12/denver-broncos_at_pittsburgh-steelers_30772",
+    "week": "12",
+    "home_team": "PIT",
+    "away_team": "DEN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30773,
+    "matchup_path": "/nfl/scores/2026/12/new-orleans-saints_at_cincinnati-bengals_30773",
+    "week": "12",
+    "home_team": "CIN",
+    "away_team": "NO",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30774,
+    "matchup_path": "/nfl/scores/2026/12/las-vegas-raiders_at_cleveland-browns_30774",
+    "week": "12",
+    "home_team": "CLV",
+    "away_team": "LV",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30775,
+    "matchup_path": "/nfl/scores/2026/12/baltimore-ravens_at_houston-texans_30775",
+    "week": "12",
+    "home_team": "HST",
+    "away_team": "BLT",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30776,
+    "matchup_path": "/nfl/scores/2026/12/new-york-giants_at_indianapolis-colts_30776",
+    "week": "12",
+    "home_team": "IND",
+    "away_team": "NYG",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30777,
+    "matchup_path": "/nfl/scores/2026/12/new-york-jets_at_miami-dolphins_30777",
+    "week": "12",
+    "home_team": "MIA",
+    "away_team": "NYJ",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30778,
+    "matchup_path": "/nfl/scores/2026/12/atlanta-falcons_at_minnesota-vikings_30778",
+    "week": "12",
+    "home_team": "MIN",
+    "away_team": "ATL",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30779,
+    "matchup_path": "/nfl/scores/2026/12/tennessee-titans_at_jacksonville-jaguars_30779",
+    "week": "12",
+    "home_team": "JAX",
+    "away_team": "TEN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30780,
+    "matchup_path": "/nfl/scores/2026/12/washington-commanders_at_arizona-cardinals_30780",
+    "week": "12",
+    "home_team": "ARZ",
+    "away_team": "WAS",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30781,
+    "matchup_path": "/nfl/scores/2026/12/seattle-seahawks_at_san-francisco-49ers_30781",
+    "week": "12",
+    "home_team": "SF",
+    "away_team": "SEA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30783,
+    "matchup_path": "/nfl/scores/2026/12/new-england-patriots_at_los-angeles-chargers_30783",
+    "week": "12",
+    "home_team": "LAC",
+    "away_team": "NE",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30784,
+    "matchup_path": "/nfl/scores/2026/12/carolina-panthers_at_tampa-bay-buccaneers_30784",
+    "week": "12",
+    "home_team": "TB",
+    "away_team": "CAR",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30785,
+    "matchup_path": "/nfl/scores/2026/13/kansas-city-chiefs_at_los-angeles-rams_30785",
+    "week": "13",
+    "home_team": "LA",
+    "away_team": "KC",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30786,
+    "matchup_path": "/nfl/scores/2026/13/detroit-lions_at_atlanta-falcons_30786",
+    "week": "13",
+    "home_team": "ATL",
+    "away_team": "DET",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30787,
+    "matchup_path": "/nfl/scores/2026/13/jacksonville-jaguars_at_chicago-bears_30787",
+    "week": "13",
+    "home_team": "CHI",
+    "away_team": "JAX",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30788,
+    "matchup_path": "/nfl/scores/2026/13/cincinnati-bengals_at_cleveland-browns_30788",
+    "week": "13",
+    "home_team": "CLV",
+    "away_team": "CIN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30789,
+    "matchup_path": "/nfl/scores/2026/13/green-bay-packers_at_new-orleans-saints_30789",
+    "week": "13",
+    "home_team": "NO",
+    "away_team": "GB",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30790,
+    "matchup_path": "/nfl/scores/2026/13/san-francisco-49ers_at_new-york-giants_30790",
+    "week": "13",
+    "home_team": "NYG",
+    "away_team": "SF",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30791,
+    "matchup_path": "/nfl/scores/2026/13/los-angeles-chargers_at_tampa-bay-buccaneers_30791",
+    "week": "13",
+    "home_team": "TB",
+    "away_team": "LAC",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30792,
+    "matchup_path": "/nfl/scores/2026/13/washington-commanders_at_tennessee-titans_30792",
+    "week": "13",
+    "home_team": "TEN",
+    "away_team": "WAS",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30793,
+    "matchup_path": "/nfl/scores/2026/13/philadelphia-eagles_at_arizona-cardinals_30793",
+    "week": "13",
+    "home_team": "ARZ",
+    "away_team": "PHI",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30794,
+    "matchup_path": "/nfl/scores/2026/13/miami-dolphins_at_denver-broncos_30794",
+    "week": "13",
+    "home_team": "DEN",
+    "away_team": "MIA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30795,
+    "matchup_path": "/nfl/scores/2026/13/carolina-panthers_at_minnesota-vikings_30795",
+    "week": "13",
+    "home_team": "MIN",
+    "away_team": "CAR",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30796,
+    "matchup_path": "/nfl/scores/2026/13/buffalo-bills_at_new-england-patriots_30796",
+    "week": "13",
+    "home_team": "NE",
+    "away_team": "BUF",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30797,
+    "matchup_path": "/nfl/scores/2026/13/houston-texans_at_pittsburgh-steelers_30797",
+    "week": "13",
+    "home_team": "PIT",
+    "away_team": "HST",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30798,
+    "matchup_path": "/nfl/scores/2026/13/dallas-cowboys_at_seattle-seahawks_30798",
+    "week": "13",
+    "home_team": "SEA",
+    "away_team": "DAL",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30799,
+    "matchup_path": "/nfl/scores/2026/14/minnesota-vikings_at_new-england-patriots_30799",
+    "week": "14",
+    "home_team": "NE",
+    "away_team": "MIN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30800,
+    "matchup_path": "/nfl/scores/2026/14/tampa-bay-buccaneers_at_baltimore-ravens_30800",
+    "week": "14",
+    "home_team": "BLT",
+    "away_team": "TB",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30801,
+    "matchup_path": "/nfl/scores/2026/14/new-orleans-saints_at_carolina-panthers_30801",
+    "week": "14",
+    "home_team": "CAR",
+    "away_team": "NO",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30802,
+    "matchup_path": "/nfl/scores/2026/14/atlanta-falcons_at_cleveland-browns_30802",
+    "week": "14",
+    "home_team": "CLV",
+    "away_team": "ATL",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30803,
+    "matchup_path": "/nfl/scores/2026/14/tennessee-titans_at_detroit-lions_30803",
+    "week": "14",
+    "home_team": "DET",
+    "away_team": "TEN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30804,
+    "matchup_path": "/nfl/scores/2026/14/chicago-bears_at_miami-dolphins_30804",
+    "week": "14",
+    "home_team": "MIA",
+    "away_team": "CHI",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30805,
+    "matchup_path": "/nfl/scores/2026/14/denver-broncos_at_new-york-jets_30805",
+    "week": "14",
+    "home_team": "NYJ",
+    "away_team": "DEN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30806,
+    "matchup_path": "/nfl/scores/2026/14/indianapolis-colts_at_philadelphia-eagles_30806",
+    "week": "14",
+    "home_team": "PHI",
+    "away_team": "IND",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30807,
+    "matchup_path": "/nfl/scores/2026/14/houston-texans_at_washington-commanders_30807",
+    "week": "14",
+    "home_team": "WAS",
+    "away_team": "HST",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30808,
+    "matchup_path": "/nfl/scores/2026/14/los-angeles-chargers_at_las-vegas-raiders_30808",
+    "week": "14",
+    "home_team": "LV",
+    "away_team": "LAC",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30809,
+    "matchup_path": "/nfl/scores/2026/14/kansas-city-chiefs_at_cincinnati-bengals_30809",
+    "week": "14",
+    "home_team": "CIN",
+    "away_team": "KC",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30810,
+    "matchup_path": "/nfl/scores/2026/14/new-york-giants_at_seattle-seahawks_30810",
+    "week": "14",
+    "home_team": "SEA",
+    "away_team": "NYG",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30811,
+    "matchup_path": "/nfl/scores/2026/14/los-angeles-rams_at_san-francisco-49ers_30811",
+    "week": "14",
+    "home_team": "SF",
+    "away_team": "LA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30812,
+    "matchup_path": "/nfl/scores/2026/14/buffalo-bills_at_green-bay-packers_30812",
+    "week": "14",
+    "home_team": "GB",
+    "away_team": "BUF",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30813,
+    "matchup_path": "/nfl/scores/2026/14/pittsburgh-steelers_at_jacksonville-jaguars_30813",
+    "week": "14",
+    "home_team": "JAX",
+    "away_team": "PIT",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30814,
+    "matchup_path": "/nfl/scores/2026/15/san-francisco-49ers_at_los-angeles-chargers_30814",
+    "week": "15",
+    "home_team": "LAC",
+    "away_team": "SF",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30815,
+    "matchup_path": "/nfl/scores/2026/15/seattle-seahawks_at_philadelphia-eagles_30815",
+    "week": "15",
+    "home_team": "PHI",
+    "away_team": "SEA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30816,
+    "matchup_path": "/nfl/scores/2026/15/chicago-bears_at_buffalo-bills_30816",
+    "week": "15",
+    "home_team": "BUF",
+    "away_team": "CHI",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30817,
+    "matchup_path": "/nfl/scores/2026/15/cincinnati-bengals_at_carolina-panthers_30817",
+    "week": "15",
+    "home_team": "CAR",
+    "away_team": "CIN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30818,
+    "matchup_path": "/nfl/scores/2026/15/miami-dolphins_at_green-bay-packers_30818",
+    "week": "15",
+    "home_team": "GB",
+    "away_team": "MIA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30819,
+    "matchup_path": "/nfl/scores/2026/15/jacksonville-jaguars_at_houston-texans_30819",
+    "week": "15",
+    "home_team": "HST",
+    "away_team": "JAX",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30820,
+    "matchup_path": "/nfl/scores/2026/15/cleveland-browns_at_new-york-giants_30820",
+    "week": "15",
+    "home_team": "NYG",
+    "away_team": "CLV",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30821,
+    "matchup_path": "/nfl/scores/2026/15/baltimore-ravens_at_pittsburgh-steelers_30821",
+    "week": "15",
+    "home_team": "PIT",
+    "away_team": "BLT",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30822,
+    "matchup_path": "/nfl/scores/2026/15/new-orleans-saints_at_tampa-bay-buccaneers_30822",
+    "week": "15",
+    "home_team": "TB",
+    "away_team": "NO",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30823,
+    "matchup_path": "/nfl/scores/2026/15/indianapolis-colts_at_tennessee-titans_30823",
+    "week": "15",
+    "home_team": "TEN",
+    "away_team": "IND",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30824,
+    "matchup_path": "/nfl/scores/2026/15/atlanta-falcons_at_washington-commanders_30824",
+    "week": "15",
+    "home_team": "WAS",
+    "away_team": "ATL",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30825,
+    "matchup_path": "/nfl/scores/2026/15/new-york-jets_at_arizona-cardinals_30825",
+    "week": "15",
+    "home_team": "ARZ",
+    "away_team": "NYJ",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30826,
+    "matchup_path": "/nfl/scores/2026/15/dallas-cowboys_at_los-angeles-rams_30826",
+    "week": "15",
+    "home_team": "LA",
+    "away_team": "DAL",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30827,
+    "matchup_path": "/nfl/scores/2026/15/denver-broncos_at_las-vegas-raiders_30827",
+    "week": "15",
+    "home_team": "LV",
+    "away_team": "DEN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30828,
+    "matchup_path": "/nfl/scores/2026/15/detroit-lions_at_minnesota-vikings_30828",
+    "week": "15",
+    "home_team": "MIN",
+    "away_team": "DET",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30829,
+    "matchup_path": "/nfl/scores/2026/15/new-england-patriots_at_kansas-city-chiefs_30829",
+    "week": "15",
+    "home_team": "KC",
+    "away_team": "NE",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30830,
+    "matchup_path": "/nfl/scores/2026/16/houston-texans_at_philadelphia-eagles_30830",
+    "week": "16",
+    "home_team": "PHI",
+    "away_team": "HST",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30831,
+    "matchup_path": "/nfl/scores/2026/16/green-bay-packers_at_chicago-bears_30831",
+    "week": "16",
+    "home_team": "CHI",
+    "away_team": "GB",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30832,
+    "matchup_path": "/nfl/scores/2026/16/buffalo-bills_at_denver-broncos_30832",
+    "week": "16",
+    "home_team": "DEN",
+    "away_team": "BUF",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30833,
+    "matchup_path": "/nfl/scores/2026/16/los-angeles-rams_at_seattle-seahawks_30833",
+    "week": "16",
+    "home_team": "SEA",
+    "away_team": "LA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30834,
+    "matchup_path": "/nfl/scores/2026/16/tampa-bay-buccaneers_at_atlanta-falcons_30834",
+    "week": "16",
+    "home_team": "ATL",
+    "away_team": "TB",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30835,
+    "matchup_path": "/nfl/scores/2026/16/cincinnati-bengals_at_indianapolis-colts_30835",
+    "week": "16",
+    "home_team": "IND",
+    "away_team": "CIN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30836,
+    "matchup_path": "/nfl/scores/2026/16/washington-commanders_at_minnesota-vikings_30836",
+    "week": "16",
+    "home_team": "MIN",
+    "away_team": "WAS",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30837,
+    "matchup_path": "/nfl/scores/2026/16/carolina-panthers_at_pittsburgh-steelers_30837",
+    "week": "16",
+    "home_team": "PIT",
+    "away_team": "CAR",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30838,
+    "matchup_path": "/nfl/scores/2026/16/cleveland-browns_at_baltimore-ravens_30838",
+    "week": "16",
+    "home_team": "BLT",
+    "away_team": "CLV",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30839,
+    "matchup_path": "/nfl/scores/2026/16/los-angeles-chargers_at_miami-dolphins_30839",
+    "week": "16",
+    "home_team": "MIA",
+    "away_team": "LAC",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30840,
+    "matchup_path": "/nfl/scores/2026/16/arizona-cardinals_at_new-orleans-saints_30840",
+    "week": "16",
+    "home_team": "NO",
+    "away_team": "ARZ",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30841,
+    "matchup_path": "/nfl/scores/2026/16/new-england-patriots_at_new-york-jets_30841",
+    "week": "16",
+    "home_team": "NYJ",
+    "away_team": "NE",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30842,
+    "matchup_path": "/nfl/scores/2026/16/tennessee-titans_at_las-vegas-raiders_30842",
+    "week": "16",
+    "home_team": "LV",
+    "away_team": "TEN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30843,
+    "matchup_path": "/nfl/scores/2026/16/san-francisco-49ers_at_kansas-city-chiefs_30843",
+    "week": "16",
+    "home_team": "KC",
+    "away_team": "SF",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30844,
+    "matchup_path": "/nfl/scores/2026/16/jacksonville-jaguars_at_dallas-cowboys_30844",
+    "week": "16",
+    "home_team": "DAL",
+    "away_team": "JAX",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30845,
+    "matchup_path": "/nfl/scores/2026/16/new-york-giants_at_detroit-lions_30845",
+    "week": "16",
+    "home_team": "DET",
+    "away_team": "NYG",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30846,
+    "matchup_path": "/nfl/scores/2026/17/baltimore-ravens_at_cincinnati-bengals_30846",
+    "week": "17",
+    "home_team": "CIN",
+    "away_team": "BLT",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30847,
+    "matchup_path": "/nfl/scores/2026/17/washington-commanders_at_jacksonville-jaguars_30847",
+    "week": "17",
+    "home_team": "JAX",
+    "away_team": "WAS",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30848,
+    "matchup_path": "/nfl/scores/2026/17/kansas-city-chiefs_at_los-angeles-chargers_30848",
+    "week": "17",
+    "home_team": "LAC",
+    "away_team": "KC",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30849,
+    "matchup_path": "/nfl/scores/2026/17/denver-broncos_at_new-england-patriots_30849",
+    "week": "17",
+    "home_team": "NE",
+    "away_team": "DEN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30850,
+    "matchup_path": "/nfl/scores/2026/17/los-angeles-rams_at_tampa-bay-buccaneers_30850",
+    "week": "17",
+    "home_team": "TB",
+    "away_team": "LA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30851,
+    "matchup_path": "/nfl/scores/2026/17/new-orleans-saints_at_atlanta-falcons_30851",
+    "week": "17",
+    "home_team": "ATL",
+    "away_team": "NO",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30852,
+    "matchup_path": "/nfl/scores/2026/17/seattle-seahawks_at_carolina-panthers_30852",
+    "week": "17",
+    "home_team": "CAR",
+    "away_team": "SEA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30853,
+    "matchup_path": "/nfl/scores/2026/17/indianapolis-colts_at_cleveland-browns_30853",
+    "week": "17",
+    "home_team": "CLV",
+    "away_team": "IND",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30854,
+    "matchup_path": "/nfl/scores/2026/17/new-york-giants_at_dallas-cowboys_30854",
+    "week": "17",
+    "home_team": "DAL",
+    "away_team": "NYG",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30855,
+    "matchup_path": "/nfl/scores/2026/17/buffalo-bills_at_miami-dolphins_30855",
+    "week": "17",
+    "home_team": "MIA",
+    "away_team": "BUF",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30856,
+    "matchup_path": "/nfl/scores/2026/17/minnesota-vikings_at_new-york-jets_30856",
+    "week": "17",
+    "home_team": "NYJ",
+    "away_team": "MIN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30857,
+    "matchup_path": "/nfl/scores/2026/17/pittsburgh-steelers_at_tennessee-titans_30857",
+    "week": "17",
+    "home_team": "TEN",
+    "away_team": "PIT",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30858,
+    "matchup_path": "/nfl/scores/2026/17/las-vegas-raiders_at_arizona-cardinals_30858",
+    "week": "17",
+    "home_team": "ARZ",
+    "away_team": "LV",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30859,
+    "matchup_path": "/nfl/scores/2026/17/detroit-lions_at_chicago-bears_30859",
+    "week": "17",
+    "home_team": "CHI",
+    "away_team": "DET",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30860,
+    "matchup_path": "/nfl/scores/2026/17/philadelphia-eagles_at_san-francisco-49ers_30860",
+    "week": "17",
+    "home_team": "SF",
+    "away_team": "PHI",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30861,
+    "matchup_path": "/nfl/scores/2026/17/houston-texans_at_green-bay-packers_30861",
+    "week": "17",
+    "home_team": "GB",
+    "away_team": "HST",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30862,
+    "matchup_path": "/nfl/scores/2026/18/san-francisco-49ers_at_arizona-cardinals_30862",
+    "week": "18",
+    "home_team": "ARZ",
+    "away_team": "SF",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30863,
+    "matchup_path": "/nfl/scores/2026/18/pittsburgh-steelers_at_baltimore-ravens_30863",
+    "week": "18",
+    "home_team": "BLT",
+    "away_team": "PIT",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30864,
+    "matchup_path": "/nfl/scores/2026/18/new-york-jets_at_buffalo-bills_30864",
+    "week": "18",
+    "home_team": "BUF",
+    "away_team": "NYJ",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30865,
+    "matchup_path": "/nfl/scores/2026/18/atlanta-falcons_at_carolina-panthers_30865",
+    "week": "18",
+    "home_team": "CAR",
+    "away_team": "ATL",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30866,
+    "matchup_path": "/nfl/scores/2026/18/cleveland-browns_at_cincinnati-bengals_30866",
+    "week": "18",
+    "home_team": "CIN",
+    "away_team": "CLV",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30867,
+    "matchup_path": "/nfl/scores/2026/18/los-angeles-chargers_at_denver-broncos_30867",
+    "week": "18",
+    "home_team": "DEN",
+    "away_team": "LAC",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30868,
+    "matchup_path": "/nfl/scores/2026/18/detroit-lions_at_green-bay-packers_30868",
+    "week": "18",
+    "home_team": "GB",
+    "away_team": "DET",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30869,
+    "matchup_path": "/nfl/scores/2026/18/tennessee-titans_at_houston-texans_30869",
+    "week": "18",
+    "home_team": "HST",
+    "away_team": "TEN",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30870,
+    "matchup_path": "/nfl/scores/2026/18/jacksonville-jaguars_at_indianapolis-colts_30870",
+    "week": "18",
+    "home_team": "IND",
+    "away_team": "JAX",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30871,
+    "matchup_path": "/nfl/scores/2026/18/las-vegas-raiders_at_kansas-city-chiefs_30871",
+    "week": "18",
+    "home_team": "KC",
+    "away_team": "LV",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30872,
+    "matchup_path": "/nfl/scores/2026/18/seattle-seahawks_at_los-angeles-rams_30872",
+    "week": "18",
+    "home_team": "LA",
+    "away_team": "SEA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30873,
+    "matchup_path": "/nfl/scores/2026/18/chicago-bears_at_minnesota-vikings_30873",
+    "week": "18",
+    "home_team": "MIN",
+    "away_team": "CHI",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30874,
+    "matchup_path": "/nfl/scores/2026/18/miami-dolphins_at_new-england-patriots_30874",
+    "week": "18",
+    "home_team": "NE",
+    "away_team": "MIA",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30875,
+    "matchup_path": "/nfl/scores/2026/18/tampa-bay-buccaneers_at_new-orleans-saints_30875",
+    "week": "18",
+    "home_team": "NO",
+    "away_team": "TB",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30876,
+    "matchup_path": "/nfl/scores/2026/18/philadelphia-eagles_at_new-york-giants_30876",
+    "week": "18",
+    "home_team": "NYG",
+    "away_team": "PHI",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  },
+  {
+    "pff_game_id": 30877,
+    "matchup_path": "/nfl/scores/2026/18/dallas-cowboys_at_washington-commanders_30877",
+    "week": "18",
+    "home_team": "WAS",
+    "away_team": "DAL",
+    "home_score": null,
+    "away_score": null,
+    "status": "Scheduled"
+  }
+]

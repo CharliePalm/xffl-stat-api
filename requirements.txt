@@ -1,0 +1,6 @@
+fastapi
+jwt
+pydantic
+sqlmodel
+beautifulsoup4
+curl_cffi
