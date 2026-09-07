@@ -12,7 +12,14 @@ from typing import Literal
 
 from pydantic import BaseModel
 
-from shared.model import NFLPosition, NFLTeam, Player, PlayerWeekData, ScrapedPageInfo
+from shared.model import (
+    Game,
+    NFLPosition,
+    NFLTeam,
+    Player,
+    PlayerWeekData,
+    ScrapedPageInfo,
+)
 from shared.calculation_utils import (
     DefensiveStatLine,
     OffensiveStatLine,
@@ -43,6 +50,8 @@ class Stat(StrEnum):
     interceptions = "interceptions"
     fumbles_recovered = "fumbles_recovered"
     defensive_tds = "defensive_tds"
+    punt_return_tds = "punt_return_tds"
+    kick_return_tds = "kick_return_tds"
     safeties = "safeties"
     blocked_kicks = "blocked_kicks"
 
@@ -106,10 +115,9 @@ class BoxscoreBuilder:
     def set_final_score(self, team: NFLTeam, points: int) -> None:
         self._final_score[team] = points
 
-    def build(self, home_team: NFLTeam, away_team: NFLTeam) -> ScrapedPageInfo:
+    def build(self, game: Game) -> ScrapedPageInfo:
         return ScrapedPageInfo(
-            home_team=home_team,
-            away_team=away_team,
+            game=game,
             player_week_data=self._score_players() + self._score_defenses(),
         )
 
@@ -118,7 +126,6 @@ class BoxscoreBuilder:
         for id, stat_line in self._players.items():
             stats = OffensiveStatLine()
             if stat_line.player.position is NFLPosition.K:
-                print(stat_line)
                 points = stat_line.stats.get(Stat.kicking_points, 0.0)
             else:
                 stats = OffensiveStatLine(
@@ -147,10 +154,14 @@ class BoxscoreBuilder:
                 (pts for other, pts in self._final_score.items() if other is not team),
                 0,
             )
-            stat_line = DefensiveStatLine(
-                points_allowed=allowed,
-                **{stat.value: int(value) for stat, value in line.items()},
-            )
+            # build values dict and coalesce special-teams return TDs into
+            # `defensive_tds` so scoring (DEFENSIVE_MULTIPLIERS) counts them
+            values = {stat.value: int(value) for stat, value in line.items()}
+            punt_ret = values.pop("punt_return_tds", 0)
+            kick_ret = values.pop("kick_return_tds", 0)
+            values["defensive_tds"] = values.get("defensive_tds", 0) + punt_ret + kick_ret
+
+            stat_line = DefensiveStatLine(points_allowed=allowed, **values)
             defenses.append(
                 PlayerWeekData(
                     player_id=team.id,

@@ -28,22 +28,21 @@ class ScrapeManager:
 
     def run(self, game: Game):
         # provider = self.pick_provider()
-        provider = Provider(name="sleeper", pos=0)
+        provider = Provider(name="cbs", pos=0)
         scraper = providers[provider.name]()
-        print(scraper.get_url(game))
-        return
         html = scraper.get_html(scraper.get_url(game))
-        print(html)
-        return
         res = scraper.scrape(scraper.parse_html(html), game)
         print(res)
         for player_week in res.player_week_data:
             self.db.write_model(player_week)
-        provider.pos = provider.pos + len(providers)
-        self.db.write_model(provider)
+        # provider.pos = provider.pos + len(providers)
+        # self.db.write_model(provider)
 
 
 if __name__ == "__main__":
     m = ScrapeManager()
-    game = m.db.fetch_model("select * from game limit 1", Game)
-    m.run(game)
+    game = m.db.fetch_model("select * from game where week = -1;", Game)
+    if not game:
+        print("ah!")
+    else:
+        m.run(game)

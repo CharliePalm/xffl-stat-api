@@ -2,6 +2,7 @@ import re
 
 from bs4 import BeautifulSoup, Tag
 
+from shared.db import Database
 from shared.model import Game, NFLTeam, ScrapedPageInfo
 from scrapers.scraper import Scraper
 from shared.boxscore import BoxscoreBuilder, Stat
@@ -40,16 +41,19 @@ DEFENSE_COLUMNS: dict[str, dict[Stat, str]] = {
 
 class ESPNScraper(Scraper):
     file_name = "espn.json"
+    db = Database()
 
     @staticmethod
     def get_url(game: Game):
         return game.espn_link
 
     def parse_html(self, html: str) -> BeautifulSoup:
+        with open("./epsn.html", "w") as fp:
+            fp.write(html)
         return BeautifulSoup(html, "html.parser")
 
-    def scrape(self, soup: BeautifulSoup, week: int) -> ScrapedPageInfo:
-        builder = BoxscoreBuilder(week)
+    def scrape(self, soup: BeautifulSoup, game: Game) -> ScrapedPageInfo:  # type: ignore
+        builder = BoxscoreBuilder(game.week)
 
         linescore = self._parse_linescore(soup)
         if len(linescore) != 2:
@@ -62,14 +66,19 @@ class ESPNScraper(Scraper):
         for team, stat, rows in self._parse_sections(soup):
             for name, line in rows.items():
                 is_totals = name.lower() == TEAM_TOTALS_LABEL
+                print(stat)
                 if is_totals and stat in DEFENSE_COLUMNS:
                     builder.add_team_defense(
                         team, self._read(line, DEFENSE_COLUMNS[stat])
                     )
                 if not is_totals and stat in COLUMNS:
-                    builder.add_player(team, name, self._read(line, COLUMNS[stat]))
+                    player = self.db.get_player_by_full_name(name, team)
+                    if not player:
+                        print("player not found - ", name)
+                        continue
+                    builder.add_player(player, self._read(line, COLUMNS[stat]))
 
-        return builder.build(home_team, away_team)
+        return builder.build(game)
 
     def _read(
         self, line: dict[str, str], columns: dict[Stat, str]
@@ -160,8 +169,3 @@ class ESPNScraper(Scraper):
             if team:
                 return team
         return None
-
-
-if __name__ == "__main__":
-    scraper = ESPNScraper()
-    print(scraper.summarize(scraper.scrape(scraper.parse_html(scraper.get_html()), 1)))

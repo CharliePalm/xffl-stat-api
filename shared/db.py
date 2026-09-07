@@ -20,7 +20,8 @@ import json
 import atexit
 import signal
 import weakref
-from shared.utils import to_snake
+from shared.model import NFLTeam, Player
+from shared.utils import clean_name, to_snake
 
 _IDENTIFIER_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 
@@ -122,7 +123,6 @@ class Database:
         conn = self.connection
         try:
             if many:
-                print("executing many")
                 return conn.executemany(query, params)
             return conn.execute(query, params)  # type: ignore
         except sqlite3.ProgrammingError:
@@ -171,8 +171,14 @@ class Database:
         self, query: str, model: Type[T], params: Iterable[Any] = ()
     ) -> Optional[T]:
         """Same as fetch_models, but returns a single instance (or None)."""
+        print(query, params)
         row = self.fetchone(query, params)
-        return model.model_validate(dict(row)) if row is not None else None
+        try:
+            return model.model_validate(dict(row)) if row is not None else None
+        except Exception as e:
+            print("error validating model from db")
+            print(e)
+            return None
 
     def execute_and_commit(
         self, sql: str, params: Iterable[Any] = ()
@@ -225,10 +231,6 @@ class Database:
         current fields. Complex values (lists/dicts) are serialized as
         JSON into TEXT columns.
 
-        Note: if fields are added to the model after the table was first
-        created, this will NOT migrate the existing table's schema — the
-        insert will fail with "no column named X". Call a migration step
-        explicitly if you need to add columns to an existing table.
         """
         if not isinstance(model, BaseModel):
             raise TypeError("model must be a Pydantic BaseModel instance")
@@ -237,22 +239,32 @@ class Database:
         table = self._quote_identifier(raw_table)
         data = model.model_dump()  # pydantic v2 style
 
+        id_keys = getattr(model, "_id_keys", ["id"])
+        pk_columns = [
+            self._quote_identifier(str(key)) for key in id_keys if key in data
+        ]
+        if not pk_columns and "id" in data:
+            pk_columns = [self._quote_identifier("id")]
+
         columns = []  # (quoted_name, sql_type, raw_value)
         for key, val in data.items():
             columns.append(
                 (self._quote_identifier(key), self._sqlite_type_for_value(val), val)
             )
 
-        col_defs = ["id INTEGER PRIMARY KEY AUTOINCREMENT"] + [
-            f"{name} {sql_type}" for name, sql_type, _ in columns
-        ]
-        create_sql = f"CREATE TABLE IF NOT EXISTS {table} ({', '.join(col_defs)});"
-        self.execute_and_commit(create_sql)
-
         quoted_keys = [name for name, _, _ in columns]
         placeholders = ", ".join(["?" for _ in columns])
+        conflict_cols = ", ".join(pk_columns) if pk_columns else '"id"'
+        update_clause = ", ".join(
+            f"{name} = excluded.{name}"
+            for name in quoted_keys
+            if name not in pk_columns
+        )
+
         insert_sql = (
-            f"INSERT INTO {table} ({', '.join(quoted_keys)}) VALUES ({placeholders})"
+            f"INSERT INTO {table} ({', '.join(quoted_keys)}) "
+            f"VALUES ({placeholders}) "
+            f"ON CONFLICT({conflict_cols}) DO UPDATE SET {update_clause}"
         )
 
         params = []
@@ -271,4 +283,32 @@ class Database:
         )
 
     def commit(self):
-        self._connection.commit()
+        if self._connection:
+            self._connection.commit()
+
+    def get_player(
+        self, first_name: str, last_name: str, team: Optional[str | NFLTeam]
+    ) -> Player | None:
+        params = [clean_name(first_name), clean_name(last_name)]
+        if team is not None:
+            params.append(str(team))
+        params = [f"%{p}%" for p in params]
+        return self.fetch_model(
+            f"select * from player where first_name_norm like ? and last_name_norm like ?{' and team like ?' if len(params) == 3 else ''}",
+            Player,
+            tuple(params),
+        )
+
+    def get_player_by_full_name(self, full_name: str, team: Optional[str | NFLTeam]):
+        parts = full_name.strip().split()
+        if not parts:
+            return None
+        first_name = parts[0]
+        last_name = " ".join(parts[1:]) if len(parts) > 1 else ""
+        if not last_name:
+            print("no last name - is this some kind of cher situation?")
+        return self.get_player(
+            first_name,
+            last_name,
+            team,
+        )

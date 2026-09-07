@@ -1,7 +1,7 @@
 from enum import Enum, StrEnum
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from enum import Enum
 
@@ -144,8 +144,7 @@ class NFLPosition(StrEnum):
 
 
 class ScrapedPageInfo(BaseModel):
-    home_team: NFLTeam
-    away_team: NFLTeam
+    game: Game
     player_week_data: list[PlayerWeekData]
 
 
@@ -179,6 +178,7 @@ class OffensiveStatLine(BaseModel):
 
 
 class PlayerWeekData(OffensiveStatLine, DefensiveStatLine):
+    _id_keys = ["player_id", "week"]
     player_id: int
     week: int
     points: float
@@ -188,10 +188,12 @@ class Player(BaseModel):
     id: int
     first_name: str
     last_name: str
-    team: Optional[NFLTeam]
-    number: Optional[int]
+    team: Optional[NFLTeam] = Field(None)
+    number: Optional[int] = None
     active: bool
     position: NFLPosition
+    first_name_norm: str
+    last_name_norm: str
 
 
 class Game(BaseModel):

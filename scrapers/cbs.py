@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup, Tag
 
-from shared.model import Game, NFLPosition, NFLTeam, ScrapedPageInfo
+from shared.db import Database
+from shared.model import Game, NFLPosition, NFLTeam, Player, ScrapedPageInfo
 from scrapers.scraper import Scraper
 from shared.boxscore import BoxscoreBuilder, Stat
 from shared.parsing import (
@@ -29,25 +30,30 @@ COLUMNS: dict[str, dict[Stat, str]] = {
     },
     "kicking-ctr": {Stat.kicking_points: "PTS"},
 }
-# CBS lists only per-defender stats, with no team totals row to read
+# CBS lists per-defender stats here. Team-summary rows in the side panel are the
+# place where return TDs / recovered fumbles / interception returns are counted.
 DEFENSE_COLUMNS: dict[Stat, str] = {
     Stat.sacks: "SACK",
     Stat.interceptions: "INT",
+    Stat.fumbles_recovered: "FF",
 }
 
 
 class CBSScraper(Scraper):
     file_name = "sea_tn_cbs.html"
+    _db = Database()
 
     @staticmethod
     def get_url(game: Game):
         return game.cbs_link
 
     def parse_html(self, html: str) -> BeautifulSoup:
+        with open("./cbs.html", "w") as fp:
+            fp.write(html)
         return BeautifulSoup(html, "html.parser")
 
-    def scrape(self, soup: BeautifulSoup, week: int) -> ScrapedPageInfo:
-        builder = BoxscoreBuilder(week)
+    def scrape(self, soup: BeautifulSoup, game: Game) -> ScrapedPageInfo:  # type: ignore
+        builder = BoxscoreBuilder(game.week)
 
         linescore = self._parse_linescore(soup)
         if len(linescore) != 2:
@@ -59,12 +65,81 @@ class CBSScraper(Scraper):
 
         for container in soup.find_all(class_="stats-ctr-container"):
             for section, columns in COLUMNS.items():
-                for team, name, pos, line in self._parse_section(container, section):
-                    builder.add_player(team, name, self._read(line, columns), pos)
-            for team, name, _pos, line in self._parse_section(container, "defense-ctr"):
+                for team, name, _pos, line in self._parse_section(container, section):
+                    player = self._db.get_player_by_full_name(name, team)
+                    if player is None:
+                        print("not found: ", (team, name))
+                        continue
+                    builder.add_player(player, self._read(line, columns))
+            for team, _name, _pos, line in self._parse_section(
+                container, "defense-ctr"
+            ):
                 builder.add_team_defense(team, self._read(line, DEFENSE_COLUMNS))
 
-        return builder.build(home_team, away_team)
+        self._add_team_summary_defense_totals(soup, away_team, home_team, builder)
+
+        return builder.build(game)
+
+    def _add_team_summary_defense_totals(
+        self,
+        soup: BeautifulSoup,
+        away_team: NFLTeam,
+        home_team: NFLTeam,
+        builder: BoxscoreBuilder,
+    ) -> None:
+        table = soup.find("table", class_="team-stats")
+        if not isinstance(table, Tag):
+            return
+
+        explicit_td_by_team: dict[NFLTeam, float] = {away_team: 0.0, home_team: 0.0}
+        fallback_td_by_team: dict[NFLTeam, float] = {away_team: 0.0, home_team: 0.0}
+
+        rows = table.find_all("tr")
+        for row in rows:
+            cells = row.find_all("td")
+            if len(cells) < 3:
+                continue
+            label = cells[0].get_text(" ", strip=True)
+            if label not in {"Other", "Int. - Returns", "Fumbles - Lost"}:
+                continue
+
+            values = [cell.get_text(" ", strip=True) for cell in cells[1:3]]
+            away_value = self._team_summary_value(values[0])
+            home_value = self._team_summary_value(values[1])
+
+            if label == "Other":
+                fallback_td_by_team[away_team] += away_value
+                fallback_td_by_team[home_team] += home_value
+                continue
+
+            if label == "Int. - Returns":
+                builder.add_team_defense(away_team, {Stat.interceptions: away_value})
+                builder.add_team_defense(home_team, {Stat.interceptions: home_value})
+                explicit_td_by_team[away_team] += away_value
+                explicit_td_by_team[home_team] += home_value
+                continue
+
+            if label == "Fumbles - Lost":
+                builder.add_team_defense(away_team, {Stat.fumbles_recovered: away_value})
+                builder.add_team_defense(home_team, {Stat.fumbles_recovered: home_value})
+                explicit_td_by_team[away_team] += away_value
+                explicit_td_by_team[home_team] += home_value
+
+        for team in (away_team, home_team):
+            td_total = explicit_td_by_team[team]
+            if td_total == 0:
+                td_total = fallback_td_by_team[team]
+            if td_total > 0:
+                builder.add_team_defense(team, {Stat.defensive_tds: td_total})
+
+    @staticmethod
+    def _team_summary_value(raw: str) -> float:
+        text = raw.strip()
+        if "-" in text:
+            left, _right = text.split("-", 1)
+            if left.strip():
+                return float(to_float(left.strip()))
+        return float(to_float(text))
 
     def _read(
         self, line: dict[str, str], columns: dict[Stat, str]

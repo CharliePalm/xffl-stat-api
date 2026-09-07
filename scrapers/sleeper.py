@@ -1,3 +1,4 @@
+import json
 from typing import Any
 
 from shared.db import Database
@@ -25,7 +26,7 @@ DEFENSE_COLUMNS: dict[Stat, str] = {
     Stat.sacks: "sack",
     Stat.interceptions: "int",
     Stat.fumbles_recovered: "fum_rec",
-    Stat.defensive_tds: "def_td",
+    Stat.defensive_tds: "def_st_td",
 }
 
 
@@ -45,19 +46,12 @@ class SleeperScraper(Scraper):
     def parse_html(self, html: str) -> str:
         return reconstruct_flight_text(html)
 
-    def scrape(self, soup: str, week: int) -> ScrapedPageInfo:
+    def scrape(self, soup: str, game: Game) -> ScrapedPageInfo:
         records = self._parse_player_records(soup)
         if not records:
             raise ValueError("Could not find player stats in the flight payload")
-        game = self._parse_game(soup, records[0]["game_id"])
-        if game is None:
-            raise ValueError("Could not find game metadata in the flight payload")
-        home_team = NFLTeam.from_abbreviation(game["home_team"])
-        away_team = NFLTeam.from_abbreviation(game["away_team"])
 
-        builder = BoxscoreBuilder(week)
-        builder.set_final_score(home_team, game["home_score"])
-        builder.set_final_score(away_team, game["away_score"])
+        builder = BoxscoreBuilder(game.week)
 
         for record in records:
             team = NFLTeam.from_abbreviation(record["team"])
@@ -65,24 +59,32 @@ class SleeperScraper(Scraper):
             stats = record["stats"]
 
             if position == "DEF":
+                builder.set_final_score(
+                    game.away if game.home == team else game.home,
+                    record["stats"]["pts_allow"],
+                )
                 builder.add_team_defense(team, self._read(stats, DEFENSE_COLUMNS))
             else:
-                player = self._db.fetch_model(
-                    "select * from player where id = ?", Player, record["player"]["id"]
+                player = self._db.get_player(
+                    record["player"]["first_name"],
+                    record["player"]["last_name"],
+                    record["player"]["team"],
                 )
+                if not player:
+                    continue
                 if position in OFFENSE_POSITIONS:
                     line = self._read(stats, OFFENSE_COLUMNS)
                     two_pt = sum(stats.get(col, 0) for col in TWO_PT_COLUMNS)
                     if two_pt:
                         line[Stat.two_pt_conversions] = two_pt
-                    builder.add_player(team, name, line, NFLPosition(position))
+                    builder.add_player(player, line)
                 elif position == "K":
                     builder.add_player(
                         player,
                         stats={Stat.kicking_points: stats.get("kick_pts", 0)},
                     )
 
-        return builder.build(home_team, away_team)
+        return builder.build(game)
 
     def _read(
         self, stats: dict[str, Any], columns: dict[Stat, str]

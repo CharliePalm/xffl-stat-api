@@ -2,6 +2,7 @@ from curl_cffi import requests
 
 from shared.db import Database
 from shared.model import NFLTeam, Player, NFLPosition
+from shared.utils import clean_name
 
 fantasy_positions = set(["QB", "RB", "WR", "TE", "K", "DST"])
 players_resp = requests.get("https://api.sleeper.app/players/nfl?exclude_injury=false")
@@ -28,6 +29,7 @@ for player in players:
 
         # Build a Pydantic Player model and persist it via Database.write_model
         record = players[player]
+        special_chars = ["'", "-", ".", " "]
         player_model = Player(
             id=int(record.get("player_id") or player),
             first_name=record.get("first_name", ""),
@@ -36,6 +38,8 @@ for player in players:
             number=record.get("number"),
             active=bool(record.get("active", False)),
             position=record.get("position"),
+            first_name_norm=clean_name(record.get("first_name", "")),
+            last_name_norm=clean_name(record.get("last_name", "")),
         )
         filtered_players.append(player_model)
 
@@ -53,6 +57,8 @@ COLUMNS = {
     "number": "INTEGER",
     "active": "INTEGER",  # SQLite has no native BOOLEAN; stored as 0/1
     "position": "TEXT",
+    "first_name_norm": "TEXT",
+    "last_name_norm": "TEXT",
 }
 PRIMARY_KEY = ("id",)
 col_names = list(COLUMNS.keys())
@@ -72,12 +78,13 @@ sql = f"""
 """
 
 
-def hydrate(players: list[dict]) -> None:
-    clean = lambda col, x: str(x) if col == "team" else x
+def hydrate(players: list[Player]) -> None:
+    clean = lambda col, x: str(x) if x and col == "team" else x
     rows = [
         tuple(clean(col, player.__getattribute__(col)) for col in col_names)
         for player in players
     ]
+    print(rows)
     db.executemany(sql, rows)
 
 
@@ -91,6 +98,8 @@ def hydrate_defense():
             100,
             True,
             NFLPosition.D,
+            team.team_city.lower(),
+            team.team_name.lower(),
         )
         for team in NFLTeam
     ]

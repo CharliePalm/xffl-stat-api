@@ -17,7 +17,6 @@ class Scraper(ABC):
                 return fp.read()
         else:
             res = requests.get(url)
-            print(res)
             return res.text
 
     @staticmethod
@@ -35,10 +34,7 @@ class Scraper(ABC):
 
     def summarize(self, page: ScrapedPageInfo) -> str:
         """Human-readable dump of a scrape, for eyeballing a source's output."""
-        lines = [f"{page.away_team.abbreviation} @ {page.home_team.abbreviation}"]
+        lines = [f"{page.game.away.abbreviation} @ {page.game.home.abbreviation}"]
         for player in sorted(page.player_week_data, key=lambda p: -p.points):
-            lines.append(
-                f"{player.points:>7.2f}  {player.team.abbreviation:<3} "
-                f"{player.pos.value:<4} {player.player_name}"
-            )
+            lines.append(f"{player.points:>7.2f} | {player.player_id:<4}")
         return "\n".join(lines)

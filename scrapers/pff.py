@@ -43,12 +43,12 @@ OFFENSE_SIGNAL_FIELDS = (
 # standard rule (3/FG, 1/XP) rather than a distance-tiered total like ESPN/CBS
 FIELD_GOAL_POINTS = 3.0
 EXTRA_POINT_POINTS = 1.0
-# summed across every player on the roster, since PFF has no team-totals row;
-# there is no recoverable "fumbles recovered" field, so that stat is left at 0
+
 DEFENSE_COLUMNS: dict[Stat, str] = {
     Stat.sacks: "sacks",
     Stat.interceptions: "interceptions",
     Stat.defensive_tds: "defensive_touchdowns",
+    Stat.fumbles_recovered: "def_st_fum_rec",
 }
 
 
@@ -63,15 +63,20 @@ class PFFScraper(Scraper):
         ).lower()
         home = clean(game.home.full_name)
         away = clean(game.away.full_name)
-        return f"https://www.pff.com/api/scoreboard/matchup?league=nfl&season={game.season}&week={game.week}&game={home}_at_{away}_{game.pff_id}"
+        week = game.week
+        if game.week < 0:
+            # preseason test
+            week = "P3"
+        return f"https://www.pff.com/api/scoreboard/matchup?league=nfl&season={game.season}&week={week}&game={home}_at_{away}_{game.pff_id}"
 
     def parse_html(self, html: str) -> dict[str, Any] | dict[str, Any]:
         return json.loads(html)
 
-    def scrape(self, soup: dict[str, Any], game: Game) -> ScrapedPageInfo:
+    def scrape(self, soup: dict[str, Any], game: Game) -> ScrapedPageInfo:  # type: ignore
         if "away_player_stats" not in soup and "home_player_stats" not in soup:
-            # game hasn't started yet
-            return
+            return ScrapedPageInfo(game=game, player_week_data=[])
+        with open("./pff.json", "w") as fp:
+            fp.write(json.dumps(soup))
         away_players = soup["away_player_stats"]
         home_players = soup["home_player_stats"]
 
@@ -80,8 +85,8 @@ class PFFScraper(Scraper):
         builder.set_final_score(game.home, soup["score"]["home_score"])
 
         for team, players, is_home in (
-            (game.home, away_players, True),
-            (game.home, home_players, False),
+            (game.home, away_players, False),
+            (game.home, home_players, True),
         ):
             defense = {
                 stat: sum(player.get(column, 0) for player in players)
@@ -90,40 +95,36 @@ class PFFScraper(Scraper):
             builder.add_team_defense(team, defense)
 
             for player in players:
-                player_name_chunks: list[str] = player.get("name").split(" ")
-                player = self._db.fetch_model(
-                    "select * from player where first_name = ? and last_name = ? and team_name = ?"
-                )
-                player = Player(
-                    first_name=player_name_chunks[0],
-                    last_name=" ".join(player_name_chunks[1:]),
-                    team=game.home if is_home else game.away,
-                    # number=
-                )
                 if player.get("field_goals_attempted") or player.get(
                     "extra_points_attempted"
                 ):
+                    player_obj = self._db.get_player_by_full_name(
+                        player.get("name"),
+                        game.home if is_home else game.away,
+                    )
+                    if not player_obj:
+                        # print("player not found - ", player.get("name"))
+                        continue
                     points = (
                         player.get("field_goals_made", 0) * FIELD_GOAL_POINTS
                         + player.get("extra_points_made", 0) * EXTRA_POINT_POINTS
                     )
                     builder.add_player(
-                        team,
-                        player["name"],
+                        player_obj,
                         {Stat.kicking_points: points},
-                        NFLPosition.K,
                     )
                 elif any(player.get(field) for field in OFFENSE_SIGNAL_FIELDS):
+                    player_obj = self._db.get_player_by_full_name(
+                        player.get("name"),
+                        game.home if is_home else game.away,
+                    )
+                    if not player_obj:
+                        # print("player not found - ", player.get("name"))
+                        continue
                     line = {
                         stat: player.get(column, 0)
                         for stat, column in OFFENSE_COLUMNS.items()
                     }
-                    builder.add_player(team, player["name"], line)
+                    builder.add_player(player_obj, line)
 
-        return builder.build(home_team, away_team)
-
-
-if __name__ == "__main__":
-    scraper = PFFScraper()
-    parsed = scraper.parse_html(scraper.get_html())
-    print(scraper.summarize(scraper.scrape(parsed, week=2)))
+        return builder.build(game)
