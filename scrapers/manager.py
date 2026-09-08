@@ -1,12 +1,14 @@
 from typing import Any, Callable
 
 from scrapers.scraper import Scraper
-from shared.db.db import Database
 from shared.model import Game, Provider
 from scrapers import espn, cbs, pff, sleeper
 from shared.service.engine import SessionLocal
+from shared.service.game_service import GameService
+from shared.service.player_service import PlayerService
+from shared.service.player_week_service import PlayerWeekService
 from shared.service.provider import ProviderService
-from shared.service.service import Sort
+from shared.service.service import Criterion, Sort
 
 providers: dict[str, Callable[[], Scraper]] = {
     "cbs": lambda: cbs.CBSScraper(),
@@ -15,10 +17,12 @@ providers: dict[str, Callable[[], Scraper]] = {
     "sleeper": lambda: sleeper.SleeperScraper(),
     # 'nbc': lambda _: cbs.CBSScraper(),
 }
+game_service = GameService(SessionLocal())
 
 
 class ScrapeManager:
     provider_service = ProviderService(SessionLocal())
+    stat_service = PlayerWeekService(SessionLocal())
 
     def pick_provider(self):
         provider = self.provider_service.search(
@@ -36,14 +40,15 @@ class ScrapeManager:
         res = scraper.scrape(scraper.parse_html(html), game)
         print(res)
         for player_week in res.player_week_data:
-            self.db.write_model(player_week)
-        # provider.pos = provider.pos + len(providers)
-        # self.db.write_model(provider)
+            self.stat_service.put(id=None, data=player_week)
+        provider.pos = provider.pos + len(providers)
+        self.provider_service.put(id=None, data=provider)
 
 
+# "select * from game where week = -1;", Game
 if __name__ == "__main__":
     m = ScrapeManager()
-    game = m.db.fetch_model("select * from game where week = -1;", Game)
+    game = game_service.search(Criterion.eq("week", -1)).items[0]
     if not game:
         print("ah!")
     else:

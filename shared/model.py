@@ -210,6 +210,7 @@ class Player(BaseModel):
     fantasy_pros_id: Optional[str] = None
     f_ref_id: Optional[str] = None
     roto_wire_id: Optional[str] = None
+    injury_status: Optional[str] = None
 
 
 class Game(BaseModel):

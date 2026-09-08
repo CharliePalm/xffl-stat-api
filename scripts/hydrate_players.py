@@ -30,6 +30,7 @@ TANK01_ID_COLUMNS = {
     "fantasy_pros_id": "fantasyProsPlayerID",
     "f_ref_id": "fRefID",
     "roto_wire_id": "rotoWirePlayerID",
+    "injury_status": ["injury", "designation"],
 }
 
 
@@ -63,6 +64,7 @@ def fetch_players() -> list[Player]:
 
         record = {k: raw[k] for k in SLEEPER_KEYS if k in raw}
         tank01_record = tank01_by_sleeper_id.get(player_id, {})
+        # print(tank01_record)
         built.append(
             Player(
                 id=int(record.get("player_id") or player_id),
@@ -75,7 +77,11 @@ def fetch_players() -> list[Player]:
                 first_name_norm=clean_name(record.get("first_name", "")),
                 last_name_norm=clean_name(record.get("last_name", "")),
                 **{
-                    field: tank01_record.get(tank01_field)
+                    field: (
+                        tank01_record.get(tank01_field)
+                        if isinstance(tank01_field, str)
+                        else tank01_record.get(tank01_field[0], {}).get(tank01_field[1])
+                    )
                     for field, tank01_field in TANK01_ID_COLUMNS.items()
                 },
             )

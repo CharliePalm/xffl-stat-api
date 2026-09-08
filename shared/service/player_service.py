@@ -29,6 +29,7 @@ class PlayerModel(BaseSQLModel):
     fantasy_pros_id: Mapped[Optional[str]] = mapped_column(default=None)
     f_ref_id: Mapped[Optional[str]] = mapped_column(default=None)
     roto_wire_id: Mapped[Optional[str]] = mapped_column(default=None)
+    injury_status: Mapped[Optional[str]] = mapped_column(default=None)
 
 
 #: The normalised columns back `first_name`/`last_name` searches, so they
