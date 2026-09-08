@@ -1,12 +1,12 @@
 import re
 
 from bs4 import BeautifulSoup, Tag
-
-from shared.db import Database
 from shared.model import Game, NFLTeam, ScrapedPageInfo
 from scrapers.scraper import Scraper
 from shared.boxscore import BoxscoreBuilder, Stat
 from shared.parsing import name_from_url, team_from_nickname, to_float
+from shared.service.engine import SessionLocal
+from shared.service.player_service import PlayerService
 
 # the trailing row of every ESPN table holds team totals, not a player
 TEAM_TOTALS_LABEL = "team"
@@ -41,7 +41,7 @@ DEFENSE_COLUMNS: dict[str, dict[Stat, str]] = {
 
 class ESPNScraper(Scraper):
     file_name = "espn.json"
-    db = Database()
+    player_service = PlayerService(SessionLocal())
 
     @staticmethod
     def get_url(game: Game):
@@ -72,7 +72,7 @@ class ESPNScraper(Scraper):
                         team, self._read(line, DEFENSE_COLUMNS[stat])
                     )
                 if not is_totals and stat in COLUMNS:
-                    player = self.db.get_player_by_full_name(name, team)
+                    player = self.player_service.get_by_full_name(name, team)
                     if not player:
                         print("player not found - ", name)
                         continue

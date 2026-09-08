@@ -1,11 +1,11 @@
-import json
 from typing import Any
-
-from shared.db import Database
-from shared.model import Game, NFLPosition, NFLTeam, Player, ScrapedPageInfo
+from shared.model import Game, NFLTeam, ScrapedPageInfo
 from scrapers.scraper import Scraper
 from shared.boxscore import BoxscoreBuilder, Stat
 from shared.next_flight import find_objects, reconstruct_flight_text
+from shared.service.engine import SessionLocal
+from shared.service.game_service import GameService
+from shared.service.player_service import PlayerService
 
 # player.position -> the raw `stats` keys we take for that stat category
 OFFENSE_COLUMNS: dict[Stat, str] = {
@@ -29,10 +29,13 @@ DEFENSE_COLUMNS: dict[Stat, str] = {
     Stat.defensive_tds: "def_st_td",
 }
 
+session = SessionLocal()
+
 
 class SleeperScraper(Scraper):
     file_name = "9ers_chargers_sleeper.html"
-    _db = Database()
+    player_service = PlayerService(session)
+    game_service = GameService(session)
 
     @staticmethod
     def get_url(game: Game):
@@ -46,7 +49,7 @@ class SleeperScraper(Scraper):
     def parse_html(self, html: str) -> str:
         return reconstruct_flight_text(html)
 
-    def scrape(self, soup: str, game: Game) -> ScrapedPageInfo:
+    def scrape(self, soup: str, game: Game) -> ScrapedPageInfo:  # type: ignore
         records = self._parse_player_records(soup)
         if not records:
             raise ValueError("Could not find player stats in the flight payload")
@@ -65,7 +68,7 @@ class SleeperScraper(Scraper):
                 )
                 builder.add_team_defense(team, self._read(stats, DEFENSE_COLUMNS))
             else:
-                player = self._db.get_player(
+                player = self.player_service.get_by_name(
                     record["player"]["first_name"],
                     record["player"]["last_name"],
                     record["player"]["team"],
@@ -127,9 +130,3 @@ class SleeperScraper(Scraper):
                 continue
             by_player_id[record["player_id"]] = record
         return list(by_player_id.values())
-
-
-if __name__ == "__main__":
-    scraper = SleeperScraper()
-    parsed = scraper.parse_html(scraper.get_html())
-    print(scraper.summarize(scraper.scrape(parsed, week=2)))

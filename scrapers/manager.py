@@ -1,9 +1,12 @@
 from typing import Any, Callable
 
 from scrapers.scraper import Scraper
-from shared.db import Database
+from shared.db.db import Database
 from shared.model import Game, Provider
 from scrapers import espn, cbs, pff, sleeper
+from shared.service.engine import SessionLocal
+from shared.service.provider import ProviderService
+from shared.service.service import Sort
 
 providers: dict[str, Callable[[], Scraper]] = {
     "cbs": lambda: cbs.CBSScraper(),
@@ -15,12 +18,11 @@ providers: dict[str, Callable[[], Scraper]] = {
 
 
 class ScrapeManager:
-    def __init__(self):
-        self.db = Database()
+    provider_service = ProviderService(SessionLocal())
 
     def pick_provider(self):
-        provider = self.db.fetch_model(
-            "select * from provider order by pos asc limit 1;", Provider
+        provider = self.provider_service.search(
+            sort=Sort(field="pos", direction="desc")
         )
         if not provider:
             raise Exception("no provider returned from query")

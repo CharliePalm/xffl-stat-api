@@ -1,7 +1,7 @@
 from enum import Enum, StrEnum
 from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 from enum import Enum
 
@@ -43,70 +43,75 @@ TEAM_IDS = {
 
 class NFLTeam(Enum):
     # AFC East
-    BUFFALO_BILLS = ("Buffalo Bills", "BUF")
-    MIAMI_DOLPHINS = ("Miami Dolphins", "MIA")
-    NEW_ENGLAND_PATRIOTS = ("New England Patriots", "NE")
-    NEW_YORK_JETS = ("New York Jets", "NYJ")
+    BUFFALO_BILLS = ("Buffalo Bills", "BUF", "4")
+    MIAMI_DOLPHINS = ("Miami Dolphins", "MIA", "20")
+    NEW_ENGLAND_PATRIOTS = ("New England Patriots", "NE", "22")
+    NEW_YORK_JETS = ("New York Jets", "NYJ", "25")
 
     # AFC North
-    BALTIMORE_RAVENS = ("Baltimore Ravens", "BAL")
-    CINCINNATI_BENGALS = ("Cincinnati Bengals", "CIN")
-    CLEVELAND_BROWNS = ("Cleveland Browns", "CLE")
-    PITTSBURGH_STEELERS = ("Pittsburgh Steelers", "PIT")
+    BALTIMORE_RAVENS = ("Baltimore Ravens", "BAL", "3")
+    CINCINNATI_BENGALS = ("Cincinnati Bengals", "CIN", "7")
+    CLEVELAND_BROWNS = ("Cleveland Browns", "CLE", "8")
+    PITTSBURGH_STEELERS = ("Pittsburgh Steelers", "PIT", "26")
 
     # AFC South
-    HOUSTON_TEXANS = ("Houston Texans", "HOU")
-    INDIANAPOLIS_COLTS = ("Indianapolis Colts", "IND")
-    JACKSONVILLE_JAGUARS = ("Jacksonville Jaguars", "JAX")
-    TENNESSEE_TITANS = ("Tennessee Titans", "TEN")
+    HOUSTON_TEXANS = ("Houston Texans", "HOU", "13")
+    INDIANAPOLIS_COLTS = ("Indianapolis Colts", "IND", "14")
+    JACKSONVILLE_JAGUARS = ("Jacksonville Jaguars", "JAX", "15")
+    TENNESSEE_TITANS = ("Tennessee Titans", "TEN", "31")
 
     # AFC West
-    DENVER_BRONCOS = ("Denver Broncos", "DEN")
-    KANSAS_CITY_CHIEFS = ("Kansas City Chiefs", "KC")
-    LAS_VEGAS_RAIDERS = ("Las Vegas Raiders", "LV")
-    LOS_ANGELES_CHARGERS = ("Los Angeles Chargers", "LAC")
+    DENVER_BRONCOS = ("Denver Broncos", "DEN", "10")
+    KANSAS_CITY_CHIEFS = ("Kansas City Chiefs", "KC", "16")
+    LAS_VEGAS_RAIDERS = ("Las Vegas Raiders", "LV", "17")
+    LOS_ANGELES_CHARGERS = ("Los Angeles Chargers", "LAC", "18")
 
     # NFC East
-    DALLAS_COWBOYS = ("Dallas Cowboys", "DAL")
-    NEW_YORK_GIANTS = ("New York Giants", "NYG")
-    PHILADELPHIA_EAGLES = ("Philadelphia Eagles", "PHI")
-    WASHINGTON_COMMANDERS = ("Washington Commanders", "WAS")
+    DALLAS_COWBOYS = ("Dallas Cowboys", "DAL", "9")
+    NEW_YORK_GIANTS = ("New York Giants", "NYG", "24")
+    PHILADELPHIA_EAGLES = ("Philadelphia Eagles", "PHI", "27")
+    WASHINGTON_COMMANDERS = ("Washington Commanders", "WAS", "32")
 
     # NFC North
-    CHICAGO_BEARS = ("Chicago Bears", "CHI")
-    DETROIT_LIONS = ("Detroit Lions", "DET")
-    GREEN_BAY_PACKERS = ("Green Bay Packers", "GB")
-    MINNESOTA_VIKINGS = ("Minnesota Vikings", "MIN")
+    CHICAGO_BEARS = ("Chicago Bears", "CHI", "6")
+    DETROIT_LIONS = ("Detroit Lions", "DET", "11")
+    GREEN_BAY_PACKERS = ("Green Bay Packers", "GB", "12")
+    MINNESOTA_VIKINGS = ("Minnesota Vikings", "MIN", "21")
 
     # NFC South
-    ATLANTA_FALCONS = ("Atlanta Falcons", "ATL")
-    CAROLINA_PANTHERS = ("Carolina Panthers", "CAR")
-    NEW_ORLEANS_SAINTS = ("New Orleans Saints", "NO")
-    TAMPA_BAY_BUCCANEERS = ("Tampa Bay Buccaneers", "TB")
+    ATLANTA_FALCONS = ("Atlanta Falcons", "ATL", "2")
+    CAROLINA_PANTHERS = ("Carolina Panthers", "CAR", "5")
+    NEW_ORLEANS_SAINTS = ("New Orleans Saints", "NO", "23")
+    TAMPA_BAY_BUCCANEERS = ("Tampa Bay Buccaneers", "TB", "30")
 
     # NFC West
-    ARIZONA_CARDINALS = ("Arizona Cardinals", "ARI")
-    LOS_ANGELES_RAMS = ("Los Angeles Rams", "LAR")
-    SAN_FRANCISCO_49ERS = ("San Francisco 49ers", "SF")
-    SEATTLE_SEAHAWKS = ("Seattle Seahawks", "SEA")
+    ARIZONA_CARDINALS = ("Arizona Cardinals", "ARI", "1")
+    LOS_ANGELES_RAMS = ("Los Angeles Rams", "LAR", "19")
+    SAN_FRANCISCO_49ERS = ("San Francisco 49ers", "SF", "28")
+    SEATTLE_SEAHAWKS = ("Seattle Seahawks", "SEA", "29")
 
-    def __init__(self, full_name: str, abbreviation: str):
+    def __init__(self, full_name: str, abbreviation: str, team_id: str):
         self.full_name = full_name
         self.abbreviation = abbreviation
+        self.team_id = team_id
 
     @classmethod
-    def _missing_(cls, value):
+    def _missing_(cls, value):  # type: ignore
         """
         Called automatically by Enum when a value doesn't match any
-        member's stored `value` (the (full_name, abbreviation) tuple).
-        This lets NFLTeam("CHI") resolve by abbreviation instead of
+        member's stored `value` (the (full_name, abbreviation, team_id) tuple).
+        This lets NFLTeam("CHI"), NFLTeam("Chicago Bears"), and NFLTeam("6")
+        all resolve by abbreviation, full name, or team id instead of
         requiring the full tuple.
         """
-        if isinstance(value, str):
-            value_upper = value.upper()
-            for team in cls:
-                if team.abbreviation == value_upper:
-                    return team
+        value_str = str(value).strip().upper()
+        for team in cls:
+            if value_str in (
+                team.abbreviation.upper(),
+                team.full_name.upper(),
+                str(team.team_id).upper(),
+            ):
+                return team
         return None  # triggers the normal ValueError Enum raises on lookup failure
 
     @property
@@ -129,7 +134,7 @@ class NFLTeam(Enum):
         return self.abbreviation
 
     @property
-    def id(self):
+    def player_defense_id(self):
         return TEAM_IDS[self.abbreviation]
 
 
@@ -146,6 +151,9 @@ class NFLPosition(StrEnum):
 class ScrapedPageInfo(BaseModel):
     game: Game
     player_week_data: list[PlayerWeekData]
+
+
+# ===== DB MODELS =====
 
 
 class DefensiveStatLine(BaseModel):
@@ -174,10 +182,9 @@ class OffensiveStatLine(BaseModel):
     extra_points_points_made: Optional[int] = 0
 
 
-# ===== DB MODELS =====
-
-
 class PlayerWeekData(OffensiveStatLine, DefensiveStatLine):
+    model_config = ConfigDict(from_attributes=True)
+
     _id_keys = ["player_id", "week"]
     player_id: int
     week: int
@@ -185,6 +192,8 @@ class PlayerWeekData(OffensiveStatLine, DefensiveStatLine):
 
 
 class Player(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     first_name: str
     last_name: str
@@ -194,9 +203,18 @@ class Player(BaseModel):
     position: NFLPosition
     first_name_norm: str
     last_name_norm: str
+    tank_id: Optional[str] = None
+    espn_id: Optional[str] = None
+    yahoo_id: Optional[str] = None
+    cbs_id: Optional[str] = None
+    fantasy_pros_id: Optional[str] = None
+    f_ref_id: Optional[str] = None
+    roto_wire_id: Optional[str] = None
 
 
 class Game(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     week: int
     home: NFLTeam
     away: NFLTeam
@@ -210,10 +228,7 @@ class Game(BaseModel):
 
 
 class Provider(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     pos: int
     name: str
-
-
-# test
-if __name__ == "__main__":
-    print(NFLTeam("CHI"))

@@ -1,18 +1,22 @@
 from shared.model import Game
-from shared.db import Database
 from scrapers.manager import ScrapeManager
+from shared.service.game_service import GameService
+from shared.service.engine import SessionLocal
+from shared.service.service import Criterion, Op
 
-db = Database()
+service = GameService(SessionLocal())
 
 
 def get_games() -> list[Game]:
-    """
-    SELECT * FROM game
-    WHERE
-        gameDateTime BETWEEN datetime('now', 'localtime', '-2 minutes') AND datetime('now', 'localtime', '+5 minutes')
-        AND in_progress = 0
-    """
-    return db.fetch_models("select * from game limit 2", Game)
+
+    return service.search(
+        Criterion.between(
+            "date_time",
+            lower="datetime('now', 'localtime', '-2 minutes')",
+            upper="datetime('now', 'localtime', '+5 minutes')",
+        )
+        & Criterion.eq("in_progress", 0)
+    ).items
 
 
 def process_game(game: Game) -> None:

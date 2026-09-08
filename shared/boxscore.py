@@ -44,6 +44,7 @@ class Stat(StrEnum):
     two_pt_conversions = "two_pt_conversions"
     # kickers are scored off the box score's own points column: standard fantasy
     # awards distance bonuses, which aggregated FG columns cannot reconstruct
+    # TODO: fix me based on matt's weird rules
     kicking_points = "kicking_points"
     # team defense
     sacks = "sacks"
@@ -159,12 +160,14 @@ class BoxscoreBuilder:
             values = {stat.value: int(value) for stat, value in line.items()}
             punt_ret = values.pop("punt_return_tds", 0)
             kick_ret = values.pop("kick_return_tds", 0)
-            values["defensive_tds"] = values.get("defensive_tds", 0) + punt_ret + kick_ret
+            values["defensive_tds"] = (
+                values.get("defensive_tds", 0) + punt_ret + kick_ret
+            )
 
             stat_line = DefensiveStatLine(points_allowed=allowed, **values)
             defenses.append(
                 PlayerWeekData(
-                    player_id=team.id,
+                    player_id=team.player_defense_id,
                     week=self.week,
                     points=calculate_defense_score(stat_line),
                     **stat_line.__dict__,

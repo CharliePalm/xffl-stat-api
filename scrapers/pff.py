@@ -1,10 +1,10 @@
 import json
 from typing import Any, Callable
-
-from shared.db import Database
-from shared.model import Game, NFLPosition, NFLTeam, Player, ScrapedPageInfo
+from shared.model import Game, ScrapedPageInfo
 from scrapers.scraper import Scraper
 from shared.boxscore import BoxscoreBuilder, Stat
+from shared.service.engine import SessionLocal
+from shared.service.player_service import PlayerService
 
 # PFF team abbreviations that differ from what's already stored in xffl.db.
 # Extend this if more mismatches show up.
@@ -54,7 +54,7 @@ DEFENSE_COLUMNS: dict[Stat, str] = {
 
 class PFFScraper(Scraper):
     file_name = "lv_hou_pff.json"
-    _db = Database()
+    player_service = PlayerService(SessionLocal())
 
     @staticmethod
     def get_url(game: Game):
@@ -98,7 +98,7 @@ class PFFScraper(Scraper):
                 if player.get("field_goals_attempted") or player.get(
                     "extra_points_attempted"
                 ):
-                    player_obj = self._db.get_player_by_full_name(
+                    player_obj = self.player_service.get_by_full_name(
                         player.get("name"),
                         game.home if is_home else game.away,
                     )
@@ -114,7 +114,7 @@ class PFFScraper(Scraper):
                         {Stat.kicking_points: points},
                     )
                 elif any(player.get(field) for field in OFFENSE_SIGNAL_FIELDS):
-                    player_obj = self._db.get_player_by_full_name(
+                    player_obj = self.player_service.get_by_full_name(
                         player.get("name"),
                         game.home if is_home else game.away,
                     )

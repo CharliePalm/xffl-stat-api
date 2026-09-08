@@ -1,7 +1,5 @@
 from bs4 import BeautifulSoup, Tag
-
-from shared.db import Database
-from shared.model import Game, NFLPosition, NFLTeam, Player, ScrapedPageInfo
+from shared.model import Game, NFLPosition, NFLTeam, ScrapedPageInfo
 from scrapers.scraper import Scraper
 from shared.boxscore import BoxscoreBuilder, Stat
 from shared.parsing import (
@@ -10,6 +8,8 @@ from shared.parsing import (
     team_from_nickname,
     to_float,
 )
+from shared.service.engine import SessionLocal
+from shared.service.player_service import PlayerService
 
 # CBS wraps each stat category in its own "<name>-ctr" div, per team
 COLUMNS: dict[str, dict[Stat, str]] = {
@@ -41,7 +41,7 @@ DEFENSE_COLUMNS: dict[Stat, str] = {
 
 class CBSScraper(Scraper):
     file_name = "sea_tn_cbs.html"
-    _db = Database()
+    player_service = PlayerService(SessionLocal())
 
     @staticmethod
     def get_url(game: Game):
@@ -66,7 +66,7 @@ class CBSScraper(Scraper):
         for container in soup.find_all(class_="stats-ctr-container"):
             for section, columns in COLUMNS.items():
                 for team, name, _pos, line in self._parse_section(container, section):
-                    player = self._db.get_player_by_full_name(name, team)
+                    player = self.player_service.get_by_full_name(name, team)
                     if player is None:
                         print("not found: ", (team, name))
                         continue
@@ -120,8 +120,12 @@ class CBSScraper(Scraper):
                 continue
 
             if label == "Fumbles - Lost":
-                builder.add_team_defense(away_team, {Stat.fumbles_recovered: away_value})
-                builder.add_team_defense(home_team, {Stat.fumbles_recovered: home_value})
+                builder.add_team_defense(
+                    away_team, {Stat.fumbles_recovered: away_value}
+                )
+                builder.add_team_defense(
+                    home_team, {Stat.fumbles_recovered: home_value}
+                )
                 explicit_td_by_team[away_team] += away_value
                 explicit_td_by_team[home_team] += home_value
 

@@ -4,3 +4,4 @@ pydantic
 sqlmodel
 beautifulsoup4
 curl_cffi
+pydantic_partial

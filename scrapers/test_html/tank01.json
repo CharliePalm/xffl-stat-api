@@ -1,0 +1,3445 @@
+{
+    "DST": {
+        "away": {
+            "teamAbv": "CAR",
+            "teamID": "5",
+            "defTD": "0",
+            "defensiveInterceptions": "0",
+            "sacks": "1",
+            "ydsAllowed": "421",
+            "fumblesRecovered": "0",
+            "ptsAllowed": "34",
+            "safeties": "0"
+        },
+        "home": {
+            "teamAbv": "WSH",
+            "teamID": "32",
+            "defTD": "1",
+            "defensiveInterceptions": "2",
+            "sacks": "2",
+            "ydsAllowed": "180",
+            "fumblesRecovered": "0",
+            "ptsAllowed": "7",
+            "safeties": "0"
+        }
+    },
+    "Referees": "Carl Cheffers, Bruce Stritesky, Martin Hankins, Eugene Hall, Mike Carr, Nathan Jones, Daniel Gallagher",
+    "arena": "Northwest Stadium",
+    "arenaCapacity": "",
+    "attendance": "63,380",
+    "away": "CAR",
+    "awayPts": "7",
+    "awayResult": "L",
+    "currentPeriod": "Final",
+    "gameClock": "",
+    "gameDate": "20241020",
+    "gameLocation": "Landover, MD",
+    "gameStatus": "Completed",
+    "gameWeek": "Week 7",
+    "home": "WSH",
+    "homePts": "40",
+    "homeResult": "W",
+    "lineScore": {
+        "period": "Final",
+        "gameClock": "",
+        "away": {
+            "Q1": "0",
+            "Q2": "0",
+            "Q3": "0",
+            "Q4": "7",
+            "teamID": "5",
+            "currentlyInPossession": "False",
+            "totalPts": "7",
+            "teamAbv": "CAR"
+        },
+        "home": {
+            "Q1": "10",
+            "Q2": "17",
+            "Q3": "10",
+            "Q4": "3",
+            "teamID": "32",
+            "currentlyInPossession": "False",
+            "totalPts": "40",
+            "teamAbv": "WSH"
+        }
+    },
+    "network": "CBS",
+    "playerStats": {
+        "4259308": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "0",
+                "stSnap": "14",
+                "stSnapPct": "0.54",
+                "offSnap": "0",
+                "defSnapPct": "0.00"
+            },
+            "Kicking": {
+                "kickReturns": "5",
+                "kickReturnTD": "0",
+                "kickReturnYds": "114",
+                "kickReturnAvg": "22.8",
+                "kickReturnLong": "30"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "totalTackles": "1",
+                "fumblesLost": "0",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "fumbles": "1",
+                "fumblesRecovered": "0",
+                "soloTackles": "1",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "4259308",
+            "longName": "Raheem Blackshear",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "17202": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.78",
+                "defSnap": "0",
+                "stSnap": "8",
+                "stSnapPct": "0.31",
+                "offSnap": "54",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "17202",
+            "longName": "Cornelius Lucas",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4037468": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "0",
+                "stSnap": "17",
+                "stSnapPct": "0.65",
+                "offSnap": "0",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "4037468",
+            "longName": "Shaq Quarterman",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "14012": {
+            "gameID": "20241020_CAR@WSH",
+            "Rushing": {
+                "rushAvg": "1.5",
+                "rushYds": "3",
+                "carries": "2",
+                "longRush": "4",
+                "rushTD": "0"
+            },
+            "Passing": {
+                "qbr": "3.6",
+                "rtg": "44.0",
+                "sacked": "2-4",
+                "passAttempts": "16",
+                "passAvg": "5.8",
+                "passTD": "0",
+                "passYds": "93",
+                "int": "2",
+                "passCompletions": "11"
+            },
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.93",
+                "defSnap": "0",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "40",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "14012",
+            "longName": "Andy Dalton",
+            "fantasyPoints": "0.42",
+            "fantasyPointsDefault": {
+                "standard": "2.02",
+                "PPR": "2.02",
+                "halfPPR": "2.02"
+            }
+        },
+        "4714157": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "16",
+                "stSnap": "25",
+                "stSnapPct": "0.96",
+                "offSnap": "0",
+                "defSnapPct": "0.23"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "totalTackles": "2",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "2",
+                "tfl": "1",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "4714157",
+            "longName": "Thomas Incoom",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4362647": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.98",
+                "defSnap": "0",
+                "stSnap": "1",
+                "stSnapPct": "0.04",
+                "offSnap": "42",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "totalTackles": "1",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "1",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "4362647",
+            "longName": "Damien Lewis",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3895791": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "34",
+                "stSnap": "1",
+                "stSnapPct": "0.04",
+                "offSnap": "0",
+                "defSnapPct": "0.49"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "totalTackles": "4",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "2",
+                "tfl": "1",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "3895791",
+            "longName": "Dane Jackson",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3821683": {
+            "gameID": "20241020_CAR@WSH",
+            "scoringPlays": [
+                {
+                    "score": "Dante Fowler Jr. 67 Yd Interception Return (Austin Seibert Kick)",
+                    "scorePeriod": "Q1",
+                    "homeScore": "7",
+                    "awayScore": "0",
+                    "teamID": "32",
+                    "scoreDetails": "8 plays, 61 yards, 3:46",
+                    "scoreType": "TD",
+                    "scoreTime": "11:14",
+                    "team": "WSH",
+                    "playerIDs": [
+                        "2980100",
+                        "3821683"
+                    ]
+                },
+                {
+                    "score": "Austin Seibert 23 Yd Field Goal  ",
+                    "scorePeriod": "Q1",
+                    "homeScore": "10",
+                    "awayScore": "0",
+                    "teamID": "32",
+                    "scoreDetails": "11 plays, 85 yards, 6:20",
+                    "scoreType": "FG",
+                    "scoreTime": "3:18",
+                    "team": "WSH",
+                    "playerIDs": [
+                        "3821683"
+                    ]
+                },
+                {
+                    "score": "Brian Robinson Jr. 8 Yd Run (Austin Seibert Kick)",
+                    "scorePeriod": "Q2",
+                    "homeScore": "17",
+                    "awayScore": "0",
+                    "teamID": "32",
+                    "scoreDetails": "4 plays, 59 yards, 1:47",
+                    "scoreType": "TD",
+                    "scoreTime": "11:35",
+                    "team": "WSH",
+                    "playerIDs": [
+                        "4241474",
+                        "3821683"
+                    ]
+                },
+                {
+                    "score": "Austin Seibert 49 Yd Field Goal  ",
+                    "scorePeriod": "Q2",
+                    "homeScore": "20",
+                    "awayScore": "0",
+                    "teamID": "32",
+                    "scoreDetails": "5 plays, 7 yards, 1:53",
+                    "scoreType": "FG",
+                    "scoreTime": "5:39",
+                    "team": "WSH",
+                    "playerIDs": [
+                        "3821683"
+                    ]
+                },
+                {
+                    "score": "Zach Ertz 12 Yd pass from Marcus Mariota (Austin Seibert Kick)",
+                    "scorePeriod": "Q2",
+                    "homeScore": "27",
+                    "awayScore": "0",
+                    "teamID": "32",
+                    "scoreDetails": "8 plays, 92 yards, 2:12",
+                    "scoreType": "TD",
+                    "scoreTime": "0:10",
+                    "team": "WSH",
+                    "playerIDs": [
+                        "2576980",
+                        "15835",
+                        "3821683"
+                    ]
+                },
+                {
+                    "score": "Ben Sinnott 3 Yd pass from Marcus Mariota (Austin Seibert Kick)",
+                    "scorePeriod": "Q3",
+                    "homeScore": "34",
+                    "awayScore": "0",
+                    "teamID": "32",
+                    "scoreDetails": "10 plays, 59 yards, 6:07",
+                    "scoreType": "TD",
+                    "scoreTime": "8:53",
+                    "team": "WSH",
+                    "playerIDs": [
+                        "2576980",
+                        "4690923",
+                        "3821683"
+                    ]
+                },
+                {
+                    "score": "Austin Seibert 31 Yd Field Goal  ",
+                    "scorePeriod": "Q3",
+                    "homeScore": "37",
+                    "awayScore": "0",
+                    "teamID": "32",
+                    "scoreDetails": "10 plays, 55 yards, 5:36",
+                    "scoreType": "FG",
+                    "scoreTime": "1:33",
+                    "team": "WSH",
+                    "playerIDs": [
+                        "3821683"
+                    ]
+                },
+                {
+                    "score": "Austin Seibert 29 Yd Field Goal  ",
+                    "scorePeriod": "Q4",
+                    "homeScore": "40",
+                    "awayScore": "7",
+                    "teamID": "32",
+                    "scoreDetails": "12 plays, 59 yards, 6:43",
+                    "scoreType": "FG",
+                    "scoreTime": "4:55",
+                    "team": "WSH",
+                    "playerIDs": [
+                        "3821683"
+                    ]
+                }
+            ],
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "0",
+                "stSnap": "17",
+                "stSnapPct": "0.65",
+                "offSnap": "0",
+                "defSnapPct": "0.00"
+            },
+            "Kicking": {
+                "fgLong": "49",
+                "fgMade": "4",
+                "fgAttempts": "4",
+                "xpMade": "4",
+                "fgPct": "100.0",
+                "kickingPts": "16",
+                "xpAttempts": "4",
+                "fgMissed": "0",
+                "xpMissed": "0"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "3821683",
+            "longName": "Austin Seibert",
+            "fantasyPoints": "16.0",
+            "fantasyPointsDefault": {
+                "standard": "16.0",
+                "PPR": "16.0",
+                "halfPPR": "16.0"
+            }
+        },
+        "4428414": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "34",
+                "stSnap": "8",
+                "stSnapPct": "0.31",
+                "offSnap": "0",
+                "defSnapPct": "0.79"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "7",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "6",
+                "tfl": "1",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "1"
+            },
+            "playerID": "4428414",
+            "longName": "Mike Sainristil",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "2977679": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "14",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "0",
+                "defSnapPct": "0.20"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "2977679",
+            "longName": "Shaq Lawson",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4363097": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "25",
+                "stSnap": "18",
+                "stSnapPct": "0.69",
+                "offSnap": "0",
+                "defSnapPct": "0.58"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "3",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "1",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "4363097",
+            "longName": "Percy Butler",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3734467": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "15",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "0",
+                "defSnapPct": "0.35"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "1",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "1",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "3734467",
+            "longName": "Efe Obada",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3932905": {
+            "gameID": "20241020_CAR@WSH",
+            "Receiving": {
+                "receptions": "1",
+                "recTD": "0",
+                "longRec": "17",
+                "targets": "3",
+                "recYds": "17",
+                "recAvg": "17.0"
+            },
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.70",
+                "defSnap": "0",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "30",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "3932905",
+            "longName": "Diontae Johnson",
+            "fantasyPoints": "2.2",
+            "fantasyPointsDefault": {
+                "standard": "1.7",
+                "PPR": "2.7",
+                "halfPPR": "2.2"
+            }
+        },
+        "4241468": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "19",
+                "stSnap": "1",
+                "stSnapPct": "0.04",
+                "offSnap": "0",
+                "defSnapPct": "0.44"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "4241468",
+            "longName": "Phidarian Mathis",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "14979": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "40",
+                "stSnap": "2",
+                "stSnapPct": "0.08",
+                "offSnap": "0",
+                "defSnapPct": "0.93"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "6",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "3",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "14979",
+            "longName": "Bobby Wagner",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4034949": {
+            "gameID": "20241020_CAR@WSH",
+            "scoringPlays": [
+                {
+                    "score": "Chuba Hubbard 4 Yd Run (Eddy Pineiro Kick)",
+                    "scorePeriod": "Q4",
+                    "homeScore": "37",
+                    "awayScore": "7",
+                    "teamID": "5",
+                    "scoreDetails": "9 plays, 70 yards, 4:55",
+                    "scoreType": "TD",
+                    "scoreTime": "11:38",
+                    "team": "CAR",
+                    "playerIDs": [
+                        "4241416",
+                        "4034949"
+                    ]
+                }
+            ],
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "0",
+                "stSnap": "3",
+                "stSnapPct": "0.12",
+                "offSnap": "0",
+                "defSnapPct": "0.00"
+            },
+            "Kicking": {
+                "fgLong": "0",
+                "fgMade": "0",
+                "fgAttempts": "0",
+                "xpMade": "1",
+                "fgPct": "0.0",
+                "kickingPts": "1",
+                "xpAttempts": "1",
+                "fgMissed": "0",
+                "xpMissed": "0"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "4034949",
+            "longName": "Eddy Pineiro",
+            "fantasyPoints": "1.0",
+            "fantasyPointsDefault": {
+                "standard": "1.0",
+                "PPR": "1.0",
+                "halfPPR": "1.0"
+            }
+        },
+        "4034948": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.02",
+                "defSnap": "0",
+                "stSnap": "17",
+                "stSnapPct": "0.65",
+                "offSnap": "1",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "4034948",
+            "longName": "Feleipe Franks",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4242516": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "21",
+                "stSnap": "4",
+                "stSnapPct": "0.15",
+                "offSnap": "0",
+                "defSnapPct": "0.49"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "6",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "6",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "4242516",
+            "longName": "Noah Igbinoghene",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4242515": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "51",
+                "stSnap": "13",
+                "stSnapPct": "0.50",
+                "offSnap": "0",
+                "defSnapPct": "0.74"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "totalTackles": "6",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "4",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "4242515",
+            "longName": "Chandler Wooten",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4240778": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "16",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "0",
+                "defSnapPct": "0.37"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "1",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "0",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "4240778",
+            "longName": "Jamin Davis",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4243009": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "3",
+                "stSnap": "17",
+                "stSnapPct": "0.65",
+                "offSnap": "0",
+                "defSnapPct": "0.07"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "4243009",
+            "longName": "Mykal Walker",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "15153": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "0",
+                "stSnap": "6",
+                "stSnapPct": "0.23",
+                "offSnap": "0",
+                "defSnapPct": "0.00"
+            },
+            "Punting": {
+                "puntYds": "252",
+                "punts": "5",
+                "puntAvg": "50.4",
+                "puntsin20": "2",
+                "puntTouchBacks": "0",
+                "puntLong": "62"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "15153",
+            "longName": "Johnny Hekker",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3125248": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "0",
+                "stSnap": "17",
+                "stSnapPct": "0.65",
+                "offSnap": "0",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "1",
+                "defTD": "0",
+                "forcedFumbles": "1",
+                "soloTackles": "0",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "3125248",
+            "longName": "Jeremy Reaves",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4690923": {
+            "gameID": "20241020_CAR@WSH",
+            "Receiving": {
+                "receptions": "2",
+                "recTD": "1",
+                "longRec": "3",
+                "targets": "2",
+                "recYds": "6",
+                "recAvg": "3.0"
+            },
+            "scoringPlays": [
+                {
+                    "score": "Ben Sinnott 3 Yd pass from Marcus Mariota (Austin Seibert Kick)",
+                    "scorePeriod": "Q3",
+                    "homeScore": "34",
+                    "awayScore": "0",
+                    "teamID": "32",
+                    "scoreDetails": "10 plays, 59 yards, 6:07",
+                    "scoreType": "TD",
+                    "scoreTime": "8:53",
+                    "team": "WSH",
+                    "playerIDs": [
+                        "2576980",
+                        "4690923",
+                        "3821683"
+                    ]
+                }
+            ],
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.45",
+                "defSnap": "0",
+                "stSnap": "3",
+                "stSnapPct": "0.12",
+                "offSnap": "31",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "4690923",
+            "longName": "Ben Sinnott",
+            "fantasyPoints": "7.6",
+            "fantasyPointsDefault": {
+                "standard": "6.6",
+                "PPR": "8.6",
+                "halfPPR": "7.6"
+            }
+        },
+        "17378": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "0",
+                "stSnap": "9",
+                "stSnapPct": "0.35",
+                "offSnap": "0",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "17378",
+            "longName": "Tyler Ott",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4426926": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "0",
+                "stSnap": "12",
+                "stSnapPct": "0.46",
+                "offSnap": "0",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "4426926",
+            "longName": "Demani Richardson",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3917853": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "56",
+                "stSnap": "8",
+                "stSnapPct": "0.31",
+                "offSnap": "0",
+                "defSnapPct": "0.81"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "totalTackles": "4",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "2",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "3917853",
+            "longName": "Michael Jackson",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3123303": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.03",
+                "defSnap": "0",
+                "stSnap": "8",
+                "stSnapPct": "0.31",
+                "offSnap": "2",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "3123303",
+            "longName": "Trent Scott",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3127586": {
+            "gameID": "20241020_CAR@WSH",
+            "Rushing": {
+                "rushAvg": "6.0",
+                "rushYds": "42",
+                "carries": "7",
+                "longRush": "10",
+                "rushTD": "0"
+            },
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.25",
+                "defSnap": "0",
+                "stSnap": "16",
+                "stSnapPct": "0.62",
+                "offSnap": "17",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "1",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "1",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "3127586",
+            "longName": "Jeremy McNichols",
+            "fantasyPoints": "5.6",
+            "fantasyPointsDefault": {
+                "standard": "4.2",
+                "PPR": "4.2",
+                "halfPPR": "4.2"
+            }
+        },
+        "4428909": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "0",
+                "stSnap": "8",
+                "stSnapPct": "0.31",
+                "offSnap": "0",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "totalTackles": "1",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "1",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "4428909",
+            "longName": "Jacoby Windmon",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "16166": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "0",
+                "stSnap": "9",
+                "stSnapPct": "0.35",
+                "offSnap": "0",
+                "defSnapPct": "0.00"
+            },
+            "Punting": {
+                "puntYds": "40",
+                "punts": "1",
+                "puntAvg": "40.0",
+                "puntsin20": "1",
+                "puntTouchBacks": "0",
+                "puntLong": "40"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "16166",
+            "longName": "Tress Way",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4710661": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.05",
+                "defSnap": "0",
+                "stSnap": "1",
+                "stSnapPct": "0.04",
+                "offSnap": "2",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "4710661",
+            "longName": "Chandler Zavala",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4683815": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "69",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "0",
+                "defSnapPct": "1.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "totalTackles": "7",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "4",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "4683815",
+            "longName": "Trevin Wallace",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4361088": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.07",
+                "defSnap": "0",
+                "stSnap": "21",
+                "stSnapPct": "0.81",
+                "offSnap": "5",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "1",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "1",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "4361088",
+            "longName": "Colson Yankoff",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3040572": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "69",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "0",
+                "defSnapPct": "1.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "totalTackles": "7",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "4",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "3040572",
+            "longName": "Xavier Woods",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3886601": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "43",
+                "stSnap": "8",
+                "stSnapPct": "0.31",
+                "offSnap": "0",
+                "defSnapPct": "0.62"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "totalTackles": "3",
+                "defTD": "0",
+                "forcedFumbles": "1",
+                "soloTackles": "1",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "3886601",
+            "longName": "Shy Tuttle",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3053795": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "3",
+                "stSnap": "14",
+                "stSnapPct": "0.54",
+                "offSnap": "0",
+                "defSnapPct": "0.07"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "1",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "0",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "3053795",
+            "longName": "Michael Davis",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3115922": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "1.00",
+                "defSnap": "0",
+                "stSnap": "8",
+                "stSnapPct": "0.31",
+                "offSnap": "69",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "3115922",
+            "longName": "Nick Allegretti",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4262199": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "1.00",
+                "defSnap": "0",
+                "stSnap": "8",
+                "stSnapPct": "0.31",
+                "offSnap": "69",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "4262199",
+            "longName": "Sam Cosmi",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4427132": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "1.00",
+                "defSnap": "0",
+                "stSnap": "1",
+                "stSnapPct": "0.04",
+                "offSnap": "43",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "4427132",
+            "longName": "Ikem Ekwonu",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4431588": {
+            "gameID": "20241020_CAR@WSH",
+            "Receiving": {
+                "receptions": "6",
+                "recTD": "0",
+                "longRec": "29",
+                "targets": "6",
+                "recYds": "61",
+                "recAvg": "10.2"
+            },
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.74",
+                "defSnap": "0",
+                "stSnap": "10",
+                "stSnapPct": "0.38",
+                "offSnap": "32",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "fumblesLost": "0",
+                "defensiveInterceptions": "0",
+                "forcedFumbles": "0",
+                "fumbles": "0",
+                "fumblesRecovered": "1"
+            },
+            "playerID": "4431588",
+            "longName": "Ja'Tavion Sanders",
+            "fantasyPoints": "9.1",
+            "fantasyPointsDefault": {
+                "standard": "6.1",
+                "PPR": "12.1",
+                "halfPPR": "9.1"
+            }
+        },
+        "3925354": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "20",
+                "stSnap": "1",
+                "stSnapPct": "0.04",
+                "offSnap": "0",
+                "defSnapPct": "0.47"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "3",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "2",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "3925354",
+            "longName": "Daron Payne",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4430411": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "0",
+                "stSnap": "19",
+                "stSnapPct": "0.73",
+                "offSnap": "0",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "4430411",
+            "longName": "Jammie Robinson",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "11759": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "0",
+                "stSnap": "6",
+                "stSnapPct": "0.23",
+                "offSnap": "0",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "11759",
+            "longName": "JJ Jansen",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4045163": {
+            "gameID": "20241020_CAR@WSH",
+            "Rushing": {
+                "rushAvg": "11.3",
+                "rushYds": "34",
+                "carries": "3",
+                "longRush": "26",
+                "rushTD": "0"
+            },
+            "Receiving": {
+                "receptions": "1",
+                "recTD": "0",
+                "longRec": "-6",
+                "targets": "2",
+                "recYds": "-6",
+                "recAvg": "-6.0"
+            },
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.26",
+                "defSnap": "0",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "11",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "4045163",
+            "longName": "Miles Sanders",
+            "fantasyPoints": "3.9",
+            "fantasyPointsDefault": {
+                "standard": "2.8",
+                "PPR": "3.8",
+                "halfPPR": "3.3"
+            }
+        },
+        "4239088": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "5",
+                "stSnap": "15",
+                "stSnapPct": "0.58",
+                "offSnap": "0",
+                "defSnapPct": "0.12"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "2",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "1",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "4239088",
+            "longName": "Darrick Forrest",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4240623": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "26",
+                "stSnap": "1",
+                "stSnapPct": "0.04",
+                "offSnap": "0",
+                "defSnapPct": "0.38"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "totalTackles": "4",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "1",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "4240623",
+            "longName": "DJ Johnson",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3051852": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "48",
+                "stSnap": "8",
+                "stSnapPct": "0.31",
+                "offSnap": "0",
+                "defSnapPct": "0.70"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "totalTackles": "1",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "1",
+                "tfl": "1",
+                "qbHits": "1",
+                "defensiveInterceptions": "0",
+                "sacks": "1",
+                "passDeflections": "0"
+            },
+            "playerID": "3051852",
+            "longName": "Charles Harris",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4426485": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.26",
+                "defSnap": "0",
+                "stSnap": "12",
+                "stSnapPct": "0.46",
+                "offSnap": "11",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "4426485",
+            "longName": "Jonathan Mingo",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3116179": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "69",
+                "stSnap": "5",
+                "stSnapPct": "0.19",
+                "offSnap": "0",
+                "defSnapPct": "1.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "totalTackles": "6",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "4",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "3116179",
+            "longName": "Nick Scott",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4685030": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.22",
+                "defSnap": "0",
+                "stSnap": "3",
+                "stSnapPct": "0.12",
+                "offSnap": "15",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "4685030",
+            "longName": "Brandon Coleman",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "2976194": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "20",
+                "stSnap": "1",
+                "stSnapPct": "0.04",
+                "offSnap": "0",
+                "defSnapPct": "0.47"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "2",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "2",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "2976194",
+            "longName": "Sheldon Day",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4362847": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "60",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "0",
+                "defSnapPct": "0.87"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "totalTackles": "5",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "4",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "1"
+            },
+            "playerID": "4362847",
+            "longName": "Jaycee Horn",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4241474": {
+            "gameID": "20241020_CAR@WSH",
+            "Rushing": {
+                "rushAvg": "5.9",
+                "rushYds": "71",
+                "carries": "12",
+                "longRush": "11",
+                "rushTD": "1"
+            },
+            "scoringPlays": [
+                {
+                    "score": "Brian Robinson Jr. 8 Yd Run (Austin Seibert Kick)",
+                    "scorePeriod": "Q2",
+                    "homeScore": "17",
+                    "awayScore": "0",
+                    "teamID": "32",
+                    "scoreDetails": "4 plays, 59 yards, 1:47",
+                    "scoreType": "TD",
+                    "scoreTime": "11:35",
+                    "team": "WSH",
+                    "playerIDs": [
+                        "4241474",
+                        "3821683"
+                    ]
+                }
+            ],
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.38",
+                "defSnap": "0",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "26",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "4241474",
+            "longName": "Brian Robinson Jr.",
+            "fantasyPoints": "15.5",
+            "fantasyPointsDefault": {
+                "standard": "13.1",
+                "PPR": "13.1",
+                "halfPPR": "13.1"
+            }
+        },
+        "4240780": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "6",
+                "stSnap": "24",
+                "stSnapPct": "0.92",
+                "offSnap": "0",
+                "defSnapPct": "0.09"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "totalTackles": "1",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "0",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "4240780",
+            "longName": "Lonnie Johnson Jr.",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "15835": {
+            "gameID": "20241020_CAR@WSH",
+            "Receiving": {
+                "receptions": "4",
+                "recTD": "1",
+                "longRec": "15",
+                "targets": "5",
+                "recYds": "40",
+                "recAvg": "10.0"
+            },
+            "scoringPlays": [
+                {
+                    "score": "Zach Ertz 12 Yd pass from Marcus Mariota (Austin Seibert Kick)",
+                    "scorePeriod": "Q2",
+                    "homeScore": "27",
+                    "awayScore": "0",
+                    "teamID": "32",
+                    "scoreDetails": "8 plays, 92 yards, 2:12",
+                    "scoreType": "TD",
+                    "scoreTime": "0:10",
+                    "team": "WSH",
+                    "playerIDs": [
+                        "2576980",
+                        "15835",
+                        "3821683"
+                    ]
+                }
+            ],
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.58",
+                "defSnap": "0",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "40",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "15835",
+            "longName": "Zach Ertz",
+            "fantasyPoints": "12.0",
+            "fantasyPointsDefault": {
+                "standard": "10.0",
+                "PPR": "14.0",
+                "halfPPR": "12.0"
+            }
+        },
+        "4241473": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "43",
+                "stSnap": "8",
+                "stSnapPct": "0.31",
+                "offSnap": "0",
+                "defSnapPct": "0.62"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "totalTackles": "4",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "1",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "4241473",
+            "longName": "LaBryan Ray",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4361577": {
+            "gameID": "20241020_CAR@WSH",
+            "Receiving": {
+                "receptions": "1",
+                "recTD": "0",
+                "longRec": "23",
+                "targets": "3",
+                "recYds": "23",
+                "recAvg": "23.0"
+            },
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.30",
+                "defSnap": "0",
+                "stSnap": "2",
+                "stSnapPct": "0.08",
+                "offSnap": "21",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "4361577",
+            "longName": "Dyami Brown",
+            "fantasyPoints": "2.8",
+            "fantasyPointsDefault": {
+                "standard": "2.3",
+                "PPR": "3.3",
+                "halfPPR": "2.8"
+            }
+        },
+        "4685720": {
+            "gameID": "20241020_CAR@WSH",
+            "Passing": {
+                "qbr": "75.5",
+                "rtg": "79.2",
+                "sacked": "0-0",
+                "passAttempts": "2",
+                "passAvg": "-2.0",
+                "passTD": "0",
+                "passYds": "-4",
+                "int": "0",
+                "passCompletions": "2"
+            },
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.07",
+                "defSnap": "0",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "3",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "4685720",
+            "longName": "Bryce Young",
+            "fantasyPoints": "-0.16",
+            "fantasyPointsDefault": {
+                "standard": "-0.16",
+                "PPR": "-0.16",
+                "halfPPR": "-0.16"
+            }
+        },
+        "14471": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "3",
+                "stSnap": "17",
+                "stSnapPct": "0.65",
+                "offSnap": "0",
+                "defSnapPct": "0.07"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "2",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "1",
+                "tfl": "1",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "14471",
+            "longName": "Nick Bellore",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3042702": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "1.00",
+                "defSnap": "0",
+                "stSnap": "8",
+                "stSnapPct": "0.31",
+                "offSnap": "69",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "3042702",
+            "longName": "Andrew Wylie",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "2576980": {
+            "gameID": "20241020_CAR@WSH",
+            "Rushing": {
+                "rushAvg": "3.1",
+                "rushYds": "34",
+                "carries": "11",
+                "longRush": "11",
+                "rushTD": "0"
+            },
+            "Passing": {
+                "qbr": "64.0",
+                "rtg": "132.8",
+                "sacked": "1-4",
+                "passAttempts": "23",
+                "passAvg": "8.9",
+                "passTD": "2",
+                "passYds": "205",
+                "int": "0",
+                "passCompletions": "18"
+            },
+            "scoringPlays": [
+                {
+                    "score": "Zach Ertz 12 Yd pass from Marcus Mariota (Austin Seibert Kick)",
+                    "scorePeriod": "Q2",
+                    "homeScore": "27",
+                    "awayScore": "0",
+                    "teamID": "32",
+                    "scoreDetails": "8 plays, 92 yards, 2:12",
+                    "scoreType": "TD",
+                    "scoreTime": "0:10",
+                    "team": "WSH",
+                    "playerIDs": [
+                        "2576980",
+                        "15835",
+                        "3821683"
+                    ]
+                },
+                {
+                    "score": "Ben Sinnott 3 Yd pass from Marcus Mariota (Austin Seibert Kick)",
+                    "scorePeriod": "Q3",
+                    "homeScore": "34",
+                    "awayScore": "0",
+                    "teamID": "32",
+                    "scoreDetails": "10 plays, 59 yards, 6:07",
+                    "scoreType": "TD",
+                    "scoreTime": "8:53",
+                    "team": "WSH",
+                    "playerIDs": [
+                        "2576980",
+                        "4690923",
+                        "3821683"
+                    ]
+                }
+            ],
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.86",
+                "defSnap": "0",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "59",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "fumblesLost": "0",
+                "defensiveInterceptions": "0",
+                "forcedFumbles": "0",
+                "fumbles": "0",
+                "fumblesRecovered": "1"
+            },
+            "playerID": "2576980",
+            "longName": "Marcus Mariota",
+            "fantasyPoints": "21.8",
+            "fantasyPointsDefault": {
+                "standard": "19.6",
+                "PPR": "19.6",
+                "halfPPR": "19.6"
+            }
+        },
+        "3121414": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "16",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "0",
+                "defSnapPct": "0.37"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "1",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "1",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "3121414",
+            "longName": "Jalyn Holmes",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4429767": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "29",
+                "stSnap": "5",
+                "stSnapPct": "0.19",
+                "offSnap": "0",
+                "defSnapPct": "0.67"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "1",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "0",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "1",
+                "defensiveInterceptionsYards": "19",
+                "interceptionTDs": "0",
+                "sacks": "0",
+                "passDeflections": "1"
+            },
+            "playerID": "4429767",
+            "longName": "Emmanuel Forbes Jr.",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4035788": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.78",
+                "defSnap": "0",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "54",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "fumblesLost": "0",
+                "defensiveInterceptions": "0",
+                "forcedFumbles": "0",
+                "fumbles": "1",
+                "fumblesRecovered": "0"
+            },
+            "playerID": "4035788",
+            "longName": "Tyler Biadasz",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3121409": {
+            "gameID": "20241020_CAR@WSH",
+            "Receiving": {
+                "receptions": "1",
+                "recTD": "0",
+                "longRec": "16",
+                "targets": "1",
+                "recYds": "16",
+                "recAvg": "16.0"
+            },
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.61",
+                "defSnap": "0",
+                "stSnap": "1",
+                "stSnapPct": "0.04",
+                "offSnap": "42",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "3121409",
+            "longName": "Noah Brown",
+            "fantasyPoints": "2.1",
+            "fantasyPointsDefault": {
+                "standard": "1.6",
+                "PPR": "2.6",
+                "halfPPR": "2.1"
+            }
+        },
+        "2576508": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "24",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "0",
+                "defSnapPct": "0.35"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "totalTackles": "2",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "0",
+                "tfl": "0",
+                "qbHits": "1",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "2576508",
+            "longName": "DeShawn Williams",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3115456": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "34",
+                "stSnap": "1",
+                "stSnapPct": "0.04",
+                "offSnap": "0",
+                "defSnapPct": "0.49"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "totalTackles": "4",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "3",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "3115456",
+            "longName": "Marquis Haynes Sr.",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4430560": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "23",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "0",
+                "defSnapPct": "0.53"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "4430560",
+            "longName": "Jer'Zhan Newton",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3916917": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "17",
+                "stSnap": "8",
+                "stSnapPct": "0.31",
+                "offSnap": "0",
+                "defSnapPct": "0.25"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "totalTackles": "1",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "0",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "3916917",
+            "longName": "T.J. Smith",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3871880": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "1.00",
+                "defSnap": "0",
+                "stSnap": "1",
+                "stSnapPct": "0.04",
+                "offSnap": "43",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "3871880",
+            "longName": "Yosh Nijman",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4048228": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.42",
+                "defSnap": "0",
+                "stSnap": "11",
+                "stSnapPct": "0.42",
+                "offSnap": "29",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "4048228",
+            "longName": "John Bates",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3127273": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "40",
+                "stSnap": "1",
+                "stSnapPct": "0.04",
+                "offSnap": "0",
+                "defSnapPct": "0.93"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "4",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "2",
+                "tfl": "2",
+                "qbHits": "1",
+                "defensiveInterceptions": "0",
+                "sacks": "1",
+                "passDeflections": "0"
+            },
+            "playerID": "3127273",
+            "longName": "Frankie Luvu",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4697636": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "39",
+                "stSnap": "8",
+                "stSnapPct": "0.31",
+                "offSnap": "0",
+                "defSnapPct": "0.57"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "totalTackles": "8",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "5",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "4697636",
+            "longName": "Chau Smith-Wade",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4360378": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "29",
+                "stSnap": "3",
+                "stSnapPct": "0.12",
+                "offSnap": "0",
+                "defSnapPct": "0.67"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "2",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "0",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "4360378",
+            "longName": "Quan Martin",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4426948": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.38",
+                "defSnap": "0",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "26",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "4426948",
+            "longName": "Luke McCaffrey",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4212909": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.33",
+                "defSnap": "0",
+                "stSnap": "6",
+                "stSnapPct": "0.23",
+                "offSnap": "14",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "4212909",
+            "longName": "David Moore",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3121422": {
+            "gameID": "20241020_CAR@WSH",
+            "Receiving": {
+                "receptions": "6",
+                "recTD": "0",
+                "longRec": "25",
+                "targets": "6",
+                "recYds": "98",
+                "recAvg": "16.3"
+            },
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.71",
+                "defSnap": "0",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "49",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "3121422",
+            "longName": "Terry McLaurin",
+            "fantasyPoints": "12.8",
+            "fantasyPointsDefault": {
+                "standard": "9.8",
+                "PPR": "15.8",
+                "halfPPR": "12.8"
+            }
+        },
+        "4361788": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "0",
+                "stSnap": "1",
+                "stSnapPct": "0.04",
+                "offSnap": "0",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "4361788",
+            "longName": "Cade Mays",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3121541": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.22",
+                "defSnap": "0",
+                "stSnap": "8",
+                "stSnapPct": "0.31",
+                "offSnap": "15",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "3121541",
+            "longName": "Michael Deiter",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4426348": {
+            "gameID": "20241020_CAR@WSH",
+            "Rushing": {
+                "rushAvg": "16.7",
+                "rushYds": "50",
+                "carries": "3",
+                "longRush": "46",
+                "rushTD": "0"
+            },
+            "Passing": {
+                "qbr": "72.4",
+                "rtg": "79.2",
+                "sacked": "0-0",
+                "passAttempts": "2",
+                "passAvg": "3.0",
+                "passTD": "0",
+                "passYds": "6",
+                "int": "0",
+                "passCompletions": "2"
+            },
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.14",
+                "defSnap": "0",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "10",
+                "defSnapPct": "0.00"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "4426348",
+            "longName": "Jayden Daniels",
+            "fantasyPoints": "5.84",
+            "fantasyPointsDefault": {
+                "standard": "5.24",
+                "PPR": "5.24",
+                "halfPPR": "5.24"
+            }
+        },
+        "3040031": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "41",
+                "stSnap": "8",
+                "stSnapPct": "0.31",
+                "offSnap": "0",
+                "defSnapPct": "0.59"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "Defense": {
+                "totalTackles": "3",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "1",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "3040031",
+            "longName": "Nick Thurman",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4258206": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "35",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "0",
+                "defSnapPct": "0.81"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "1",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "1",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "4258206",
+            "longName": "Benjamin St-Juste",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3917592": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "1.00",
+                "defSnap": "0",
+                "stSnap": "1",
+                "stSnapPct": "0.04",
+                "offSnap": "43",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "3917592",
+            "longName": "Robert Hunt",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3068267": {
+            "gameID": "20241020_CAR@WSH",
+            "Rushing": {
+                "rushAvg": "4.3",
+                "rushYds": "17",
+                "carries": "4",
+                "longRush": "6",
+                "rushTD": "0"
+            },
+            "Receiving": {
+                "receptions": "2",
+                "recTD": "0",
+                "longRec": "3",
+                "targets": "2",
+                "recYds": "3",
+                "recAvg": "1.5"
+            },
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.41",
+                "defSnap": "0",
+                "stSnap": "2",
+                "stSnapPct": "0.08",
+                "offSnap": "28",
+                "defSnapPct": "0.00"
+            },
+            "Kicking": {
+                "kickReturns": "1",
+                "kickReturnTD": "0",
+                "kickReturnYds": "34",
+                "kickReturnAvg": "34.0",
+                "kickReturnLong": "34"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "3068267",
+            "longName": "Austin Ekeler",
+            "fantasyPoints": "3.8",
+            "fantasyPointsDefault": {
+                "standard": "2.0",
+                "PPR": "4.0",
+                "halfPPR": "3.0"
+            }
+        },
+        "4695883": {
+            "gameID": "20241020_CAR@WSH",
+            "Receiving": {
+                "receptions": "1",
+                "recTD": "0",
+                "longRec": "10",
+                "targets": "1",
+                "recYds": "10",
+                "recAvg": "10.0"
+            },
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.51",
+                "defSnap": "0",
+                "stSnap": "9",
+                "stSnapPct": "0.35",
+                "offSnap": "22",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "4695883",
+            "longName": "Jalen Coker",
+            "fantasyPoints": "1.5",
+            "fantasyPointsDefault": {
+                "standard": "1.0",
+                "PPR": "2.0",
+                "halfPPR": "1.5"
+            }
+        },
+        "4430034": {
+            "gameID": "20241020_CAR@WSH",
+            "Rushing": {
+                "rushAvg": "6.0",
+                "rushYds": "6",
+                "carries": "1",
+                "longRush": "6",
+                "rushTD": "0"
+            },
+            "Receiving": {
+                "receptions": "2",
+                "recTD": "0",
+                "longRec": "6",
+                "targets": "3",
+                "recYds": "3",
+                "recAvg": "1.5"
+            },
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.84",
+                "defSnap": "0",
+                "stSnap": "9",
+                "stSnapPct": "0.35",
+                "offSnap": "36",
+                "defSnapPct": "0.00"
+            },
+            "Kicking": {
+                "kickReturns": "1",
+                "kickReturnTD": "0",
+                "kickReturnYds": "19",
+                "kickReturnAvg": "19.0",
+                "kickReturnLong": "19"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "4430034",
+            "longName": "Xavier Legette",
+            "fantasyPoints": "2.1",
+            "fantasyPointsDefault": {
+                "standard": "0.9",
+                "PPR": "2.9",
+                "halfPPR": "1.9"
+            }
+        },
+        "4241416": {
+            "gameID": "20241020_CAR@WSH",
+            "Rushing": {
+                "rushAvg": "3.1",
+                "rushYds": "52",
+                "carries": "17",
+                "longRush": "9",
+                "rushTD": "1"
+            },
+            "scoringPlays": [
+                {
+                    "score": "Chuba Hubbard 4 Yd Run (Eddy Pineiro Kick)",
+                    "scorePeriod": "Q4",
+                    "homeScore": "37",
+                    "awayScore": "7",
+                    "teamID": "5",
+                    "scoreDetails": "9 plays, 70 yards, 4:55",
+                    "scoreType": "TD",
+                    "scoreTime": "11:38",
+                    "team": "CAR",
+                    "playerIDs": [
+                        "4241416",
+                        "4034949"
+                    ]
+                }
+            ],
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.84",
+                "defSnap": "0",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "36",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "4241416",
+            "longName": "Chuba Hubbard",
+            "fantasyPoints": "14.6",
+            "fantasyPointsDefault": {
+                "standard": "11.2",
+                "PPR": "11.2",
+                "halfPPR": "11.2"
+            }
+        },
+        "4371336": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "0",
+                "stSnap": "5",
+                "stSnapPct": "0.19",
+                "offSnap": "0",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "4371336",
+            "longName": "Shemar Bartholomew",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "2980100": {
+            "gameID": "20241020_CAR@WSH",
+            "scoringPlays": [
+                {
+                    "score": "Dante Fowler Jr. 67 Yd Interception Return (Austin Seibert Kick)",
+                    "scorePeriod": "Q1",
+                    "homeScore": "7",
+                    "awayScore": "0",
+                    "teamID": "32",
+                    "scoreDetails": "8 plays, 61 yards, 3:46",
+                    "scoreType": "TD",
+                    "scoreTime": "11:14",
+                    "team": "WSH",
+                    "playerIDs": [
+                        "2980100",
+                        "3821683"
+                    ]
+                }
+            ],
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "20",
+                "stSnap": "2",
+                "stSnapPct": "0.08",
+                "offSnap": "0",
+                "defSnapPct": "0.47"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "2",
+                "defTD": "1",
+                "forcedFumbles": "0",
+                "soloTackles": "2",
+                "tfl": "1",
+                "qbHits": "1",
+                "defensiveInterceptions": "1",
+                "defensiveInterceptionsYards": "67",
+                "interceptionTDs": "1",
+                "sacks": "1",
+                "passDeflections": "1"
+            },
+            "playerID": "2980100",
+            "longName": "Dante Fowler Jr.",
+            "fantasyPoints": "6.0",
+            "fantasyPointsDefault": {
+                "standard": "6.0",
+                "PPR": "6.0",
+                "halfPPR": "6.0"
+            }
+        },
+        "4256062": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "1.00",
+                "defSnap": "0",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "43",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "4256062",
+            "longName": "Brady Christensen",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4043169": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "37",
+                "stSnap": "11",
+                "stSnapPct": "0.42",
+                "offSnap": "0",
+                "defSnapPct": "0.86"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "6",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "2",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "4043169",
+            "longName": "Jeremy Chinn",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3728258": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "20",
+                "stSnap": "2",
+                "stSnapPct": "0.08",
+                "offSnap": "0",
+                "defSnapPct": "0.47"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "Defense": {
+                "totalTackles": "2",
+                "defTD": "0",
+                "forcedFumbles": "0",
+                "soloTackles": "1",
+                "tfl": "0",
+                "qbHits": "0",
+                "defensiveInterceptions": "0",
+                "sacks": "0",
+                "passDeflections": "0"
+            },
+            "playerID": "3728258",
+            "longName": "Clelin Ferrell",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "4045305": {
+            "gameID": "20241020_CAR@WSH",
+            "Receiving": {
+                "receptions": "2",
+                "recTD": "0",
+                "longRec": "2",
+                "targets": "2",
+                "recYds": "4",
+                "recAvg": "2.0"
+            },
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.49",
+                "defSnap": "0",
+                "stSnap": "0",
+                "stSnapPct": "0.00",
+                "offSnap": "21",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "4045305",
+            "longName": "Ian Thomas",
+            "fantasyPoints": "1.4",
+            "fantasyPointsDefault": {
+                "standard": "0.4",
+                "PPR": "2.4",
+                "halfPPR": "1.4"
+            }
+        },
+        "4373474": {
+            "gameID": "20241020_CAR@WSH",
+            "teamID": "5",
+            "snapCounts": {
+                "offSnapPct": "0.00",
+                "defSnap": "0",
+                "stSnap": "1",
+                "stSnapPct": "0.04",
+                "offSnap": "0",
+                "defSnapPct": "0.00"
+            },
+            "team": "CAR",
+            "teamAbv": "CAR",
+            "playerID": "4373474",
+            "longName": "Jarrett Kingston",
+            "fantasyPoints": "0.0",
+            "fantasyPointsDefault": {
+                "standard": "0.0",
+                "PPR": "0.0",
+                "halfPPR": "0.0"
+            }
+        },
+        "3917914": {
+            "gameID": "20241020_CAR@WSH",
+            "Receiving": {
+                "receptions": "4",
+                "recTD": "0",
+                "longRec": "12",
+                "targets": "6",
+                "recYds": "25",
+                "recAvg": "6.3"
+            },
+            "teamID": "32",
+            "snapCounts": {
+                "offSnapPct": "0.42",
+                "defSnap": "0",
+                "stSnap": "5",
+                "stSnapPct": "0.19",
+                "offSnap": "29",
+                "defSnapPct": "0.00"
+            },
+            "Punting": {
+                "puntReturns": "1",
+                "puntReturnYds": "15",
+                "puntReturnAvg": "15.0",
+                "puntReturnLong": "15",
+                "puntReturnTD": "0"
+            },
+            "team": "WSH",
+            "teamAbv": "WSH",
+            "playerID": "3917914",
+            "longName": "Olamide Zaccheaus",
+            "fantasyPoints": "4.5",
+            "fantasyPointsDefault": {
+                "standard": "2.5",
+                "PPR": "6.5",
+                "halfPPR": "4.5"
+            }
+        }
+    },
+    "scoringPlays": [
+        {
+            "score": "Dante Fowler Jr. 67 Yd Interception Return (Austin Seibert Kick)",
+            "scorePeriod": "Q1",
+            "homeScore": "7",
+            "awayScore": "0",
+            "teamID": "32",
+            "scoreDetails": "8 plays, 61 yards, 3:46",
+            "scoreType": "TD",
+            "scoreTime": "11:14",
+            "team": "WSH",
+            "playerIDs": [
+                "2980100",
+                "3821683"
+            ]
+        },
+        {
+            "score": "Austin Seibert 23 Yd Field Goal  ",
+            "scorePeriod": "Q1",
+            "homeScore": "10",
+            "awayScore": "0",
+            "teamID": "32",
+            "scoreDetails": "11 plays, 85 yards, 6:20",
+            "scoreType": "FG",
+            "scoreTime": "3:18",
+            "team": "WSH",
+            "playerIDs": [
+                "3821683"
+            ]
+        },
+        {
+            "score": "Brian Robinson Jr. 8 Yd Run (Austin Seibert Kick)",
+            "scorePeriod": "Q2",
+            "homeScore": "17",
+            "awayScore": "0",
+            "teamID": "32",
+            "scoreDetails": "4 plays, 59 yards, 1:47",
+            "scoreType": "TD",
+            "scoreTime": "11:35",
+            "team": "WSH",
+            "playerIDs": [
+                "4241474",
+                "3821683"
+            ]
+        },
+        {
+            "score": "Austin Seibert 49 Yd Field Goal  ",
+            "scorePeriod": "Q2",
+            "homeScore": "20",
+            "awayScore": "0",
+            "teamID": "32",
+            "scoreDetails": "5 plays, 7 yards, 1:53",
+            "scoreType": "FG",
+            "scoreTime": "5:39",
+            "team": "WSH",
+            "playerIDs": [
+                "3821683"
+            ]
+        },
+        {
+            "score": "Zach Ertz 12 Yd pass from Marcus Mariota (Austin Seibert Kick)",
+            "scorePeriod": "Q2",
+            "homeScore": "27",
+            "awayScore": "0",
+            "teamID": "32",
+            "scoreDetails": "8 plays, 92 yards, 2:12",
+            "scoreType": "TD",
+            "scoreTime": "0:10",
+            "team": "WSH",
+            "playerIDs": [
+                "2576980",
+                "15835",
+                "3821683"
+            ]
+        },
+        {
+            "score": "Ben Sinnott 3 Yd pass from Marcus Mariota (Austin Seibert Kick)",
+            "scorePeriod": "Q3",
+            "homeScore": "34",
+            "awayScore": "0",
+            "teamID": "32",
+            "scoreDetails": "10 plays, 59 yards, 6:07",
+            "scoreType": "TD",
+            "scoreTime": "8:53",
+            "team": "WSH",
+            "playerIDs": [
+                "2576980",
+                "4690923",
+                "3821683"
+            ]
+        },
+        {
+            "score": "Austin Seibert 31 Yd Field Goal  ",
+            "scorePeriod": "Q3",
+            "homeScore": "37",
+            "awayScore": "0",
+            "teamID": "32",
+            "scoreDetails": "10 plays, 55 yards, 5:36",
+            "scoreType": "FG",
+            "scoreTime": "1:33",
+            "team": "WSH",
+            "playerIDs": [
+                "3821683"
+            ]
+        },
+        {
+            "score": "Chuba Hubbard 4 Yd Run (Eddy Pineiro Kick)",
+            "scorePeriod": "Q4",
+            "homeScore": "37",
+            "awayScore": "7",
+            "teamID": "5",
+            "scoreDetails": "9 plays, 70 yards, 4:55",
+            "scoreType": "TD",
+            "scoreTime": "11:38",
+            "team": "CAR",
+            "playerIDs": [
+                "4241416",
+                "4034949"
+            ]
+        },
+        {
+            "score": "Austin Seibert 29 Yd Field Goal  ",
+            "scorePeriod": "Q4",
+            "homeScore": "40",
+            "awayScore": "7",
+            "teamID": "32",
+            "scoreDetails": "12 plays, 59 yards, 6:43",
+            "scoreType": "FG",
+            "scoreTime": "4:55",
+            "team": "WSH",
+            "playerIDs": [
+                "3821683"
+            ]
+        }
+    ],
+    "seasonType": "Regular Season",
+    "teamIDAway": "5",
+    "teamIDHome": "32",
+    "teamStats": {
+        "away": {
+            "totalYards": "180",
+            "rushingAttempts": "23",
+            "rushingYards": "95",
+            "fumblesLost": "0",
+            "penalties": "6-59",
+            "totalPlays": "43",
+            "possession": "24:55",
+            "safeties": "0",
+            "passCompletionsAndAttempts": "13-18",
+            "passingFirstDowns": "5",
+            "interceptionsThrown": "2",
+            "sacksAndYardsLost": "2-4",
+            "thirdDownEfficiency": "3-10",
+            "blockedPunt": "0",
+            "yardsPerPlay": "4.2",
+            "redZoneScoredAndAttempted": "1-1",
+            "teamID": "5",
+            "defensiveInterceptions": "0",
+            "defensiveOrSpecialTeamsTds": "0",
+            "totalDrives": "10",
+            "rushingFirstDowns": "5",
+            "blockedFG": "0",
+            "rushTD": "1",
+            "twoPointConversions": "0",
+            "firstDowns": "10",
+            "passTD": "0",
+            "team": "CAR",
+            "blockedXP": "0",
+            "teamAbv": "CAR",
+            "firstDownsFromPenalties": "0",
+            "fourthDownEfficiency": "0-1",
+            "defensiveTwoPointConversionReturns": "0",
+            "passingYards": "85",
+            "yardsPerRush": "4.1",
+            "snapCounts": {
+                "totalSpecialTeams": "26",
+                "totalOffensive": "43",
+                "totalDefensive": "69"
+            },
+            "turnovers": "2",
+            "yardsPerPass": "4.3"
+        },
+        "home": {
+            "totalYards": "421",
+            "rushingAttempts": "37",
+            "rushingYards": "214",
+            "fumblesLost": "0",
+            "penalties": "8-55",
+            "totalPlays": "63",
+            "possession": "35:05",
+            "safeties": "0",
+            "passCompletionsAndAttempts": "20-25",
+            "passingFirstDowns": "12",
+            "interceptionsThrown": "0",
+            "sacksAndYardsLost": "1-4",
+            "thirdDownEfficiency": "5-10",
+            "blockedPunt": "0",
+            "yardsPerPlay": "6.7",
+            "redZoneScoredAndAttempted": "3-6",
+            "teamID": "32",
+            "defensiveInterceptions": "2",
+            "defensiveOrSpecialTeamsTds": "1",
+            "totalDrives": "9",
+            "rushingFirstDowns": "10",
+            "blockedFG": "0",
+            "rushTD": "1",
+            "twoPointConversions": "0",
+            "firstDowns": "26",
+            "passTD": "2",
+            "team": "WSH",
+            "blockedXP": "0",
+            "teamAbv": "WSH",
+            "firstDownsFromPenalties": "4",
+            "fourthDownEfficiency": "0-0",
+            "defensiveTwoPointConversionReturns": "0",
+            "passingYards": "207",
+            "yardsPerRush": "5.8",
+            "snapCounts": {
+                "totalSpecialTeams": "26",
+                "totalOffensive": "69",
+                "totalDefensive": "43"
+            },
+            "turnovers": "0",
+            "yardsPerPass": "8.0"
+        }
+    },
+    "gameID": "20241020_CAR@WSH",
+    "gameStatusCode": "2"
+}
