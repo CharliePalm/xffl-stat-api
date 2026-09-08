@@ -1,7 +1,8 @@
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from fastapi.routing import APIRoute
 from starlette.middleware.cors import CORSMiddleware
 
+from app.api.deps import verify_api_key
 from app.api.main import api_router
 from app.core.config import settings
 
@@ -17,6 +18,10 @@ app = FastAPI(
     title=settings.PROJECT_NAME,
     openapi_url=f"{settings.API_V1_STR}/openapi.json",
     generate_unique_id_function=custom_generate_unique_id,
+    # applies to every path operation added via a router (i.e. api_router
+    # below); /docs and /openapi.json are plain Starlette routes FastAPI
+    # wires up internally and never go through this dependency
+    dependencies=[Depends(verify_api_key)],
 )
 
 app.add_middleware(

@@ -1,9 +1,12 @@
+import secrets
 from collections.abc import Callable
 from typing import Annotated, Any, Optional, cast
 
-from fastapi import Depends
+from fastapi import Depends, HTTPException, status
+from fastapi.security import APIKeyHeader
 from sqlalchemy.orm import Session
 
+from app.core.config import settings
 from shared.model import NFLTeam
 from shared.service.engine import get_session
 from shared.service.game_service import GameService
@@ -13,6 +16,22 @@ from shared.service.provider import ProviderService
 from shared.service.service import Page, Service
 
 SessionDep = Annotated[Session, Depends(get_session)]
+
+_api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
+
+
+def verify_api_key(api_key: Annotated[Optional[str], Depends(_api_key_header)]) -> None:
+    """Reject any request that doesn't carry the `X-API-Key` header
+    matching `settings.API_KEY`. `secrets.compare_digest` avoids leaking
+    the key's length/prefix through response-timing differences."""
+    if not api_key or not secrets.compare_digest(api_key, settings.API_KEY):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid or missing API key",
+        )
+
+
+ApiKeyDep = Depends(verify_api_key)
 
 
 def get_page(limit: int = 50, offset: int = 0) -> Page:
