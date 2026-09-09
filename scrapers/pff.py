@@ -52,7 +52,7 @@ DEFENSE_COLUMNS: dict[Stat, str] = {
 }
 
 
-class PFFScraper(Scraper):
+class PFFScraper(Scraper[dict[str, Any]]):
     file_name = "lv_hou_pff.json"
     player_service = PlayerService(SessionLocal())
 
@@ -69,10 +69,10 @@ class PFFScraper(Scraper):
             week = "P3"
         return f"https://www.pff.com/api/scoreboard/matchup?league=nfl&season={game.season}&week={week}&game={home}_at_{away}_{game.pff_id}"
 
-    def parse_html(self, html: str) -> dict[str, Any] | dict[str, Any]:
+    def parse_html(self, html: str) -> dict[str, Any]:
         return json.loads(html)
 
-    def scrape(self, soup: dict[str, Any], game: Game) -> ScrapedPageInfo:  # type: ignore
+    def scrape(self, soup: dict[str, Any], game: Game) -> ScrapedPageInfo:
         if "away_player_stats" not in soup and "home_player_stats" not in soup:
             return ScrapedPageInfo(game=game, player_week_data=[])
         with open("./pff.json", "w") as fp:
@@ -85,7 +85,7 @@ class PFFScraper(Scraper):
         builder.set_final_score(game.home, soup["score"]["home_score"])
 
         for team, players, is_home in (
-            (game.home, away_players, False),
+            (game.away, away_players, False),
             (game.home, home_players, True),
         ):
             defense = {

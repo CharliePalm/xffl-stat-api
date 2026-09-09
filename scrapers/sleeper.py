@@ -32,7 +32,7 @@ DEFENSE_COLUMNS: dict[Stat, str] = {
 session = SessionLocal()
 
 
-class SleeperScraper(Scraper):
+class SleeperScraper(Scraper[str]):
     file_name = "9ers_chargers_sleeper.html"
     player_service = PlayerService(session)
     game_service = GameService(session)

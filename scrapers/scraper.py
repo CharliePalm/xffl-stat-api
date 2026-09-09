@@ -7,7 +7,7 @@ from curl_cffi import requests
 T = TypeVar("T")
 
 
-class Scraper(ABC):
+class Scraper[T = BeautifulSoup](ABC):
     dry_run: bool = False
     file_name = "bears_browns.html"
 
