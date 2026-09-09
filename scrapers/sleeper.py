@@ -26,7 +26,11 @@ OFFENSE_POSITIONS = {"QB", "RB", "WR", "TE"}
 DEFENSE_COLUMNS: dict[Stat, str | list[str]] = {
     Stat.sacks: "sack",
     Stat.interceptions: "int",
-    Stat.fumbles_recovered: "fum_rec",
+    # sleeper's own key here is "def_st_fum_rec", not "fum_rec" — same
+    # "def_st_"-prefixed naming as defensive_tds below; kept as a list so
+    # a bare "fum_rec" still counts too, in case some other game's payload
+    # actually uses that spelling
+    Stat.fumbles_recovered: ["def_st_fum_rec", "fum_rec"],
     Stat.defensive_tds: ["def_st_td", "def_td"],
 }
 
@@ -57,16 +61,35 @@ class SleeperScraper(Scraper[str]):
 
         builder = BoxscoreBuilder(game.week)
 
+        # a DEF row's own "pts_allow" is *not* the literal final score —
+        # it's some other, narrower figure (e.g. SF's read 11 here despite
+        # LAC's actual 41), so points_allowed instead comes from the
+        # scoreboard object for this game, the same source every other
+        # scraper's final score already comes from
+        actual_score = self._parse_game(soup, records[0]["game_id"])
+        if actual_score:
+            builder.set_final_score(
+                NFLTeam.from_abbreviation(actual_score["away_team"]),
+                actual_score["away_score"],
+            )
+            builder.set_final_score(
+                NFLTeam.from_abbreviation(actual_score["home_team"]),
+                actual_score["home_score"],
+            )
+
         for record in records:
             team = NFLTeam.from_abbreviation(record["team"])
             position = record["player"]["position"]
             stats = record["stats"]
 
             if position == "DEF":
-                builder.set_final_score(
-                    game.away if game.home == team else game.home,
-                    record["stats"]["pts_allow"],
-                )
+                if not actual_score:
+                    # fall back to the unreliable per-defense figure
+                    # rather than leaving points_allowed unset entirely
+                    builder.set_final_score(
+                        game.away if game.home == team else game.home,
+                        record["stats"]["pts_allow"],
+                    )
                 builder.add_team_defense(team, self._read(stats, DEFENSE_COLUMNS))
             else:
                 # `record["player"]["team"]` is sleeper's roster metadata for

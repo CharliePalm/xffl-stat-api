@@ -33,12 +33,16 @@ COLUMNS: dict[str, dict[Stat, str]] = {
     },
     "kicking-ctr": {Stat.kicking_points: "PTS"},
 }
-# CBS lists per-defender stats here. Team-summary rows in the side panel are the
-# place where return TDs / recovered fumbles / interception returns are counted.
+# CBS lists per-defender sacks/interceptions here; that's a complete,
+# correct team total on its own, with no team-summary table involved —
+# summing SACK/INT across every defender already matches the box score.
+# fumbles_recovered isn't here at all: "FF" is forced fumbles, a different
+# stat (a defender can force a fumble nobody on his team recovers, or
+# recover one he didn't force), so it's derived separately, from the
+# play-by-play's own recovery text (see `_credit_fumbles_lost`).
 DEFENSE_COLUMNS: dict[Stat, str] = {
     Stat.sacks: "SACK",
     Stat.interceptions: "INT",
-    Stat.fumbles_recovered: "FF",
 }
 
 # CBS has no per-player field for a two-point conversion either — it's
@@ -77,6 +81,14 @@ _PLAYER_TAG = re.compile(r"(\d+)[A-Z]?-([A-Z])\.(\w+)")
 # player mention as the fumbler
 _TRAILING_PAREN = re.compile(r"\([^()]*\)[.\s]*$")
 _RECOVERED_BY = re.compile(r"RECOVERED by\s+(?:([A-Z]{2,3})-)?(\d+)-([A-Z])\.(\w+)")
+
+# CBS's scoring summary has no explicit "this was a defensive/special-
+# teams touchdown" marker — a return TD is just a "Touchdown" scoring
+# item whose free-text description happens to mention the play that
+# produced it, e.g. "...INTERCEPTED by 25-J.Colson... for 16 yards
+# TOUCHDOWN" or "16-J.Scott punts 52 yards... 6O-J.Cowing for 83 yards
+# TOUCHDOWN". None of these words appear in a normal offensive score.
+_RETURN_TD_KEYWORDS = ("INTERCEPTED", "punts", "kicks", "FUMBLES")
 
 
 class CBSScraper(Scraper):
@@ -123,15 +135,43 @@ class CBSScraper(Scraper):
             ):
                 builder.add_team_defense(team, self._read(line, DEFENSE_COLUMNS))
 
-        self._add_team_summary_defense_totals(soup, away_team, home_team, builder)
-
         for team, description in self._parse_two_point_conversions(soup):
             self._credit_two_point_conversion(builder, team, description)
+
+        for team in self._parse_return_touchdowns(soup):
+            builder.add_team_defense(team, {Stat.defensive_tds: 1})
 
         play_by_play = BeautifulSoup(self.get_play_by_play_html(game), "html.parser")
         self._credit_fumbles_lost(builder, play_by_play, game)
 
         return builder.build(game)
+
+    def _parse_return_touchdowns(self, soup: BeautifulSoup) -> list[NFLTeam]:
+        """One entry per defensive/special-teams touchdown in the scoring
+        summary — a punt, kickoff, interception, or fumble return TD."""
+        teams: list[NFLTeam] = []
+        for item in soup.find_all(class_="scoring_item"):
+            result = item.find(class_="result_str")
+            if not isinstance(result, Tag):
+                continue
+            if result.get_text(strip=True).lower() != "touchdown":
+                continue
+
+            description_el = item.find(class_="last_play_description")
+            description = (
+                description_el.get_text(" ", strip=True) if description_el else ""
+            )
+            if not any(keyword in description for keyword in _RETURN_TD_KEYWORDS):
+                continue
+
+            link = item.find("a", href=_TEAM_HREF)
+            team_match = (
+                _TEAM_HREF.search(link["href"]) if isinstance(link, Tag) else None
+            )
+            if not team_match:
+                continue
+            teams.append(NFLTeam.from_abbreviation(team_match.group(1)))
+        return teams
 
     def _parse_two_point_conversions(
         self, soup: BeautifulSoup
@@ -229,71 +269,10 @@ class CBSScraper(Scraper):
                 continue  # recovered by their own team - not lost
 
             builder.add_player(player, {Stat.fumbles_lost: 1})
-
-    def _add_team_summary_defense_totals(
-        self,
-        soup: BeautifulSoup,
-        away_team: NFLTeam,
-        home_team: NFLTeam,
-        builder: BoxscoreBuilder,
-    ) -> None:
-        table = soup.find("table", class_="team-stats")
-        if not isinstance(table, Tag):
-            return
-
-        explicit_td_by_team: dict[NFLTeam, float] = {away_team: 0.0, home_team: 0.0}
-        fallback_td_by_team: dict[NFLTeam, float] = {away_team: 0.0, home_team: 0.0}
-
-        rows = table.find_all("tr")
-        for row in rows:
-            cells = row.find_all("td")
-            if len(cells) < 3:
-                continue
-            label = cells[0].get_text(" ", strip=True)
-            if label not in {"Other", "Int. - Returns", "Fumbles - Lost"}:
-                continue
-
-            values = [cell.get_text(" ", strip=True) for cell in cells[1:3]]
-            away_value = self._team_summary_value(values[0])
-            home_value = self._team_summary_value(values[1])
-
-            if label == "Other":
-                fallback_td_by_team[away_team] += away_value
-                fallback_td_by_team[home_team] += home_value
-                continue
-
-            if label == "Int. - Returns":
-                builder.add_team_defense(away_team, {Stat.interceptions: away_value})
-                builder.add_team_defense(home_team, {Stat.interceptions: home_value})
-                explicit_td_by_team[away_team] += away_value
-                explicit_td_by_team[home_team] += home_value
-                continue
-
-            if label == "Fumbles - Lost":
-                builder.add_team_defense(
-                    away_team, {Stat.fumbles_recovered: away_value}
-                )
-                builder.add_team_defense(
-                    home_team, {Stat.fumbles_recovered: home_value}
-                )
-                explicit_td_by_team[away_team] += away_value
-                explicit_td_by_team[home_team] += home_value
-
-        for team in (away_team, home_team):
-            td_total = explicit_td_by_team[team]
-            if td_total == 0:
-                td_total = fallback_td_by_team[team]
-            if td_total > 0:
-                builder.add_team_defense(team, {Stat.defensive_tds: td_total})
-
-    @staticmethod
-    def _team_summary_value(raw: str) -> float:
-        text = raw.strip()
-        if "-" in text:
-            left, _right = text.split("-", 1)
-            if left.strip():
-                return float(to_float(left.strip()))
-        return float(to_float(text))
+            builder.add_team_defense(
+                NFLTeam.from_abbreviation(recovering_team_abbr),
+                {Stat.fumbles_recovered: 1},
+            )
 
     def _read(
         self, line: dict[str, str], columns: dict[Stat, str]

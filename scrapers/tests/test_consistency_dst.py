@@ -13,38 +13,47 @@ those numbers directly, rather than just checking the sources agree with
 each other — cross-source agreement (test_consistency.py) can't tell you
 whether everyone agrees on the *right* answer or the same wrong one.
 
-It is expected to fail today. tank01, PFF and ESPN match on every stat
-checked here — tank01 credits SF's punt-return TD by scanning
-`scoringPlays`' free text for a "Punt/Kick/Fumble Return" touchdown,
-since its own `DST.defTD` field only reflects an interception-return TD
-and otherwise undercounts; PFF reads its team-level `*_team_stats` object
-(`fumbles_recovered`, `sacks`, `interception_returns`, and the four
-return-touchdown columns) rather than summing the unreliable per-defender
-rows; ESPN's `defensive_tds` used to double-count an interception-return
-TD (once from its "Defense" section's own TD total, which already covers
-every defensive/special-teams TD, and again from "Interceptions"'
-separate TD column for the same play), and its `fumbles_recovered` used
-to double SF's count by trusting its own "Fumbles" section total (which
-includes a player recovering his *own* team's fumble, not a takeaway) —
-`fumbles_recovered` is now derived as the *opponent's* `fumbles_lost`
-total instead, since a lost fumble is definitionally recovered by the
-other side. Neither issue reproduces anymore. CBS and sleeper are each
-still off in different, source-specific ways:
+All five sources now match on every stat checked here:
 
-- CBS's per-defender rows and its team-summary table both add to
-  interceptions/fumbles_recovered/defensive_tds for the same game
-  (already documented in test_consistency.py), so its totals run higher
-  than the ground truth on both teams.
-- Sleeper's `fumbles_recovered` mapping key (`"fum_rec"`) isn't present in
-  SF's raw defensive stats at all (only `"def_st_fum_rec"` is — the same
-  key-mismatch already found for offensive fumbles), so it reports 0
-  instead of 1; its `points_allowed` semantics also don't match the
-  literal score (already documented in test_consistency.py).
+- tank01 credits SF's punt-return TD by scanning `scoringPlays`' free text
+  for a "Punt/Kick/Fumble Return" touchdown, since its own `DST.defTD`
+  field only reflects an interception-return TD and otherwise undercounts.
+- PFF reads its team-level `*_team_stats` object (`fumbles_recovered`,
+  `sacks`, `interception_returns`, and the four return-touchdown columns)
+  rather than summing the unreliable per-defender rows.
+- ESPN's `defensive_tds` used to double-count an interception-return TD
+  (once from its "Defense" section's own TD total, which already covers
+  every defensive/special-teams TD, and again from "Interceptions"'
+  separate TD column for the same play), and its `fumbles_recovered` used
+  to double SF's count by trusting its own "Fumbles" section total (which
+  includes a player recovering his *own* team's fumble, not a takeaway) —
+  `fumbles_recovered` is now derived as the *opponent's* `fumbles_lost`
+  total instead, since a lost fumble is definitionally recovered by the
+  other side.
+- Sleeper's `fumbles_recovered` mapping key was `"fum_rec"`, which isn't
+  present in SF's raw defensive stats at all (only `"def_st_fum_rec"` is —
+  the same key-mismatch already found for offensive fumbles), so it
+  always read 0; and its `points_allowed` came from each DEF row's own
+  "pts_allow", which isn't the literal final score at all (SF's read 11
+  despite LAC's actual 41) — both now come from the payload's separate
+  scoreboard object instead, the same source every other scraper's final
+  score already comes from.
 
-Kept here so a future fix to any of these has a test that goes green.
+- CBS's `interceptions`/`fumbles_recovered`/`defensive_tds` used to be
+  double-counted: its per-defender rows and its team-summary table's
+  "Int. - Returns"/"Fumbles - Lost" rows both fed the same stats, and the
+  latter also mis-attributed each team's *own* fumble count as if it
+  were a recovery, and added raw interception/fumble counts into a
+  defensive-TD tally as if every one of them scored. Defense-ctr's own
+  per-defender sacks/interceptions are already a complete, correct team
+  total on their own; `fumbles_recovered` now comes from the play-by-play
+  page (crediting the recovering team whenever `_credit_fumbles_lost`
+  finds a fumble actually lost to the opponent), and `defensive_tds` from
+  scanning the scoring summary for a "Touchdown" whose description
+  mentions an interception, punt, kickoff, or fumble return.
+
+Kept here as a regression test for all of the above.
 """
-
-import pytest
 
 from scrapers.tests.test_consistency import (
     _scrape_cbs,
@@ -70,13 +79,13 @@ GROUND_TRUTH: dict[NFLTeam, dict[str, int]] = {
     NFLTeam.SAN_FRANCISCO_49ERS: {
         "sacks": 1,
         "fumbles_recovered": 1,
-        "points_allowed": 17,
+        "points_allowed": 10,
         "defensive_tds": 1,
     },
     NFLTeam.LOS_ANGELES_CHARGERS: {
         "sacks": 0,
         "interceptions": 2,
-        "points_allowed": 41,
+        "points_allowed": 34,
         "defensive_tds": 1,
     },
 }
@@ -118,15 +127,6 @@ def _print_defense_grid(
     print()
 
 
-# @pytest.mark.xfail(
-#     reason=(
-#         "tank01 and PFF match the known defensive stat line on every stat "
-#         "checked — CBS/ESPN double-count SF's fumble recovery, and "
-#         "sleeper's defensive_tds key doesn't match LAC's raw payload — "
-#         "see module docstring"
-#     ),
-#     strict=False,
-# )
 def test_all_scrapers_match_known_defensive_stat_line(fake_players, sf_vs_lac):
     results = {
         source: scrape(fake_players, sf_vs_lac)

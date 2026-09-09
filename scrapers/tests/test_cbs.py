@@ -112,7 +112,18 @@ def test_cbs_scrape(tmp_path, monkeypatch, fake_players, sf_vs_lac):
     assert sf_defense.points_allowed == 17
     assert lac_defense.points_allowed == 41
     assert sf_defense.sacks == 1
-    assert lac_defense.defensive_tds == 3
+    # regression check: LAC's interceptions/defensive_tds used to be
+    # double-counted (once from defense-ctr's per-defender rows, again
+    # from the team-summary table's "Int. - Returns"/"Fumbles - Lost"
+    # rows, the latter of which also mis-attributed each team's *own*
+    # fumble count as if it were a recovery) — both now come from
+    # defense-ctr and the play-by-play/scoring-summary pages instead
+    assert lac_defense.interceptions == 2
+    assert lac_defense.defensive_tds == 1
+    # SF recovered LAC's lost fumble (Ross's); LAC recovered none
+    assert sf_defense.fumbles_recovered == 1
+    assert lac_defense.fumbles_recovered == 0
+    assert sf_defense.defensive_tds == 1
 
 
 def _raise_not_found(*args, **kwargs):
@@ -154,6 +165,12 @@ def test_credit_fumbles_lost_only_counts_losses(monkeypatch, fake_players):
 
     tagovailoa = fake_players.by_name("Tua Tagovailoa", NFLTeam.MIAMI_DOLPHINS)
     assert tagovailoa.id not in builder._players
+
+    # the recovering team's defense gets credited alongside the fumbler
+    assert builder._defenses[NFLTeam.ATLANTA_FALCONS] == {Stat.fumbles_recovered: 1}
+    # Tagovailoa's fumble was recovered by his own team (MIA), so it's
+    # not a takeaway — MIA's defense gets no credit for it
+    assert NFLTeam.MIAMI_DOLPHINS not in builder._defenses
 
 
 def test_cbs_missing_player_is_skipped(tmp_path, monkeypatch, sf_vs_lac):

@@ -59,11 +59,14 @@ def test_sleeper_scrape(monkeypatch, fake_players, sf_vs_lac):
     assert sf_defense.sacks == 1
     assert sf_defense.defensive_tds == 1
     assert lac_defense.interceptions == 2
-    # sleeper's raw payload calls this "pts_allow", but it's a fantasy
-    # scoring-bucket value rather than literally the opponent's final
-    # score — SF's defense shows 11, not LAC's actual 17
-    assert sf_defense.points_allowed == 11
+    # regression check: each DEF row's own "pts_allow" isn't the literal
+    # final score (SF's read 11 despite LAC's actual 41) — points_allowed
+    # now comes from the payload's scoreboard object instead
+    assert sf_defense.points_allowed == 17
     assert lac_defense.points_allowed == 41
+    # regression check: sleeper's key here is "def_st_fum_rec", not the
+    # "fum_rec" the scraper used to read (always 0 as a result)
+    assert sf_defense.fumbles_recovered == 1
 
 
 def test_sleeper_missing_player_is_skipped(monkeypatch, sf_vs_lac):
