@@ -1,3 +1,4 @@
+import json
 from typing import Any
 from shared.model import Game, NFLTeam, ScrapedPageInfo
 from scrapers.scraper import Scraper
@@ -22,11 +23,11 @@ OFFENSE_COLUMNS: dict[Stat, str] = {
 }
 TWO_PT_COLUMNS = ("pass_2pt", "rush_2pt", "rec_2pt")
 OFFENSE_POSITIONS = {"QB", "RB", "WR", "TE"}
-DEFENSE_COLUMNS: dict[Stat, str] = {
+DEFENSE_COLUMNS: dict[Stat, str | list[str]] = {
     Stat.sacks: "sack",
     Stat.interceptions: "int",
     Stat.fumbles_recovered: "fum_rec",
-    Stat.defensive_tds: "def_st_td",
+    Stat.defensive_tds: ["def_st_td", "def_td"],
 }
 
 session = SessionLocal()
@@ -68,20 +69,32 @@ class SleeperScraper(Scraper[str]):
                 )
                 builder.add_team_defense(team, self._read(stats, DEFENSE_COLUMNS))
             else:
-                player = self.player_service.get_by_name(
-                    record["player"]["first_name"],
-                    record["player"]["last_name"],
-                    record["player"]["team"],
-                )
-                if not player:
-                    continue
+                # `record["player"]["team"]` is sleeper's roster metadata for
+                # this player, which can be stale or null (e.g. a recent
+                # signing); `team`, resolved above from `record["team"]`, is
+                # this game line's actual team and is never missing.
+
                 if position in OFFENSE_POSITIONS:
+                    player = self.player_service.get_by_name(
+                        record["player"]["first_name"],
+                        record["player"]["last_name"],
+                        team,
+                    )
+                    if not player:
+                        continue
                     line = self._read(stats, OFFENSE_COLUMNS)
                     two_pt = sum(stats.get(col, 0) for col in TWO_PT_COLUMNS)
                     if two_pt:
                         line[Stat.two_pt_conversions] = two_pt
                     builder.add_player(player, line)
                 elif position == "K":
+                    player = self.player_service.get_by_name(
+                        record["player"]["first_name"],
+                        record["player"]["last_name"],
+                        team,
+                    )
+                    if not player:
+                        continue
                     builder.add_player(
                         player,
                         stats={Stat.kicking_points: stats.get("kick_pts", 0)},
@@ -90,9 +103,16 @@ class SleeperScraper(Scraper[str]):
         return builder.build(game)
 
     def _read(
-        self, stats: dict[str, Any], columns: dict[Stat, str]
+        self, stats: dict[str, Any], columns: dict[Stat, str | list[str]]
     ) -> dict[Stat, float]:
-        return {stat: stats.get(column, 0) for stat, column in columns.items()}
+        return {
+            stat: (
+                stats.get(column, 0)
+                if isinstance(column, str)
+                else sum([stats.get(inner_col, 0) for inner_col in column])
+            )
+            for stat, column in columns.items()
+        }
 
     def _parse_game(self, text: str, game_key: str) -> dict[str, Any] | None:
         for game in find_objects(

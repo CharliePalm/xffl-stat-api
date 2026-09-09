@@ -1,6 +1,14 @@
 import re
+import unicodedata
 
 special_chars = ["'", "-", ".", " "]
+
+# trailing generational suffix. "jr"/"sr" require the period — those two
+# letters alone are common enough inside real names (e.g. "Jrue") that
+# stripping them unconditionally risks mangling one; a roman numeral
+# ("ii", "iii", ...) isn't a real name fragment either way, so it's
+# stripped with or without a trailing period.
+_GENERATIONAL_SUFFIX = re.compile(r" (?:jr\.|sr\.|ii|iii|iv|v|vi)\.?$", re.IGNORECASE)
 
 
 def to_snake(name: str) -> str:
@@ -10,4 +18,18 @@ def to_snake(name: str) -> str:
 
 
 def clean_name(name: str) -> str:
-    return re.sub(r"[^A-Za-z0-9]", "", name).lower()
+    """Fold to a bare lowercase alnum key so the same person matches
+    across sources regardless of case, punctuation, accents, or a
+    generational suffix — "Eddy Piñeiro" / "Eddy Pineiro" and
+    "Brian Robinson Jr." / "Brian Robinson" all collapse to the same key.
+
+    NFKD decomposition splits an accented letter into its base letter
+    plus a combining mark (e.g. "ñ" -> "n" + "◌̃"); stripping unicode
+    category "Mn" (combining marks) then drops just the accent.
+    """
+    without_suffix = _GENERATIONAL_SUFFIX.sub("", name)
+    decomposed = unicodedata.normalize("NFKD", without_suffix)
+    without_accents = "".join(
+        char for char in decomposed if unicodedata.category(char) != "Mn"
+    )
+    return re.sub(r"[^A-Za-z0-9]", "", without_accents).lower()

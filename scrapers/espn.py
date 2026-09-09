@@ -1,4 +1,6 @@
+import json
 import re
+from typing import Any
 
 from bs4 import BeautifulSoup, Tag
 from shared.model import Game, NFLTeam, ScrapedPageInfo
@@ -31,12 +33,33 @@ COLUMNS: dict[str, dict[Stat, str]] = {
     "Fumbles": {Stat.fumbles_lost: "LOST"},
     "Kicking": {Stat.kicking_points: "PTS"},
 }
-# sections whose team-totals row feeds D/ST rather than individual players
+# sections whose team-totals row feeds D/ST rather than individual players.
+# "Defense"'s own TD column is already that team's *total* defensive/
+# special-teams TD count (it's what carries a punt- or kick-return TD,
+# which has no section of its own) — an interception-return TD shows up
+# there too, and is then broken out again in "Interceptions"' own TD
+# column, so reading defensive_tds from both double-counts a pick-six.
 DEFENSE_COLUMNS: dict[str, dict[Stat, str]] = {
     "Defense": {Stat.sacks: "SACKS", Stat.defensive_tds: "TD"},
-    "Interceptions": {Stat.interceptions: "INT", Stat.defensive_tds: "TD"},
-    "Fumbles": {Stat.fumbles_recovered: "REC"},
+    "Interceptions": {Stat.interceptions: "INT"},
 }
+
+# ESPN has no per-player field for a two-point conversion either — it's
+# only in the free-text `playText` of the touchdown it rode in on, e.g.
+# "Jerand Bradley 28 Yd pass from DJ Uiagalelei (DJ Uiagalelei Pass to
+# Evan Svoboda for Two-Point Conversion)", buried inside a big JSON blob
+# the boxscore page doesn't carry at all — it's only on the separate
+# play-by-play page (`get_play_by_play_url`), embedded as
+# `window['__espnfitt__'] = {...};`.
+_ESPN_FITT_DATA = re.compile(
+    r"window\['__espnfitt__'\]\s*=\s*(\{.*?\});\s*</script>", re.DOTALL
+)
+_TWO_POINT_PASS = re.compile(
+    r"\(([^()]+?)\s+Pass to\s+([^()]+?)\s+for Two-Point Conversion\)", re.IGNORECASE
+)
+_TWO_POINT_RUSH = re.compile(
+    r"\(([^()]+?)\s+Run for Two-Point Conversion\)", re.IGNORECASE
+)
 
 
 class ESPNScraper(Scraper):
@@ -46,6 +69,13 @@ class ESPNScraper(Scraper):
     @staticmethod
     def get_url(game: Game):
         return game.espn_link
+
+    @staticmethod
+    def get_play_by_play_url(game: Game):
+        return game.espn_link.replace("boxscore", "playbyplay")
+
+    def get_play_by_play_html(self, game: Game) -> str:
+        return self.get_html(self.get_play_by_play_url(game))
 
     def parse_html(self, html: str) -> BeautifulSoup:
         with open("./epsn.html", "w") as fp:
@@ -63,10 +93,10 @@ class ESPNScraper(Scraper):
         builder.set_final_score(away_team, away_points)
         builder.set_final_score(home_team, home_points)
 
-        for team, stat, rows in self._parse_sections(soup):
+        sections = self._parse_sections(soup)
+        for team, stat, rows in sections:
             for name, line in rows.items():
                 is_totals = name.lower() == TEAM_TOTALS_LABEL
-                print(stat)
                 if is_totals and stat in DEFENSE_COLUMNS:
                     builder.add_team_defense(
                         team, self._read(line, DEFENSE_COLUMNS[stat])
@@ -78,7 +108,89 @@ class ESPNScraper(Scraper):
                         continue
                     builder.add_player(player, self._read(line, COLUMNS[stat]))
 
+        self._credit_fumbles_recovered(builder, sections)
+
+        for team, description in self._parse_two_point_conversions(
+            self.get_play_by_play_html(game)
+        ):
+            self._credit_two_point_conversion(builder, team, description)
+
         return builder.build(game)
+
+    def _credit_fumbles_recovered(
+        self,
+        builder: BoxscoreBuilder,
+        sections: list[tuple[NFLTeam, str, dict[str, dict[str, str]]]],
+    ) -> None:
+        """A team's own "Fumbles" section total isn't usable for its
+        defensive `fumbles_recovered` — it sums every recovery regardless
+        of whose ball it was, including a player recovering his *own*
+        team's fumble (not a takeaway). A fumble that's actually lost
+        (`LOST` on the fumbling player's row) was necessarily recovered by
+        the opposing team, so that team's takeaway total is the *other*
+        team's lost-fumble total, not its own section's `REC` column."""
+        fumbles_lost_by_team: dict[NFLTeam, float] = {}
+        for team, stat, rows in sections:
+            if stat != "Fumbles":
+                continue
+            fumbles_lost_by_team[team] = sum(
+                to_float(line.get("LOST"))
+                for name, line in rows.items()
+                if name.lower() != TEAM_TOTALS_LABEL
+            )
+
+        teams = list(fumbles_lost_by_team)
+        if len(teams) != 2:
+            return
+        for team, opponent in ((teams[0], teams[1]), (teams[1], teams[0])):
+            builder.add_team_defense(
+                team, {Stat.fumbles_recovered: fumbles_lost_by_team[opponent]}
+            )
+
+    def _parse_two_point_conversions(self, html: str) -> list[tuple[NFLTeam, str]]:
+        """Two-point conversions live only on the play-by-play page, buried
+        in a scoring play's free-text `playText` — not on the boxscore page
+        `scrape()` otherwise works from at all."""
+        match = _ESPN_FITT_DATA.search(html)
+        if not match:
+            return []
+        data: dict[str, Any] = json.loads(match.group(1))
+        scoring_groups = (
+            data.get("page", {})
+            .get("content", {})
+            .get("gamepackage", {})
+            .get("pbp", {})
+            .get("scoringPlaysData", [])
+        )
+
+        conversions: list[tuple[NFLTeam, str]] = []
+        for group in scoring_groups:
+            for play in group.get("items", []):
+                text = play.get("playText", "")
+                if "Two-Point Conversion" not in text:
+                    continue
+                team_name = play.get("teamName")
+                if not team_name:
+                    continue
+                conversions.append((NFLTeam(team_name), text))
+        return conversions
+
+    def _credit_two_point_conversion(
+        self, builder: BoxscoreBuilder, team: NFLTeam, description: str
+    ) -> None:
+        pass_match = _TWO_POINT_PASS.search(description)
+        if pass_match:
+            names = [pass_match.group(1), pass_match.group(2)]
+        else:
+            rush_match = _TWO_POINT_RUSH.search(description)
+            names = [rush_match.group(1)] if rush_match else []
+
+        for name in names:
+            player = self.player_service.get_by_full_name(name.strip(), team)
+            if not player:
+                print("player not found - ", name)
+                continue
+            builder.add_player(player, {Stat.two_pt_conversions: 1})
 
     def _read(
         self, line: dict[str, str], columns: dict[Stat, str]

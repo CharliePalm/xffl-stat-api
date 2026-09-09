@@ -8,7 +8,6 @@ service = GameService(SessionLocal())
 
 
 def get_games() -> list[Game]:
-
     return service.search(
         Criterion.between(
             "date_time",
@@ -20,15 +19,11 @@ def get_games() -> list[Game]:
 
 
 def process_game(game: Game) -> None:
-    """
-    Placeholder — fill in with the actual per-game work later
-    (e.g. hit an API, mark in_progress, notify somewhere).
-    """
     print(f"Processing {game.away.value} @ {game.home.value}, week {game.week}")
     manager = ScrapeManager()
     manager.run(game)
 
 
-if __name__ == "__main__":
+def run_job():
     games = get_games()
     [process_game(g) for g in games]

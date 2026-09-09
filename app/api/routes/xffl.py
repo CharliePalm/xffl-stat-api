@@ -15,6 +15,7 @@ from shared.service.game_service import GameFilters
 from shared.service.player_service import PlayerFilters
 from shared.service.player_week_service import PlayerWeekFilters
 from shared.service.provider import ProviderFilters
+from app.api.use_cases.job import run_job
 
 router = APIRouter(tags=["stats"])
 
@@ -68,3 +69,8 @@ def search_providers(
     Search providers. `name` matches loosely.
     """
     return providers.search_partial(filters, page=page).items
+
+
+@router.get("/job")
+def job():
+    run_job()

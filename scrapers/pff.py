@@ -1,4 +1,5 @@
 import json
+import re
 from typing import Any, Callable
 from shared.model import Game, ScrapedPageInfo
 from scrapers.scraper import Scraper
@@ -44,12 +45,34 @@ OFFENSE_SIGNAL_FIELDS = (
 FIELD_GOAL_POINTS = 3.0
 EXTRA_POINT_POINTS = 1.0
 
+# team-level totals, not summed from the (unreliable, often-zero) per-
+# defender rows: PFF's per-player `def_st_fum_rec` is 0 for every SF
+# defender on this game despite SF's team total showing 1, and there is
+# no per-player "defensive touchdown" field at all — special-teams and
+# INT-return TDs only show up on the team object, keyed by return type.
 DEFENSE_COLUMNS: dict[Stat, str] = {
     Stat.sacks: "sacks",
-    Stat.interceptions: "interceptions",
-    Stat.defensive_tds: "defensive_touchdowns",
-    Stat.fumbles_recovered: "def_st_fum_rec",
+    Stat.interceptions: "interception_returns",
+    Stat.fumbles_recovered: "fumbles_recovered",
 }
+# a defensive/special-teams TD of any of these kinds counts the same way
+DEFENSIVE_TD_COLUMNS = (
+    "interception_return_touchdowns",
+    "punt_return_touchdowns",
+    "kick_return_touchdowns",
+    "fumble_return_touchdowns",
+)
+
+# PFF has no per-player field for a two-point conversion either — like
+# tank01, it only shows up in a play-by-play entry's free-text
+# description, e.g. "2pt attempt converted, DJ Uiagalelei pass to Evan
+# Svoboda". `type == "TwoPointConversion"` finds the play; a failed
+# attempt reads "2pt attempt failed, ..." so the wording itself decides
+# whether anyone gets credit.
+_TWO_POINT_PASS = re.compile(
+    r"2pt attempt converted,\s*(.+?)\s+pass to\s+(.+)$", re.IGNORECASE
+)
+_TWO_POINT_RUSH = re.compile(r"2pt attempt converted,\s*(.+?)\s+run$", re.IGNORECASE)
 
 
 class PFFScraper(Scraper[dict[str, Any]]):
@@ -84,14 +107,16 @@ class PFFScraper(Scraper[dict[str, Any]]):
         builder.set_final_score(game.away, soup["score"]["away_score"])
         builder.set_final_score(game.home, soup["score"]["home_score"])
 
-        for team, players, is_home in (
-            (game.away, away_players, False),
-            (game.home, home_players, True),
+        for team, players, team_stats, is_home in (
+            (game.away, away_players, soup.get("away_team_stats", {}), False),
+            (game.home, home_players, soup.get("home_team_stats", {}), True),
         ):
             defense = {
-                stat: sum(player.get(column, 0) for player in players)
-                for stat, column in DEFENSE_COLUMNS.items()
+                stat: team_stats.get(column, 0) for stat, column in DEFENSE_COLUMNS.items()
             }
+            defense[Stat.defensive_tds] = sum(
+                team_stats.get(column, 0) for column in DEFENSIVE_TD_COLUMNS
+            )
             builder.add_team_defense(team, defense)
 
             for player in players:
@@ -127,4 +152,31 @@ class PFFScraper(Scraper[dict[str, Any]]):
                     }
                     builder.add_player(player_obj, line)
 
+        for play in soup.get("play_by_play", []):
+            self._credit_two_point_conversion(builder, play, game)
+
         return builder.build(game)
+
+    def _credit_two_point_conversion(
+        self, builder: BoxscoreBuilder, play: dict[str, Any], game: Game
+    ) -> None:
+        if play.get("type") != "TwoPointConversion":
+            return
+        description = play.get("description", "")
+        if "converted" not in description:
+            return  # a failed attempt earns nobody anything
+
+        pass_match = _TWO_POINT_PASS.search(description)
+        if pass_match:
+            names = [pass_match.group(1), pass_match.group(2)]
+        else:
+            rush_match = _TWO_POINT_RUSH.search(description)
+            names = [rush_match.group(1)] if rush_match else []
+
+        team = game.home if play.get("possession_side") == "Home" else game.away
+        for name in names:
+            player = self.player_service.get_by_full_name(name.strip(), team)
+            if not player:
+                # print("player not found - ", name)
+                continue
+            builder.add_player(player, {Stat.two_pt_conversions: 1})

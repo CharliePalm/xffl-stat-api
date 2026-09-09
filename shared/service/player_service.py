@@ -1,5 +1,6 @@
 from typing import Any, ClassVar, Optional
 
+from fastapi.logger import logger
 from pydantic import BaseModel
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -8,6 +9,7 @@ from shared.service.service import Criterion, Filter, Service, filters_model
 from shared.service.sql_model import BaseSQLModel
 from shared.utils import clean_name
 from shared.exceptions import DataIntegrityException
+import Levenshtein as levenshtein
 
 
 class PlayerModel(BaseSQLModel):
@@ -61,14 +63,48 @@ class PlayerService(Service[PlayerModel, Player]):
     def get_by_name(
         self, first_name: str, last_name: str, team: str | NFLTeam
     ) -> Optional[Player]:
+        first_norm = clean_name(first_name)
         res = self.search(
-            Criterion.eq("first_name_norm", clean_name(first_name))
-            & Criterion.eq("first_name_norm", clean_name(last_name))
+            Criterion.eq("first_name_norm", first_norm)
+            & Criterion.eq("last_name_norm", clean_name(last_name))
             & Criterion.eq("team", str(team))
         )
-        if len(res.items) != 1:
+        if len(res.items) == 1:
+            return res.items[0]
+        if len(res.items) > 1:
             raise DataIntegrityException("get_by_name bad response: " + str(res.items))
-        return res.items[0]
+
+        logger.warning(
+            "unable to find player from full name - trying last name / team / looser first name"
+        )
+        # last_name + team is the distinctive part; first_name is where
+        # sources disagree (nicknames, "Greg" vs "Gregory"), so drop it
+        # first and only bring it back, loosened, if that's ambiguous
+        candidates = self.search(
+            Criterion.eq("last_name_norm", clean_name(last_name))
+            & Criterion.eq("team", str(team))
+        ).items
+        if len(candidates) == 1:
+            return candidates[0]
+        if len(candidates) > 1:
+            # more than one same-surname teammate: pick whichever's first
+            # name is textually closest to what we were given ("greg" is
+            # closer to "gregory" than to any other candidate on the
+            # roster) — only decisive if there's a single closest match
+            distances = [
+                (levenshtein.distance(first_norm, player.first_name_norm), player)
+                for player in candidates
+            ]
+            closest = min(distance for distance, _ in distances)
+            narrowed = [player for distance, player in distances if distance == closest]
+            if len(narrowed) == 1:
+                return narrowed[0]
+            candidates = narrowed
+
+        raise DataIntegrityException(
+            f"get_by_name bad response for first_name={first_name!r} "
+            f"last_name={last_name!r} team={team!r}: {candidates!r}"
+        )
 
     def get_by_full_name(self, full_name: str, team: str | NFLTeam) -> Optional[Player]:
         parts = full_name.strip().split()
@@ -77,3 +113,14 @@ class PlayerService(Service[PlayerModel, Player]):
         first_name = parts[0]
         last_name = " ".join(parts[1:]) if len(parts) > 1 else ""
         return self.get_by_name(first_name, last_name, team)
+
+    def get_by_number(self, number: int, team: str | NFLTeam) -> Player:
+        """Jersey number + team is an exact identifier on its own — unlike
+        a name, it needs no normalisation or fallback."""
+        res = self.search(Criterion.eq("number", number) & Criterion.eq("team", str(team)))
+        if len(res.items) != 1:
+            raise DataIntegrityException(
+                f"get_by_number bad response for number={number} team={team!r}: "
+                f"{res.items!r}"
+            )
+        return res.items[0]
