@@ -6,3 +6,5 @@ sqlmodel
 beautifulsoup4
 curl_cffi
 pydantic_partial
+pydantic_settings
+pydantic[email]

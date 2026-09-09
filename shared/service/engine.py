@@ -18,17 +18,17 @@ from pathlib import Path
 from sqlalchemy import Engine, create_engine
 from sqlalchemy.orm import Session, sessionmaker
 from sqlalchemy.pool import StaticPool
-
+from app.core.config import settings
 from .service import configure_sqlite
 
 # ---------------------------------------------------------------------------
 # Where the database lives
 # ---------------------------------------------------------------------------
 
-DEFAULT_DB_PATH = Path("../../srv/infra/docker/db/xffl.db")
+DEFAULT_DB_PATH = "../../srv/infra/docker/db/xffl.db"
 
 #: Override without code changes: DB_PATH=/srv/data/app.db
-DB_PATH = Path(os.environ["DB_PATH"]) if "DB_PATH" in os.environ else DEFAULT_DB_PATH
+DB_PATH = Path(settings.DB_PATH or DEFAULT_DB_PATH)
 
 
 def sqlite_url(path: Path) -> str:
@@ -61,7 +61,7 @@ def build_engine(path: Path | None = None, *, echo: bool = False) -> Engine:
     database file", which reads like a permissions problem.
     """
     path = (path or DB_PATH).resolve()
-    path.parent.mkdir(parents=True, exist_ok=True)
+    # path.parent.mkdir(parents=True, exist_ok=True)
 
     engine = create_engine(
         sqlite_url(path),
