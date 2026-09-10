@@ -61,9 +61,12 @@ def test_sleeper_scrape(monkeypatch, fake_players, sf_vs_lac):
     assert lac_defense.interceptions == 2
     # regression check: each DEF row's own "pts_allow" isn't the literal
     # final score (SF's read 11 despite LAC's actual 41) — points_allowed
-    # now comes from the payload's scoreboard object instead
-    assert sf_defense.points_allowed == 17
-    assert lac_defense.points_allowed == 41
+    # now comes from the payload's scoreboard object instead. It's still
+    # 7 below each team's literal score, though: each side's own D/ST
+    # touchdown doesn't count against the opposing defense — see
+    # `BoxscoreBuilder.DEFENSIVE_TD_POINTS`
+    assert sf_defense.points_allowed == 10
+    assert lac_defense.points_allowed == 34
     # regression check: sleeper's key here is "def_st_fum_rec", not the
     # "fum_rec" the scraper used to read (always 0 as a result)
     assert sf_defense.fumbles_recovered == 1

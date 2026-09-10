@@ -108,9 +108,11 @@ def test_cbs_scrape(tmp_path, monkeypatch, fake_players, sf_vs_lac):
 
     sf_defense = by_id[NFLTeam.SAN_FRANCISCO_49ERS.player_defense_id]
     lac_defense = by_id[NFLTeam.LOS_ANGELES_CHARGERS.player_defense_id]
-    # SF's defense allowed whatever LAC scored, and vice versa
-    assert sf_defense.points_allowed == 17
-    assert lac_defense.points_allowed == 41
+    # SF's defense allowed whatever LAC scored, and vice versa, minus 7
+    # for each side's own D/ST touchdown, which doesn't count against the
+    # opposing defense — see `BoxscoreBuilder.DEFENSIVE_TD_POINTS`
+    assert sf_defense.points_allowed == 10
+    assert lac_defense.points_allowed == 34
     assert sf_defense.sacks == 1
     # regression check: LAC's interceptions/defensive_tds used to be
     # double-counted (once from defense-ctr's per-defender rows, again

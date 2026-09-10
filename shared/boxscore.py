@@ -79,6 +79,15 @@ _OFFENSIVE_STATS = frozenset(
 
 TStats = dict[Stat, float]
 
+# A touchdown scored by a team's own defense or special teams (a pick-six,
+# a punt/kick/fumble return) isn't a product of the *other* team's defense
+# failing — that team's offense turned the ball over, or its special teams
+# allowed the return — so it shouldn't count against the other side's
+# points_allowed. Assumes the common case of a made extra point; a missed
+# PAT or a two-point conversion on the try would make this off by a point,
+# which isn't tracked separately anywhere in the pipeline today.
+DEFENSIVE_TD_POINTS = 7
+
 
 class StatLine(BaseModel):
     player: Player
@@ -148,13 +157,36 @@ class BoxscoreBuilder:
         return scored
 
     def _score_defenses(self) -> list[PlayerWeekData]:
+        # each team's total defensive/special-teams TDs, coalescing return
+        # TDs the same way the per-team loop below does — computed up
+        # front so a team's points_allowed can be adjusted by its
+        # *opponent's* total, not its own
+        total_defensive_tds = {
+            team: (
+                line.get(Stat.defensive_tds, 0)
+                + line.get(Stat.punt_return_tds, 0)
+                + line.get(Stat.kick_return_tds, 0)
+            )
+            for team, line in self._defenses.items()
+        }
+
         defenses: list[PlayerWeekData] = []
         for team, line in self._defenses.items():
-            # a defense allows whatever its opponent scored
-            allowed = next(
-                (pts for other, pts in self._final_score.items() if other is not team),
-                0,
+            # a defense allows whatever its opponent scored, minus any of
+            # the opponent's own defensive/special-teams touchdowns — see
+            # DEFENSIVE_TD_POINTS
+            other_team, other_score = next(
+                (
+                    (other, pts)
+                    for other, pts in self._final_score.items()
+                    if other is not team
+                ),
+                (None, 0),
             )
+            allowed = other_score - DEFENSIVE_TD_POINTS * total_defensive_tds.get(
+                other_team, 0
+            )
+
             # build values dict and coalesce special-teams return TDs into
             # `defensive_tds` so scoring (DEFENSIVE_MULTIPLIERS) counts them
             values = {stat.value: int(value) for stat, value in line.items()}

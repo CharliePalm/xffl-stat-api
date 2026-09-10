@@ -543,9 +543,15 @@ class Service[RowT: DeclarativeBase, SchemaT: BaseModel](ABC):
     # ======================================================================
 
     def get(self, id: Any) -> SchemaT | None:
-        """Fetch by primary key. Respects `_base_query()`."""
+        """Fetch by primary key. Respects `_base_query()`.
+
+        For a composite key, `id` is a tuple in the same column order as
+        the mapper's own `primary_key` — the same convention
+        `sqlalchemy.orm.Session.get()` already uses, e.g.
+        `player_week_service.get((player_id, week))`.
+        """
         row = self.session.scalars(
-            self._base_query().where(self._pk() == id)
+            self._base_query().where(self._pk_predicate(id))
         ).one_or_none()
         return None if row is None else self._to_schema(row)
 
@@ -637,7 +643,7 @@ class Service[RowT: DeclarativeBase, SchemaT: BaseModel](ABC):
         return self.search(*described, *criteria, sort=sort, page=page)
 
     def exists(self, id: Any) -> bool:
-        stmt = select(self._base_query().where(self._pk() == id).exists())
+        stmt = select(self._base_query().where(self._pk_predicate(id)).exists())
         return bool(self.session.scalar(stmt))
 
     def put(
@@ -655,7 +661,9 @@ class Service[RowT: DeclarativeBase, SchemaT: BaseModel](ABC):
 
         `id` may be None, in which case it is taken from `data` if the
         payload carries a primary key, and otherwise this is a plain
-        insert with a database-generated key.
+        insert with a database-generated key. For a composite key, `id`
+        (when given explicitly) is a tuple in the same column order as
+        the mapper's own `primary_key` — see `get()`.
 
         `partial=False` (the default) replaces every field the *schema*
         defines — note that is the schema's fields, not the table's, so
@@ -664,19 +672,23 @@ class Service[RowT: DeclarativeBase, SchemaT: BaseModel](ABC):
         payload, which is PATCH rather than PUT semantics.
         """
         values = self._values(data, partial=partial)
-        pk_name = self._pk().key
+        pk_names = self._pk_names()
 
         if id is None:
-            id = values.get(pk_name)
+            candidate = tuple(values.get(name) for name in pk_names)
+            if all(part is not None for part in candidate):
+                id = candidate[0] if len(pk_names) == 1 else candidate
         if id is None:
             return Put(self._to_schema(self._insert(values)), Outcome.CREATED)
 
-        values.pop(pk_name, None)  # the key is addressed by `id`, never patched
+        pk_values = self._pk_values(id)
+        for name in pk_names:
+            values.pop(name, None)  # the key is addressed by `id`, never patched
 
         existing = self._get_row_unscoped(id)
         if existing is None:
             try:
-                row = self._insert({**values, pk_name: id})
+                row = self._insert({**values, **pk_values})
             except IntegrityError:
                 # Lost a race: someone inserted this key between our read
                 # and our flush. The savepoint in `_insert` has already
@@ -714,7 +726,7 @@ class Service[RowT: DeclarativeBase, SchemaT: BaseModel](ABC):
 
     def delete(self, id: Any) -> bool:
         row = self.session.scalars(
-            self._base_query().where(self._pk() == id)
+            self._base_query().where(self._pk_predicate(id))
         ).one_or_none()
         if row is None:
             return False
@@ -732,17 +744,42 @@ class Service[RowT: DeclarativeBase, SchemaT: BaseModel](ABC):
         return frozenset(inspect(cls.row).column_attrs.keys())
 
     @classmethod
-    def _pk(cls) -> InstrumentedAttribute[Any]:
-        """The single-column primary key as a comparable attribute."""
+    def _pk_columns(cls) -> tuple[InstrumentedAttribute[Any], ...]:
+        """The primary key as comparable attributes, one or more.
+
+        Order matches the mapper's own `primary_key` — the same order
+        `sqlalchemy.orm.Session.get()` expects a composite-key tuple in,
+        which is what lets `_get_row_unscoped` hand `id` straight to it
+        unchanged.
+        """
         mapper = inspect(cls.row)
-        columns = mapper.primary_key
-        if len(columns) != 1:
-            raise ServiceDefinitionError(
-                f"{cls.row.__name__} has a composite primary key; override "
-                f"get/update/delete on {cls.__name__} to handle it."
+        return tuple(
+            getattr(cls.row, mapper.get_property_by_column(column).key)
+            for column in mapper.primary_key
+        )
+
+    @classmethod
+    def _pk_names(cls) -> tuple[str, ...]:
+        return tuple(column.key for column in cls._pk_columns())
+
+    def _pk_values(self, id: Any) -> dict[str, Any]:
+        """`id` (scalar for a single-column key, else a tuple in
+        `_pk_names()` order) as a `{column_name: value}` dict."""
+        names = self._pk_names()
+        if len(names) == 1:
+            return {names[0]: id}
+        if not isinstance(id, tuple) or len(id) != len(names):
+            raise ValueError(
+                f"{self.row.__name__} has a composite primary key {names!r}; "
+                f"id must be a matching tuple, got {id!r}"
             )
-        name = mapper.get_property_by_column(columns[0]).key
-        return getattr(cls.row, name)
+        return dict(zip(names, id))
+
+    def _pk_predicate(self, id: Any) -> Predicate:
+        """`id` as a WHERE clause matching every primary key column."""
+        pk_values = self._pk_values(id)
+        conditions = [column == pk_values[column.key] for column in self._pk_columns()]
+        return conditions[0] if len(conditions) == 1 else and_(*conditions)
 
     def _rows_to_schemas(self, stmt: Select[tuple[RowT]]) -> list[SchemaT]:
         return [self._to_schema(r) for r in self.session.scalars(stmt).all()]
@@ -824,7 +861,7 @@ class Service[RowT: DeclarativeBase, SchemaT: BaseModel](ABC):
     def _is_visible(self, id: Any) -> bool:
         return bool(
             self.session.scalar(
-                select(self._base_query().where(self._pk() == id).exists())
+                select(self._base_query().where(self._pk_predicate(id)).exists())
             )
         )
 
@@ -1108,13 +1145,14 @@ class Service[RowT: DeclarativeBase, SchemaT: BaseModel](ABC):
 #
 #   def put(self, id, data, *, partial=False):
 #       values = self._values(data, partial=partial)
-#       values[self._pk().key] = id
+#       values.update(self._pk_values(id))
+#       pk_names = self._pk_names()
 #       stmt = (
 #           insert(self.row)
 #           .values(**values)
 #           .on_conflict_do_update(
-#               index_elements=[self._pk()],
-#               set_={k: v for k, v in values.items() if k != self._pk().key},
+#               index_elements=self._pk_columns(),
+#               set_={k: v for k, v in values.items() if k not in pk_names},
 #           )
 #           .returning(self.row)
 #       )

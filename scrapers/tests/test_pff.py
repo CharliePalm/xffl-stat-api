@@ -50,8 +50,11 @@ def test_pff_scrape(tmp_path, monkeypatch, fake_players, sf_vs_lac):
     # stats to `game.home`, silently dropping the away team's defense
     sf_defense = by_id[NFLTeam.SAN_FRANCISCO_49ERS.player_defense_id]
     lac_defense = by_id[NFLTeam.LOS_ANGELES_CHARGERS.player_defense_id]
-    assert sf_defense.points_allowed == 17
-    assert lac_defense.points_allowed == 41
+    # each side's own D/ST touchdown doesn't count against the opposing
+    # defense's points_allowed — 7 less than each team's literal final
+    # score (41/17) — see `BoxscoreBuilder.DEFENSIVE_TD_POINTS`
+    assert sf_defense.points_allowed == 10
+    assert lac_defense.points_allowed == 34
     assert sf_defense.sacks == 1
     assert lac_defense.interceptions == 2
     assert lac_defense.defensive_tds == 1
