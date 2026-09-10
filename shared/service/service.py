@@ -605,9 +605,6 @@ class Service[RowT: DeclarativeBase, SchemaT: BaseModel](ABC):
 
         limit = max(1, min(page.limit, self.max_limit))
         offset = max(0, page.offset)
-        print(stmt)
-        print(stmt.compile())
-        print(stmt.compile().params)
         return Results(
             items=self._rows_to_schemas(stmt.limit(limit).offset(offset)),
             total=self._count(*conditions),

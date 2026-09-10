@@ -30,7 +30,6 @@ def process_game(game: Game) -> None:
 
 def run_job():
     games = get_games()
-    print(games)
     for idx, g in enumerate(games):
         if idx >= 1:
             # little delay to prevent providers getting mad with our usage
