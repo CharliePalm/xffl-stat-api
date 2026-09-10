@@ -43,7 +43,6 @@ class ScrapeManager:
             scraper = providers[provider.name]()
             html = scraper.get_html(scraper.get_url(game))
             res = scraper.scrape(scraper.parse_html(html), game)
-            print(res)
             for player_week in res.player_week_data:
                 stat_service.put(id=None, data=player_week)
             provider.pos = provider.pos + len(providers)
