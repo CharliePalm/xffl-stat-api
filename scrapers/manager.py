@@ -16,37 +16,43 @@ providers: dict[str, Callable[[], Scraper[Any]]] = {
     "sleeper": lambda: sleeper.SleeperScraper(),
     # 'nbc': lambda _: cbs.CBSScraper(),
 }
-game_service = GameService(SessionLocal())
 
 
 class ScrapeManager:
-    provider_service = ProviderService(SessionLocal())
-    stat_service = PlayerWeekService(SessionLocal())
-
-    def pick_provider(self):
-        provider = self.provider_service.search(
+    def _pick_provider(self, provider_service: ProviderService) -> Any:
+        provider = provider_service.search(
             sort=Sort(field="pos", direction="desc"), page=Page(limit=1)
         ).items[0]
         if not provider:
             raise Exception("no provider returned from query")
         return provider
 
-    def run(self, game: Game):
-        provider = self.pick_provider()
-        scraper = providers[provider.name]()
-        html = scraper.get_html(scraper.get_url(game))
-        res = scraper.scrape(scraper.parse_html(html), game)
-        print(res)
-        for player_week in res.player_week_data:
-            self.stat_service.put(id=None, data=player_week)
-        provider.pos = provider.pos + len(providers)
-        self.provider_service.put(id=None, data=provider)
+    def run(self, game: Game) -> None:
+        # One session, one transaction, for this run only: opening it as a
+        # `with` block is what makes it actually commit (and close) when
+        # `run` returns, rather than holding an open write transaction —
+        # and the SQLite lock that comes with it — for the rest of the
+        # process's life, which is what a class- or module-level session
+        # singleton here used to do.
+        with SessionLocal() as session, session.begin():
+            provider_service = ProviderService(session)
+            stat_service = PlayerWeekService(session)
+
+            provider = self._pick_provider(provider_service)
+            scraper = providers[provider.name]()
+            html = scraper.get_html(scraper.get_url(game))
+            res = scraper.scrape(scraper.parse_html(html), game)
+            print(res)
+            for player_week in res.player_week_data:
+                stat_service.put(id=None, data=player_week)
+            provider.pos = provider.pos + len(providers)
+            provider_service.put(id=None, data=provider)
 
 
-# "select * from game where week = -1;", Game
 if __name__ == "__main__":
     m = ScrapeManager()
-    game = game_service.search(Criterion.eq("week", -1)).items[0]
+    with SessionLocal() as session, session.begin():
+        game = GameService(session).search(Criterion.eq("week", -1)).items[0]
     if not game:
         print("ah!")
     else:
