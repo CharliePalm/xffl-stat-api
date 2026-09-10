@@ -19,6 +19,7 @@ def get_games() -> list[Game]:
     return service.search(
         Criterion.gte("date_time", lower.strftime("%Y-%m-%d %H:%M:%S"))
         & Criterion.lte("date_time", upper.strftime("%Y-%m-%d %H:%M:%S"))
+        & Criterion.eq("in_progress", 0)
     ).items
 
 
