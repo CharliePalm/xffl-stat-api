@@ -49,13 +49,3 @@ class ScrapeManager:
             provider.pos = provider.pos + len(providers)
             provider.uses += 1
             provider_service.put(id=None, data=provider)
-
-
-if __name__ == "__main__":
-    m = ScrapeManager()
-    with SessionLocal() as session, session.begin():
-        game = GameService(session).search(Criterion.eq("week", -1)).items[0]
-    if not game:
-        print("ah!")
-    else:
-        m.run(game)
