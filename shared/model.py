@@ -233,3 +233,4 @@ class Provider(BaseModel):
 
     pos: int
     name: str
+    uses: int

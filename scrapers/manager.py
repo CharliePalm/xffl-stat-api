@@ -1,8 +1,8 @@
 from typing import Any, Callable
 
 from scrapers.scraper import Scraper
-from shared.model import Game
-from scrapers import espn, cbs, pff, sleeper
+from shared.model import Game, Provider
+from scrapers import espn, cbs, pff, sleeper, tank01
 from shared.service.engine import SessionLocal
 from shared.service.game_service import GameService
 from shared.service.player_week_service import PlayerWeekService
@@ -14,12 +14,13 @@ providers: dict[str, Callable[[], Scraper[Any]]] = {
     "espn": lambda: espn.ESPNScraper(),
     "pff": lambda: pff.PFFScraper(),
     "sleeper": lambda: sleeper.SleeperScraper(),
+    "tank01": lambda: tank01.TankScraper(),
     # 'nbc': lambda _: cbs.CBSScraper(),
 }
 
 
 class ScrapeManager:
-    def _pick_provider(self, provider_service: ProviderService) -> Any:
+    def _pick_provider(self, provider_service: ProviderService) -> Provider:
         provider = provider_service.search(
             sort=Sort(field="pos", direction="desc"), page=Page(limit=1)
         ).items[0]
@@ -46,6 +47,7 @@ class ScrapeManager:
             for player_week in res.player_week_data:
                 stat_service.put(id=None, data=player_week)
             provider.pos = provider.pos + len(providers)
+            provider.uses += 1
             provider_service.put(id=None, data=provider)
 
 

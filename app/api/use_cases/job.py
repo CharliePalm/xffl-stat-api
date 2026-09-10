@@ -11,8 +11,8 @@ service = GameService(SessionLocal())
 
 
 def get_games() -> list[Game]:
-    now = datetime.now(ZoneInfo("America/New_York"))
-    lower = now - timedelta(hours=3)
+    now = datetime.now(ZoneInfo("America/Chicago"))
+    lower = now - timedelta(hours=4)
     upper = now + timedelta(minutes=1)
 
     return service.search(

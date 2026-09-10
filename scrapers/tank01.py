@@ -12,7 +12,7 @@ from shared.service.engine import SessionLocal
 from shared.service.player_service import PlayerService
 from shared.service.service import Criterion
 
-TANK01_HOST = "tank01-fantasy-stats.p.rapidapi.com"
+TANK01_HOST = "tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com"
 
 # tank01 team abbreviations that differ from this app's canonical NFLTeam
 # abbreviation (e.g. tank01's "WSH" vs our "WAS")

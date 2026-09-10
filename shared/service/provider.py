@@ -12,6 +12,7 @@ class ProviderModel(BaseSQLModel):
 
     name: Mapped[str] = mapped_column(primary_key=True)
     pos: Mapped[int]
+    uses: Mapped[int]
 
 
 ProviderFilters = filters_model(Provider, name="ProviderFilters")
