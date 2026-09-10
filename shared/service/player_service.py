@@ -117,7 +117,9 @@ class PlayerService(Service[PlayerModel, Player]):
     def get_by_number(self, number: int, team: str | NFLTeam) -> Player:
         """Jersey number + team is an exact identifier on its own — unlike
         a name, it needs no normalisation or fallback."""
-        res = self.search(Criterion.eq("number", number) & Criterion.eq("team", str(team)))
+        res = self.search(
+            Criterion.eq("number", number) & Criterion.eq("team", str(team))
+        )
         if len(res.items) != 1:
             raise DataIntegrityException(
                 f"get_by_number bad response for number={number} team={team!r}: "

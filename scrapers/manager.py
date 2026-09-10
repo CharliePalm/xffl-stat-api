@@ -33,7 +33,6 @@ class ScrapeManager:
 
     def run(self, game: Game):
         provider = self.pick_provider()
-        # provider = Provider(name="cbs", pos=0)
         scraper = providers[provider.name]()
         html = scraper.get_html(scraper.get_url(game))
         res = scraper.scrape(scraper.parse_html(html), game)

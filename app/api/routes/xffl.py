@@ -71,6 +71,8 @@ def search_providers(
     return providers.search_partial(filters, page=page).items
 
 
-@router.get("/job")
-def job():
+@router.put("/job")
+def job(
+    providers: ProviderServiceDep,
+):
     run_job()
