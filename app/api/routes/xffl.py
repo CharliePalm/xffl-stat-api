@@ -8,11 +8,13 @@ from app.api.deps import (
     PlayerServiceDep,
     PlayerWeekServiceDep,
     ProviderServiceDep,
+    StatlineServiceDep,
     TeamDep,
 )
-from shared.model import Game, Player, PlayerWeekData, Provider
+from shared.model import Game, Player, PlayerStatline, PlayerWeekData, Provider
 from shared.service.game_service import GameFilters
 from shared.service.player_service import PlayerFilters
+from shared.service.player_statline_service import PlayerStatlineFilters
 from shared.service.player_week_service import PlayerWeekFilters
 from shared.service.provider import ProviderFilters
 from app.api.use_cases.job import run_job
@@ -70,6 +72,17 @@ def search_providers(
     """
     return providers.search_partial(filters, page=page).items
 
+@router.get("/player-statlines", response_model=list[PlayerStatline])
+def search_statlines(
+    statlines: StatlineServiceDep,
+    filters: Annotated[PlayerStatlineFilters, Query()],
+    page: PageDep,
+) -> Any:
+    """
+    Search player statlines (player-week stats joined with player name,
+    team, and position) by any PlayerStatline field. Read-only.
+    """
+    return statlines.search_partial(filters, page=page).items
 
 @router.put("/job")
 def job(

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>XFFL Player Week Data</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>Player Week Data</h1>
+
+  {% if error %}
+    <p class="error">Error loading data: {{ error }}</p>
+  {% endif %}
+
+  <form method="get" class="filters">
+    <label>
+      Team
+      <select name="team">
+        <option value="" {% if not selected_team %}selected{% endif %}>All</option>
+        {% for team in teams %}
+          <option value="{{ team }}" {% if team == selected_team %}selected{% endif %}>{{ team }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label>
+      Position
+      <select name="position">
+        <option value="" {% if not selected_position %}selected{% endif %}>All</option>
+        {% for position in positions %}
+          <option value="{{ position }}" {% if position == selected_position %}selected{% endif %}>{{ position }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label>
+      Sort by points
+      <select name="sort">
+        <option value="points_desc" {% if sort == "points_desc" %}selected{% endif %}>High to low</option>
+        <option value="points_asc" {% if sort == "points_asc" %}selected{% endif %}>Low to high</option>
+      </select>
+    </label>
+
+    <button type="submit">Apply</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Player</th>
+        <th>Position</th>
+        <th>Team</th>
+        <th>Week</th>
+        <th>Points</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+        <tr>
+          <td>{{ row.player_name }}</td>
+          <td>{{ row.position }}</td>
+          <td>{{ row.team }}</td>
+          <td>{{ row.week }}</td>
+          <td>{{ row.points }}</td>
+        </tr>
+      {% else %}
+        <tr>
+          <td colspan="5">No rows match the current filters.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

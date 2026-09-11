@@ -234,3 +234,11 @@ class Provider(BaseModel):
     pos: int
     name: str
     uses: int
+    last_used: str = ""
+
+
+class PlayerStatline(PlayerWeekData):
+    first_name: str
+    last_name: str
+    team: NFLTeam
+    position: NFLPosition

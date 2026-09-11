@@ -8,8 +8,15 @@ from shared.service.service import Service, filters_model
 from shared.service.sql_model import BaseSQLModel
 
 
-class PlayerWeekDataModel(BaseSQLModel):
-    __tablename__ = "player_week_data"
+class PlayerWeekDataColumns:
+    """The `player_week_data` columns, as a declarative mixin.
+
+    Not itself mapped (no `BaseSQLModel` base) — SQLAlchemy copies these
+    onto whichever mapped class inherits them. `PlayerWeekDataModel` maps
+    them onto the real table; `PlayerStatlineModel` (a read-only view with
+    the same stat columns plus a few from `player`) reuses them instead of
+    redeclaring every column.
+    """
 
     player_id: Mapped[int] = mapped_column(primary_key=True)
     week: Mapped[int] = mapped_column(primary_key=True)
@@ -38,6 +45,10 @@ class PlayerWeekDataModel(BaseSQLModel):
     defensive_tds: Mapped[Optional[int]] = mapped_column(default=0)
     blocked_kicks: Mapped[Optional[int]] = mapped_column(default=0)
     points_allowed: Mapped[Optional[int]] = mapped_column(default=0)
+
+
+class PlayerWeekDataModel(PlayerWeekDataColumns, BaseSQLModel):
+    __tablename__ = "player_week_data"
 
 
 PlayerWeekFilters = filters_model(PlayerWeekData, name="PlayerWeekFilters")

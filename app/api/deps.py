@@ -11,6 +11,7 @@ from shared.model import NFLTeam
 from shared.service.engine import get_session
 from shared.service.game_service import GameService
 from shared.service.player_service import PlayerService
+from shared.service.player_statline_service import PlayerStatlineService
 from shared.service.player_week_service import PlayerWeekService
 from shared.service.provider import ProviderService
 from shared.service.service import Page, Service
@@ -60,6 +61,7 @@ _SERVICE_TYPES: dict[str, type[Service[Any, Any]]] = {
     "player": PlayerService,
     "player_week": PlayerWeekService,
     "provider": ProviderService,
+    "player_statline": PlayerStatlineService,
 }
 
 
@@ -100,7 +102,12 @@ def get_provider_service(factory: ServiceFactoryDep) -> ProviderService:
     return cast(ProviderService, factory["provider"]())
 
 
+def get_statline_service(factory: ServiceFactoryDep) -> PlayerStatlineService:
+    return cast(PlayerStatlineService, factory["player_statline"]())
+
+
 GameServiceDep = Annotated[GameService, Depends(get_game_service)]
 PlayerServiceDep = Annotated[PlayerService, Depends(get_player_service)]
 PlayerWeekServiceDep = Annotated[PlayerWeekService, Depends(get_player_week_service)]
 ProviderServiceDep = Annotated[ProviderService, Depends(get_provider_service)]
+StatlineServiceDep = Annotated[PlayerStatlineService, Depends(get_statline_service)]
