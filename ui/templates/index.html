@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>XFFL Player Week Data</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scraped Player Week Data</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <h1>Player Week Data</h1>
+  <div class="page">
+  <h1>Player Statlines</h1>
+  <p class="subtitle">Weekly fantasy statlines. Click a row to see the full stat breakdown.</p>
 
   {% if error %}
     <p class="error">Error loading data: {{ error }}</p>
@@ -44,6 +47,7 @@
     <button type="submit">Apply</button>
   </form>
 
+  <div class="table-card">
   <table>
     <thead>
       <tr>
@@ -56,19 +60,57 @@
     </thead>
     <tbody>
       {% for row in rows %}
-        <tr>
-          <td>{{ row.player_name }}</td>
+        <tr class="row-toggle" tabindex="0">
+          <td>
+            <span class="player-cell">
+              <svg class="chevron" width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true">
+                <path d="M1 0.5L7 4L1 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              {{ row.player_name }}
+            </span>
+          </td>
           <td>{{ row.position }}</td>
           <td>{{ row.team }}</td>
           <td>{{ row.week }}</td>
           <td>{{ row.points }}</td>
         </tr>
+        <tr class="row-detail" hidden>
+          <td colspan="5">
+            <div class="stat-grid">
+              {% for stat in row.stats %}
+                <div class="stat-cell">
+                  <span class="stat-label">{{ stat.label }}</span>
+                  <span class="stat-value">{{ stat.value }}</span>
+                </div>
+              {% endfor %}
+            </div>
+          </td>
+        </tr>
       {% else %}
-        <tr>
+        <tr class="empty-state">
           <td colspan="5">No rows match the current filters.</td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
+  </div>
+  </div>
+
+  <script>
+    document.querySelectorAll(".row-toggle").forEach((row) => {
+      const detail = row.nextElementSibling;
+      const toggle = () => {
+        detail.hidden = !detail.hidden;
+        row.classList.toggle("open", !detail.hidden);
+      };
+      row.addEventListener("click", toggle);
+      row.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          toggle();
+        }
+      });
+    });
+  </script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 import sys
 from pathlib import Path
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
@@ -22,6 +23,40 @@ def _team_abbreviation(team) -> str:
     return team or ""
 
 
+STAT_CATEGORIES = [
+    ("passing_yards", "Passing Yards"),
+    ("passing_tds", "Passing TDs"),
+    ("interceptions_thrown", "Interceptions Thrown"),
+    ("rushing_yards", "Rushing Yards"),
+    ("rushing_tds", "Rushing TDs"),
+    ("receptions", "Receptions"),
+    ("receiving_yards", "Receiving Yards"),
+    ("receiving_tds", "Receiving TDs"),
+    ("fumbles_lost", "Fumbles Lost"),
+    ("two_pt_conversions", "2pt Conversions"),
+    ("field_goals_made", "Field Goals Made"),
+    ("num_field_goals_missed", "Field Goals Missed"),
+    ("extra_points_points_made", "Extra Points Made"),
+    ("sacks", "Sacks"),
+    ("interceptions", "Interceptions"),
+    ("fumbles_recovered", "Fumbles Recovered"),
+    ("safeties", "Safeties"),
+    ("defensive_tds", "Defensive TDs"),
+    ("blocked_kicks", "Blocked Kicks"),
+    ("points_allowed", "Points Allowed"),
+]
+
+
+def _stat_categories(entry: dict[str, Any]) -> list[dict[str, Any]]:
+    stats = []
+    for key, label in STAT_CATEGORIES:
+        value = entry.get(key)
+        if isinstance(value, list):
+            value = ", ".join(str(v) for v in value) if value else "-"
+        stats.append({"label": label, "value": value})
+    return stats
+
+
 @app.route("/", methods=["GET"])
 def index():
     team = request.args.get("team") or ""
@@ -39,6 +74,7 @@ def index():
                 "team": _team_abbreviation(entry["team"]),
                 "week": entry["week"],
                 "points": entry["points"],
+                "stats": _stat_categories(entry),
             }
             for entry in statlines
         ]
