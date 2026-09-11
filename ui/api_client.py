@@ -23,7 +23,9 @@ def _fetch_all(path: str, params: dict[str, Any]) -> list[dict[str, Any]]:
     offset = 0
     while True:
         query = {**params, "limit": MAX_PAGE_SIZE, "offset": offset}
-        response = requests.get(f"{API_BASE_URL}{path}", headers=_headers(), params=query, timeout=10)
+        response = requests.get(
+            f"{API_BASE_URL}{path}", headers=_headers(), params=query, timeout=10
+        )
         if not response.ok:
             raise ApiError(f"{path} returned {response.status_code}: {response.text}")
         page = response.json()
@@ -33,7 +35,9 @@ def _fetch_all(path: str, params: dict[str, Any]) -> list[dict[str, Any]]:
         offset += MAX_PAGE_SIZE
 
 
-def get_player_statlines(team: str | None = None, position: str | None = None) -> list[dict[str, Any]]:
+def get_player_statlines(
+    team: str | None = None, position: str | None = None
+) -> list[dict[str, Any]]:
     params: dict[str, Any] = {}
     if team:
         params["team"] = team

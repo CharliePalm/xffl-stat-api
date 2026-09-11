@@ -72,6 +72,7 @@ def search_providers(
     """
     return providers.search_partial(filters, page=page).items
 
+
 @router.get("/player-statlines", response_model=list[PlayerStatline])
 def search_statlines(
     statlines: StatlineServiceDep,
@@ -83,6 +84,7 @@ def search_statlines(
     team, and position) by any PlayerStatline field. Read-only.
     """
     return statlines.search_partial(filters, page=page).items
+
 
 @router.put("/job")
 def job(
