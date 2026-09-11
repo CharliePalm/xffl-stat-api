@@ -11,6 +11,13 @@
   <h1>Player Statlines</h1>
   <p class="subtitle">Weekly fantasy statlines. Click a row to see the full stat breakdown.</p>
 
+  {% if recent_provider %}
+    <p class="provider-note">
+      Data last pulled from <strong>{{ recent_provider.name }}</strong>
+      {% if recent_provider.last_used %}at {{ recent_provider.last_used }}{% endif %}
+    </p>
+  {% endif %}
+
   {% if error %}
     <p class="error">Error loading data: {{ error }}</p>
   {% endif %}

@@ -44,3 +44,10 @@ def get_player_statlines(
     if position:
         params["position"] = position
     return _fetch_all("/player-statlines", params)
+
+
+def get_most_recent_provider() -> dict[str, Any] | None:
+    providers = _fetch_all("/providers", {})
+    if not providers:
+        return None
+    return max(providers, key=lambda provider: provider.get("last_used") or "")

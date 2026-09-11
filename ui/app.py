@@ -8,7 +8,7 @@ from flask import Flask, render_template, request
 
 from shared.model import NFLPosition, NFLTeam
 
-from api_client import ApiError, get_player_statlines
+from api_client import ApiError, get_most_recent_provider, get_player_statlines
 
 app = Flask(__name__)
 
@@ -65,7 +65,9 @@ def index():
 
     error = None
     rows: list[dict] = []
+    recent_provider = None
     try:
+        recent_provider = get_most_recent_provider()
         statlines = get_player_statlines(team=team or None, position=position or None)
         rows = [
             {
@@ -91,6 +93,7 @@ def index():
         selected_position=position,
         sort=sort,
         error=error,
+        recent_provider=recent_provider,
     )
 
 
