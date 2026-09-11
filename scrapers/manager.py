@@ -8,6 +8,7 @@ from shared.service.game_service import GameService
 from shared.service.player_week_service import PlayerWeekService
 from shared.service.provider import ProviderService
 from shared.service.service import Criterion, Page, Sort
+from shared.utils import now_str
 
 providers: dict[str, Callable[[], Scraper[Any]]] = {
     "cbs": lambda: cbs.CBSScraper(),
@@ -46,5 +47,6 @@ class ScrapeManager:
             for player_week in res.player_week_data:
                 stat_service.put(id=None, data=player_week)
             provider.pos = provider.pos + len(providers)
+            provider.last_used = now_str()
             provider.uses += 1
             provider_service.put(id=None, data=provider)

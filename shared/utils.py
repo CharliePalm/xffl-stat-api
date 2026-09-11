@@ -1,5 +1,7 @@
+from datetime import datetime
 import re
 import unicodedata
+from zoneinfo import ZoneInfo
 
 special_chars = ["'", "-", ".", " "]
 
@@ -33,3 +35,15 @@ def clean_name(name: str) -> str:
         char for char in decomposed if unicodedata.category(char) != "Mn"
     )
     return re.sub(r"[^A-Za-z0-9]", "", without_accents).lower()
+
+
+def now() -> datetime:
+    return datetime.now(ZoneInfo("America/Chicago"))
+
+
+def date_format(date: datetime) -> str:
+    return date.strftime("%Y-%m-%d %H:%M:%S")
+
+
+def now_str() -> str:
+    return date_format(now())
