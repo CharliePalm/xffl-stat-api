@@ -21,6 +21,7 @@ OFFENSE_COLUMNS: dict[Stat, str] = {
     Stat.receiving_tds: "rec_td",
     Stat.fumbles_lost: "fum_lost",
 }
+
 TWO_PT_COLUMNS = ("pass_2pt", "rush_2pt", "rec_2pt")
 OFFENSE_POSITIONS = {"QB", "RB", "WR", "TE"}
 DEFENSE_COLUMNS: dict[Stat, str | list[str]] = {
@@ -111,6 +112,8 @@ class SleeperScraper(Scraper[str]):
                         line[Stat.two_pt_conversions] = two_pt
                     builder.add_player(player, line)
                 elif position == "K":
+                    continue
+                    # Skip - need to use new method and not sure how atm
                     player = self.player_service.get_by_name(
                         record["player"]["first_name"],
                         record["player"]["last_name"],
@@ -118,10 +121,10 @@ class SleeperScraper(Scraper[str]):
                     )
                     if not player:
                         continue
-                    builder.add_player(
-                        player,
-                        stats={Stat.kicking_points: stats.get("kick_pts", 0)},
-                    )
+                    # builder.add_player(
+                    #     player,
+                    #     stats={Stat.kicking_points: stats.get("kick_pts", 0)},
+                    # )
 
         return builder.build(game)
 

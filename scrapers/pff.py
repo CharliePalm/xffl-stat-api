@@ -73,6 +73,10 @@ _TWO_POINT_PASS = re.compile(
     r"2pt attempt converted,\s*(.+?)\s+pass to\s+(.+)$", re.IGNORECASE
 )
 _TWO_POINT_RUSH = re.compile(r"2pt attempt converted,\s*(.+?)\s+run$", re.IGNORECASE)
+_FIELD_GOAL = re.compile(
+    r"(?P<name>.+?)\s+(?:kicked|made)\s+a\s+(?P<yards>\d+)-yard\s+field goal$",
+    re.IGNORECASE,
+)
 
 
 class PFFScraper(Scraper[dict[str, Any]]):
@@ -112,7 +116,8 @@ class PFFScraper(Scraper[dict[str, Any]]):
             (game.home, home_players, soup.get("home_team_stats", {}), True),
         ):
             defense = {
-                stat: team_stats.get(column, 0) for stat, column in DEFENSE_COLUMNS.items()
+                stat: team_stats.get(column, 0)
+                for stat, column in DEFENSE_COLUMNS.items()
             }
             defense[Stat.defensive_tds] = sum(
                 team_stats.get(column, 0) for column in DEFENSIVE_TD_COLUMNS
@@ -130,13 +135,13 @@ class PFFScraper(Scraper[dict[str, Any]]):
                     if not player_obj:
                         # print("player not found - ", player.get("name"))
                         continue
-                    points = (
-                        player.get("field_goals_made", 0) * FIELD_GOAL_POINTS
-                        + player.get("extra_points_made", 0) * EXTRA_POINT_POINTS
-                    )
+
                     builder.add_player(
                         player_obj,
-                        {Stat.kicking_points: points},
+                        {
+                            Stat.extra_points_made: player.get("extra_points_made", 0)
+                            * EXTRA_POINT_POINTS,
+                        },
                     )
                 elif any(player.get(field) for field in OFFENSE_SIGNAL_FIELDS):
                     player_obj = self.player_service.get_by_full_name(
@@ -154,8 +159,31 @@ class PFFScraper(Scraper[dict[str, Any]]):
 
         for play in soup.get("play_by_play", []):
             self._credit_two_point_conversion(builder, play, game)
+            self._credit_field_goal(builder, play, game)
 
         return builder.build(game)
+
+    def _credit_field_goal(
+        self, builder: BoxscoreBuilder, play: dict[str, Any], game: Game
+    ) -> None:
+        if not play.get("is_scoring_play"):
+            return
+        scoring_play = play.get("scoring_play") or {}
+        if scoring_play.get("scoring_type") != "Field Goal":
+            return
+
+        description = play.get("description", "")
+        match = _FIELD_GOAL.search(description)
+        if not match:
+            return
+
+        name = match.group("name").strip()
+        yards = int(match.group("yards"))
+        team = game.home if play.get("possession_side") == "Home" else game.away
+        player = self.player_service.get_by_full_name(name, team)
+        if not player:
+            return
+        builder.add_field_goal(player, yards)
 
     def _credit_two_point_conversion(
         self, builder: BoxscoreBuilder, play: dict[str, Any], game: Game

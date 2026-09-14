@@ -45,6 +45,7 @@ OFFENSE_COLUMNS: dict[str, dict[Stat, str]] = {
         Stat.receiving_yards: "recYds",
         Stat.receiving_tds: "recTD",
     },
+    "Kicking": {Stat.extra_points_made: "xpMade"},
 }
 # a player who fumbled (offense or special teams) carries it on their own
 # "Defense" category rather than on the category the fumble happened in
@@ -82,6 +83,10 @@ _TWO_POINT_RUSH = re.compile(
 # in exactly what defTD misses, without double-counting the INT case it
 # already has covered.
 _RETURN_TD_KEYWORDS = ("Punt Return", "Kick Return", "Fumble Return")
+_FIELD_GOAL = re.compile(
+    r"([A-Z][A-Za-z.'-]+(?:\s+[A-Z][A-Za-z.'-]+)*)\s+(\d+)\s+Yd Field Goal",
+    re.IGNORECASE,
+)
 
 
 class TankScraper(Scraper[dict[str, Any]]):
@@ -94,7 +99,7 @@ class TankScraper(Scraper[dict[str, Any]]):
         res = requests.get(
             url,
             headers={
-                "x-rapidapi-key": os.environ.get("RAPIDAPI_KEY", ""),
+                "x-rapidapi-key": os.environ.get("RAPIDAPI_KEY"),
                 "x-rapidapi-host": TANK01_HOST,
             },
         )
@@ -115,7 +120,8 @@ class TankScraper(Scraper[dict[str, Any]]):
 
     def scrape(self, soup: dict[str, Any], game: Game) -> ScrapedPageInfo:  # type: ignore
         builder = BoxscoreBuilder(game.week)
-
+        with open("./tank.json", "w") as fp:
+            fp.write(json.dumps(soup, indent=2))
         builder.set_final_score(game.away, int(soup["awayPts"]))
         builder.set_final_score(game.home, int(soup["homePts"]))
         for side in ("away", "home"):
@@ -129,6 +135,7 @@ class TankScraper(Scraper[dict[str, Any]]):
         for play in soup.get("scoringPlays", []):
             self._credit_two_point_conversion(builder, play)
             self._credit_return_touchdown(builder, play)
+            self._credit_field_goal(builder, play)
 
         return builder.build(game)
 
@@ -168,15 +175,30 @@ class TankScraper(Scraper[dict[str, Any]]):
                 continue
             builder.add_player(player, {Stat.two_pt_conversions: 1})
 
+    def _credit_field_goal(
+        self, builder: BoxscoreBuilder, play: dict[str, Any]
+    ) -> None:
+        description = play.get("score", "")
+        if "Field Goal" not in description:
+            return
+
+        match = _FIELD_GOAL.search(description)
+        if not match:
+            return
+
+        name, yards = match.groups()
+        team = _team(play["team"])
+        player = self.player_service.get_by_full_name(name.strip(), team)
+        if not player:
+            print("player not found - ", name)
+            return
+        builder.add_field_goal(player, int(yards))
+
     def _add_player(self, builder: BoxscoreBuilder, record: dict[str, Any]) -> None:
         stats: dict[Stat, float] = {}
         for category, columns in OFFENSE_COLUMNS.items():
             if category in record:
                 stats.update(self._read(record[category], columns))
-
-        kicking = record.get("Kicking")
-        if kicking and "kickingPts" in kicking:
-            stats[Stat.kicking_points] = float(kicking["kickingPts"])
 
         if not stats:
             return

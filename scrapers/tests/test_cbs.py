@@ -22,8 +22,14 @@ KICKERS = {"Eddy Pineiro", "Cameron Dicker"}
 # the two-point-conversion credit only has a jersey number + first
 # initial + last name to go on ("7-D.Uiagalelei"), never a full name —
 # this fake stands in for `get_by_name`'s real last_name+team fallback,
-# which is what actually resolves that in production
-FULL_NAME_BY_LAST_NAME = {"Uiagalelei": "DJ Uiagalelei", "Svoboda": "Evan Svoboda"}
+# which is what actually resolves that in production. Field goals are
+# similarly keyed only by a first initial + team + last name.
+FULL_NAME_BY_LAST_NAME = {
+    "Uiagalelei": "DJ Uiagalelei",
+    "Svoboda": "Evan Svoboda",
+    "Pineiro": "Eddy Pineiro",
+    "Dicker": "Cameron Dicker",
+}
 
 # the lost-fumble credit only has a team + jersey number to go on, from
 # the separate play-by-play page — this fake stands in for `get_by_number`
@@ -62,7 +68,9 @@ def test_cbs_scrape(tmp_path, monkeypatch, fake_players, sf_vs_lac):
             FULL_NAME_BY_LAST_NAME[last], team
         ),
     )
-    monkeypatch.setattr(scraper.player_service, "get_by_number", _fake_get_by_number(fake_players))
+    monkeypatch.setattr(
+        scraper.player_service, "get_by_number", _fake_get_by_number(fake_players)
+    )
     # the lost-fumble credit only lives on the separate play-by-play page;
     # avoid a real network call for it
     monkeypatch.setattr(
@@ -84,11 +92,13 @@ def test_cbs_scrape(tmp_path, monkeypatch, fake_players, sf_vs_lac):
         "Eddy Pineiro", NFLTeam.SAN_FRANCISCO_49ERS, NFLPosition.K
     )
     assert by_id[pineiro.id].points == 11.0
+    assert by_id[pineiro.id].field_goals_made == [48, 45]
 
     dicker = fake_players.by_name(
         "Cameron Dicker", NFLTeam.LOS_ANGELES_CHARGERS, NFLPosition.K
     )
     assert by_id[dicker.id].points == 3.0
+    assert by_id[dicker.id].field_goals_made == [21]
 
     # the two-point conversion buried in the scoring summary's free text:
     # "7-D.Uiagalelei pass to 49-E.Svoboda" — only initials, resolved via
@@ -183,7 +193,9 @@ def test_cbs_missing_player_is_skipped(tmp_path, monkeypatch, sf_vs_lac):
     monkeypatch.chdir(tmp_path)
 
     scraper = CBSScraper()
-    monkeypatch.setattr(scraper.player_service, "get_by_full_name", lambda name, team: None)
+    monkeypatch.setattr(
+        scraper.player_service, "get_by_full_name", lambda name, team: None
+    )
     monkeypatch.setattr(scraper.player_service, "get_by_name", _raise_not_found)
     monkeypatch.setattr(scraper.player_service, "get_by_number", _raise_not_found)
     monkeypatch.setattr(

@@ -31,7 +31,7 @@ COLUMNS: dict[str, dict[Stat, str]] = {
         Stat.receiving_yards: "YDS",
         Stat.receiving_tds: "TD",
     },
-    "kicking-ctr": {Stat.kicking_points: "PTS"},
+    "kicking-ctr": {Stat.extra_points_made: "XP"},
 }
 # CBS lists per-defender sacks/interceptions here; that's a complete,
 # correct team total on its own, with no team-summary table involved —
@@ -89,6 +89,10 @@ _RECOVERED_BY = re.compile(r"RECOVERED by\s+(?:([A-Z]{2,3})-)?(\d+)-([A-Z])\.(\w
 # TOUCHDOWN" or "16-J.Scott punts 52 yards... 6O-J.Cowing for 83 yards
 # TOUCHDOWN". None of these words appear in a normal offensive score.
 _RETURN_TD_KEYWORDS = ("INTERCEPTED", "punts", "kicks", "FUMBLES")
+_FIELD_GOAL_RE = re.compile(
+    r"(?:(?:\d+[A-Z]?)-)?([A-Z])\.([A-Za-z]+)\s+(\d+)\s+yard field goal is GOOD",
+    re.IGNORECASE,
+)
 
 
 class CBSScraper(Scraper):
@@ -129,11 +133,13 @@ class CBSScraper(Scraper):
                     if player is None:
                         print("not found: ", (team, name))
                         continue
-                    builder.add_player(player, self._read(line, columns))
+                    builder.add_player(player, self._parse_stat_cols(line, columns))
             for team, _name, _pos, line in self._parse_section(
                 container, "defense-ctr"
             ):
-                builder.add_team_defense(team, self._read(line, DEFENSE_COLUMNS))
+                builder.add_team_defense(
+                    team, self._parse_stat_cols(line, DEFENSE_COLUMNS)
+                )
 
         for team, description in self._parse_two_point_conversions(soup):
             self._credit_two_point_conversion(builder, team, description)
@@ -143,7 +149,7 @@ class CBSScraper(Scraper):
 
         play_by_play = BeautifulSoup(self.get_play_by_play_html(game), "html.parser")
         self._credit_fumbles_lost(builder, play_by_play, game)
-
+        self._credit_field_goals(builder, play_by_play, game)
         return builder.build(game)
 
     def _parse_return_touchdowns(self, soup: BeautifulSoup) -> list[NFLTeam]:
@@ -274,10 +280,41 @@ class CBSScraper(Scraper):
                 {Stat.fumbles_recovered: 1},
             )
 
-    def _read(
-        self, line: dict[str, str], columns: dict[Stat, str]
-    ) -> dict[Stat, float]:
-        return {stat: to_float(line.get(column)) for stat, column in columns.items()}
+    def _credit_field_goals(
+        self, builder: BoxscoreBuilder, play_by_play: BeautifulSoup, game: Game
+    ) -> None:
+        for item in play_by_play.find_all(class_="scoring_item"):
+            result = item.find(class_="result_str")
+            if not isinstance(result, Tag):
+                continue
+            if result.get_text(strip=True).lower() != "field goal":
+                continue
+
+            description_el = item.find(class_="last_play_description")
+            description = (
+                description_el.get_text(" ", strip=True) if description_el else ""
+            )
+            match = _FIELD_GOAL_RE.search(description)
+            if not match:
+                continue
+
+            first_initial, last_name, yards = match.groups()
+            team_link = item.find("a", href=_TEAM_HREF)
+            team_match = (
+                _TEAM_HREF.search(team_link["href"])
+                if isinstance(team_link, Tag)
+                else None
+            )
+            if not team_match:
+                continue
+            team = NFLTeam.from_abbreviation(team_match.group(1))
+
+            try:
+                kicker = self.player_service.get_by_name(first_initial, last_name, team)
+            except DataIntegrityException:
+                continue
+
+            builder.add_field_goal(kicker, int(yards))
 
     def _parse_linescore(self, soup: BeautifulSoup) -> list[tuple[NFLTeam, int]]:
         table = soup.find("table", class_="linescore")

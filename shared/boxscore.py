@@ -45,7 +45,7 @@ class Stat(StrEnum):
     # kickers are scored off the box score's own points column: standard fantasy
     # awards distance bonuses, which aggregated FG columns cannot reconstruct
     # TODO: fix me based on matt's weird rules
-    kicking_points = "kicking_points"
+    extra_points_made = "extra_points_made"
     # team defense
     sacks = "sacks"
     interceptions = "interceptions"
@@ -74,6 +74,7 @@ _OFFENSIVE_STATS = frozenset(
         Stat.receiving_tds,
         Stat.fumbles_lost,
         Stat.two_pt_conversions,
+        Stat.extra_points_made,
     }
 )
 
@@ -103,6 +104,7 @@ class BoxscoreBuilder:
         self._positions: dict[int, NFLPosition] = {}
         self._defenses: dict[NFLTeam, TStats] = {}
         self._final_score: dict[NFLTeam, int] = {}
+        self._field_goals_made: dict[int, list[int]] = {}
 
     def add_player(
         self,
@@ -114,7 +116,13 @@ class BoxscoreBuilder:
             player.id, StatLine(**{"player": player, "stats": {}})
         )
         for stat, value in stats.items():
-            line.stats[stat] = line.stats.get(stat, 0.0) + value
+            if stat.is_offensive:
+                line.stats[stat] = line.stats.get(stat, 0.0) + value
+
+    def add_field_goal(self, player: Player, yards: int) -> None:
+        """Record a made field goal distance for a kicker."""
+        self._field_goals_made.setdefault(player.id, []).append(yards)
+        self._players.setdefault(player.id, StatLine(**{"player": player, "stats": {}}))
 
     def add_team_defense(self, team: NFLTeam, stats: Mapping[Stat, float]) -> None:
         """Accumulate D/ST stats — per defender (CBS) or per team totals row (ESPN)."""
@@ -135,17 +143,23 @@ class BoxscoreBuilder:
         scored: list[PlayerWeekData] = []
         for id, stat_line in self._players.items():
             stats = OffensiveStatLine()
-            if stat_line.player.position is NFLPosition.K:
-                points = stat_line.stats.get(Stat.kicking_points, 0.0)
-            else:
-                stats = OffensiveStatLine(
-                    **{
-                        stat.value: value
-                        for stat, value in stat_line.stats.items()
-                        if stat.is_offensive
-                    }  # type: ignore
-                )
-                points = calculate_offensive_score(stats)
+            stats = OffensiveStatLine(
+                **{
+                    stat.value: value
+                    for stat, value in stat_line.stats.items()
+                    if stat.is_offensive
+                }  # type: ignore
+            )
+            field_goals_made = self._field_goals_made.get(id, [])
+            if field_goals_made:
+                stats.field_goals_made = field_goals_made
+
+            extra_points_made = stat_line.stats.get(Stat.extra_points_made, 0)
+            if extra_points_made:
+                stats.extra_points_made = int(extra_points_made)
+
+            points = calculate_offensive_score(stats)
+
             scored.append(
                 PlayerWeekData(
                     player_id=id,

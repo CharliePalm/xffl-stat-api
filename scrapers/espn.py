@@ -1,6 +1,6 @@
 import json
 import re
-from typing import Any
+from typing import Any, Callable
 
 from bs4 import BeautifulSoup, Tag
 from shared.model import Game, NFLTeam, ScrapedPageInfo
@@ -31,7 +31,7 @@ COLUMNS: dict[str, dict[Stat, str]] = {
         Stat.receiving_tds: "TD",
     },
     "Fumbles": {Stat.fumbles_lost: "LOST"},
-    "Kicking": {Stat.kicking_points: "PTS"},
+    "Kicking": {Stat.extra_points_made: "XP"},
 }
 # sections whose team-totals row feeds D/ST rather than individual players.
 # "Defense"'s own TD column is already that team's *total* defensive/
@@ -59,6 +59,10 @@ _TWO_POINT_PASS = re.compile(
 )
 _TWO_POINT_RUSH = re.compile(
     r"\(([^()]+?)\s+Run for Two-Point Conversion\)", re.IGNORECASE
+)
+_FIELD_GOAL = re.compile(
+    r"([A-Z][A-Za-z.'-]+(?:\s+[A-Z][A-Za-z.'-]+)*)\s+(\d+)\s+Yd Field Goal",
+    re.IGNORECASE,
 )
 
 
@@ -99,21 +103,24 @@ class ESPNScraper(Scraper):
                 is_totals = name.lower() == TEAM_TOTALS_LABEL
                 if is_totals and stat in DEFENSE_COLUMNS:
                     builder.add_team_defense(
-                        team, self._read(line, DEFENSE_COLUMNS[stat])
+                        team, self._parse_stat_cols(line, DEFENSE_COLUMNS[stat])
                     )
                 if not is_totals and stat in COLUMNS:
                     player = self.player_service.get_by_full_name(name, team)
                     if not player:
                         print("player not found - ", name)
                         continue
-                    builder.add_player(player, self._read(line, COLUMNS[stat]))
+                    builder.add_player(
+                        player, self._parse_stat_cols(line, COLUMNS[stat])
+                    )
 
         self._credit_fumbles_recovered(builder, sections)
 
-        for team, description in self._parse_two_point_conversions(
-            self.get_play_by_play_html(game)
-        ):
+        play_by_play_html = self.get_play_by_play_html(game)
+        for team, description in self._parse_two_point_conversions(play_by_play_html):
             self._credit_two_point_conversion(builder, team, description)
+        for team, description in self._parse_field_goals(play_by_play_html):
+            self._credit_field_goal(builder, team, description)
 
         return builder.build(game)
 
@@ -192,10 +199,46 @@ class ESPNScraper(Scraper):
                 continue
             builder.add_player(player, {Stat.two_pt_conversions: 1})
 
-    def _read(
-        self, line: dict[str, str], columns: dict[Stat, str]
-    ) -> dict[Stat, float]:
-        return {stat: to_float(line.get(column)) for stat, column in columns.items()}
+    def _parse_field_goals(self, html: str) -> list[tuple[NFLTeam, str]]:
+        """Field goals are also only stored in the play-by-play JSON, as
+        free-text scoring entries like 'Eddy Pineiro 48 Yd Field Goal'."""
+        match = _ESPN_FITT_DATA.search(html)
+        if not match:
+            return []
+        data: dict[str, Any] = json.loads(match.group(1))
+        scoring_groups = (
+            data.get("page", {})
+            .get("content", {})
+            .get("gamepackage", {})
+            .get("pbp", {})
+            .get("scoringPlaysData", [])
+        )
+
+        field_goals: list[tuple[NFLTeam, str]] = []
+        for group in scoring_groups:
+            for play in group.get("items", []):
+                text = play.get("playText", "")
+                if "Field Goal" not in text:
+                    continue
+                team_name = play.get("teamName")
+                if not team_name:
+                    continue
+                field_goals.append((NFLTeam(team_name), text))
+        return field_goals
+
+    def _credit_field_goal(
+        self, builder: BoxscoreBuilder, team: NFLTeam, description: str
+    ) -> None:
+        match = _FIELD_GOAL.search(description)
+        if not match:
+            return
+
+        name, yards = match.groups()
+        player = self.player_service.get_by_full_name(name.strip(), team)
+        if not player:
+            print("player not found - ", name)
+            return
+        builder.add_field_goal(player, int(yards))
 
     def _parse_linescore(self, soup: BeautifulSoup) -> list[tuple[NFLTeam, int]]:
         table = soup.find(attrs={"data-testid": "prism-Table"})  # type: ignore[arg-type]

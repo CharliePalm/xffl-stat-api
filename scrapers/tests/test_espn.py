@@ -43,11 +43,13 @@ def test_espn_scrape(tmp_path, monkeypatch, fake_players, sf_vs_lac):
         "Eddy Pineiro", NFLTeam.SAN_FRANCISCO_49ERS, NFLPosition.K
     )
     assert by_id[pineiro.id].points == 11.0
+    assert by_id[pineiro.id].field_goals_made == [48, 45]
 
     dicker = fake_players.by_name(
         "Cameron Dicker", NFLTeam.LOS_ANGELES_CHARGERS, NFLPosition.K
     )
     assert by_id[dicker.id].points == 3.0
+    assert by_id[dicker.id].field_goals_made == [21]
 
     sf_defense = by_id[NFLTeam.SAN_FRANCISCO_49ERS.player_defense_id]
     lac_defense = by_id[NFLTeam.LOS_ANGELES_CHARGERS.player_defense_id]

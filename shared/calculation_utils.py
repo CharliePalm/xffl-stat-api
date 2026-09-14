@@ -3,76 +3,162 @@ from typing import Any
 
 from shared.model import DefensiveStatLine, OffensiveStatLine
 
-# Per-unit fantasy point value of each stat. Edit these to retune scoring —
-# e.g. set "receptions" to 1.0 for PPR, 0.5 for half-PPR.
+
+def _get(stat_line: Any, stat: str) -> Any:
+    if isinstance(stat_line, BaseModel):
+        return getattr(stat_line, stat, 0) or 0
+    # assume mapping-like
+    return stat_line.get(stat, 0)
+
+
+# ---------------------------------------------------------------------------
+# OFFENSE
+# ---------------------------------------------------------------------------
+# Flat per-occurrence point values.
 OFFENSIVE_MULTIPLIERS: dict[str, float] = {
-    "passing_yards": 0.04,
-    "passing_tds": 4.0,
-    "interceptions_thrown": -2.0,
-    "rushing_yards": 0.1,
-    "rushing_tds": 6.0,
+    "passing_tds": 4.0,  # 4 per TD passing
+    "rushing_tds": 6.0,  # 6 per TD rushing
+    "receiving_tds": 6.0,  # 6 per TD receiving
+    "offensive_fumble_recovery_tds": 6.0,  # 6 per offensive fumble recovery TD
     "receptions": 0.0,
-    "receiving_yards": 0.1,
-    "receiving_tds": 6.0,
-    "fumbles_lost": -2.0,
-    "two_pt_conversions": 2.0,
+    "fumbles_lost": -1.0,  # -1 per fumble lost
+    "interceptions_thrown": -1.0,  # -1 per INT thrown
+    "two_pt_conversions": 2.0,  # 2 per rushing/receiving/passing 2-pt conversion
+    "extra_points_made": 1.0,  # 1 per PAT
 }
 
-DEFENSIVE_MULTIPLIERS: dict[str, float] = {
-    "sacks": 1.0,
-    "interceptions": 2.0,
-    "fumbles_recovered": 2.0,
-    "safeties": 2.0,
-    "defensive_tds": 6.0,
-    "blocked_kicks": 2.0,
-}
-
-# Points-allowed tiers, as (upper bound inclusive, score) checked in ascending
-# order. The last entry's bound is unused - it always matches whatever falls
-# through the rest, i.e. "35+".
-POINTS_ALLOWED_TIERS: list[tuple[int | float, float]] = [
-    (0, 10.0),
-    (6, 7.0),
-    (13, 4.0),
-    (17, 1.0),
-    (27, 0.0),
-    (34, -1.0),
-    (float("inf"), -4.0),
+# (stat name, yards per point) — whole-number floor division, NOT a
+# continuous multiplier: e.g. 19 rushing yards is still only 1 point.
+OFFENSIVE_YARDAGE_RULES: list[tuple[str, int]] = [
+    ("rushing_yards", 10),
+    ("receiving_yards", 10),
+    ("passing_yards", 20),
 ]
 
+# Yardage milestone bonuses, on top of the per-10/20-yard scoring above.
+# (inclusive lower bound, inclusive upper bound, bonus). Ranges are
+# mutually exclusive — 200+ rushing/receiving replaces the 100-199 bonus,
+# it doesn't stack with it. Assumes rushing and receiving yards are each
+# milestone-eligible independently (not combined into one "yards from
+# scrimmage" total) — flag if that's not how your league scores it.
+RUSH_RECEIVING_MILESTONE_TIERS: list[tuple[float, float, float]] = [
+    (100, 199, 2.0),
+    (200, float("inf"), 5.0),
+]
+PASSING_MILESTONE_TIERS: list[tuple[float, float, float]] = [
+    (300, 399, 2.0),
+    (400, float("inf"), 5.0),
+]
 
-def _score_points_allowed(points_allowed: int) -> float:
-    for upper_bound, score in POINTS_ALLOWED_TIERS:
-        if points_allowed <= upper_bound:
-            return score
-    return POINTS_ALLOWED_TIERS[-1][1]
+# Field goal scoring: flat +3 per FG made (already in OFFENSIVE_MULTIPLIERS'
+# spirit, handled separately here since it stacks with a distance bonus),
+# plus a distance bonus so a 38-52 yarder is worth 5 total and a 53+ yarder
+# is worth 8 total, plus a flat +2 bonus for going 3-for-3+ with no misses.
+FIELD_GOAL_BASE_POINTS = 3.0
+FIELD_GOAL_DISTANCE_TIERS: list[tuple[float, float, float]] = [
+    (38, 52, 2.0),
+    (53, float("inf"), 5.0),
+]
+PERFECT_FG_GAME_MIN_MAKES = 3
+PERFECT_FG_GAME_BONUS = 2.0
 
 
-def calculate_defense_score(stat_line: DefensiveStatLine) -> float:
-    """Calculates Fantasy D/ST points for standard non-PPR scoring using typed dictionary input."""
+def _milestone_bonus(yards: float, tiers: list[tuple[float, float, float]]) -> float:
+    for lo, hi, bonus in tiers:
+        if lo <= yards <= hi:
+            return bonus
+    return 0.0
 
-    def _get(stat: str) -> Any:
-        if isinstance(stat_line, BaseModel):
-            return getattr(stat_line, stat, 0) or 0
-        # assume mapping-like
-        return stat_line.get(stat, 0)
 
-    score = sum(
-        _get(stat) * multiplier for stat, multiplier in DEFENSIVE_MULTIPLIERS.items()
+def _field_goal_score(stat_line: OffensiveStatLine) -> float:
+    """Scores made field goals individually by distance, plus the perfect-
+    game bonus. The model stores the made distances as `field_goals_made`
+    and the missed count as `num_field_goals_missed`."""
+    made_distances = _get(stat_line, "field_goals_made") or []
+    score = len(made_distances) * FIELD_GOAL_BASE_POINTS
+    score += sum(
+        _milestone_bonus(distance, FIELD_GOAL_DISTANCE_TIERS)
+        for distance in made_distances
     )
-    score += _score_points_allowed(int(_get("points_allowed")))
-    return float(score)
+    if (
+        len(made_distances) >= PERFECT_FG_GAME_MIN_MAKES
+        and _get(stat_line, "num_field_goals_missed") == 0
+    ):
+        score += PERFECT_FG_GAME_BONUS
+    return score
 
 
 def calculate_offensive_score(stat_line: OffensiveStatLine) -> float:
     """Calculates Offensive Player fantasy points for standard non-PPR scoring using typed dictionary input."""
 
-    def _get(stat: str) -> Any:
-        if isinstance(stat_line, BaseModel):
-            return getattr(stat_line, stat, 0) or 0
-        return stat_line.get(stat, 0)
+    score = sum(
+        _get(stat_line, stat) * multiplier
+        for stat, multiplier in OFFENSIVE_MULTIPLIERS.items()
+    )
+    score += sum(
+        (_get(stat_line, stat) // yards_per_point)
+        for stat, yards_per_point in OFFENSIVE_YARDAGE_RULES
+    )
+    score += _milestone_bonus(
+        _get(stat_line, "rushing_yards"), RUSH_RECEIVING_MILESTONE_TIERS
+    )
+    score += _milestone_bonus(
+        _get(stat_line, "receiving_yards"), RUSH_RECEIVING_MILESTONE_TIERS
+    )
+    score += _milestone_bonus(_get(stat_line, "passing_yards"), PASSING_MILESTONE_TIERS)
+    score += _field_goal_score(stat_line)
+    return round(float(score), 2)
+
+
+# ---------------------------------------------------------------------------
+# DEFENSE
+# ---------------------------------------------------------------------------
+DEFENSIVE_MULTIPLIERS: dict[str, float] = {
+    "sacks": 1.0,  # 1 per sack
+    "interceptions": 2.0,  # 2 per turnover
+    "fumbles_recovered": 2.0,  # 2 per turnover
+    "safeties": 2.0,  # 2 per safety
+    "defensive_tds": 6.0,  # 6 per TD
+    "blocked_kicks": 2.0,
+}
+
+# Yards-allowed tiers: 8-6-4-2 points for <100-<200-<300-<400 yards given up,
+# 0 beyond that. Checked in ascending order, upper bound EXCLUSIVE (matches
+# the "<100" phrasing in the rules).
+YARDS_ALLOWED_TIERS: list[tuple[int | float, float]] = [
+    (100, 8.0),
+    (200, 6.0),
+    (300, 4.0),
+    (400, 2.0),
+    (float("inf"), 0.0),
+]
+
+
+def _score_yards_allowed(yards_allowed: int) -> float:
+    for upper_bound, score in YARDS_ALLOWED_TIERS:
+        if yards_allowed < upper_bound:
+            return score
+    return YARDS_ALLOWED_TIERS[-1][1]
+
+
+def _score_points_or_td_bonus(stat_line: DefensiveStatLine) -> float:
+    """6 points for a shutout (0 points allowed), else 3 points if no TDs
+    were given up (e.g. opponent only scored via FG). Not both — a shutout
+    already implies no TDs, so it just wins on its own."""
+    if int(_get(stat_line, "points_allowed")) == 0:
+        return 6.0
+    if int(_get(stat_line, "touchdowns_allowed")) == 0:
+        return 3.0
+    return 0.0
+
+
+def calculate_defense_score(stat_line: DefensiveStatLine) -> float:
+    """Calculates Fantasy D/ST points for standard non-PPR scoring using typed dictionary input."""
 
     score = sum(
-        _get(stat) * multiplier for stat, multiplier in OFFENSIVE_MULTIPLIERS.items()
+        _get(stat_line, stat) * multiplier
+        for stat, multiplier in DEFENSIVE_MULTIPLIERS.items()
     )
-    return round(float(score), 2)
+    score += _score_yards_allowed(int(_get(stat_line, "yards_allowed")))
+    score += _score_points_or_td_bonus(stat_line)
+    return float(score)

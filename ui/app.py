@@ -36,7 +36,7 @@ STAT_CATEGORIES = [
     ("two_pt_conversions", "2pt Conversions"),
     ("field_goals_made", "Field Goals Made"),
     ("num_field_goals_missed", "Field Goals Missed"),
-    ("extra_points_points_made", "Extra Points Made"),
+    ("extra_points_made", "Extra Points Made"),
     ("sacks", "Sacks"),
     ("interceptions", "Interceptions"),
     ("fumbles_recovered", "Fumbles Recovered"),

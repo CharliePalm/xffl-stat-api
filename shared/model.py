@@ -40,6 +40,28 @@ TEAM_IDS = {
     "WAS": -32,
 }
 
+# Providers often use non-canonical abbreviations for the same team.
+# Normalize them centrally so downstream code can rely on the single
+# canonical value stored in `NFLTeam.abbreviation`.
+TEAM_ABBREVIATION_ALIASES = {
+    "ARZ": "ARI",
+    "BAL": "BAL",
+    "BLT": "BAL",
+    "CLV": "CLE",
+    "HST": "HOU",
+    "JAC": "JAX",
+    "LA": "LAR",
+    "LAR": "LAR",
+    "LVR": "LV",
+    "WSH": "WAS",
+}
+
+
+def _normalize_team_abbreviation(value: str) -> str:
+    return TEAM_ABBREVIATION_ALIASES.get(
+        str(value).strip().upper(), str(value).strip().upper()
+    )
+
 
 class NFLTeam(Enum):
     # AFC East
@@ -104,7 +126,7 @@ class NFLTeam(Enum):
         all resolve by abbreviation, full name, or team id instead of
         requiring the full tuple.
         """
-        value_str = str(value).strip().upper()
+        value_str = _normalize_team_abbreviation(value)  # type: ignore
         for team in cls:
             if value_str in (
                 team.abbreviation.upper(),
@@ -125,8 +147,9 @@ class NFLTeam(Enum):
     @classmethod
     def from_abbreviation(cls, abbr: str):
         """Look up team Enum member by abbreviation string."""
+        normalized = _normalize_team_abbreviation(abbr)
         for team in cls:
-            if team.abbreviation == abbr.upper():
+            if team.abbreviation == normalized:
                 return team
         raise ValueError(f"Unknown NFL team abbreviation: {abbr}")
 
@@ -164,6 +187,7 @@ class DefensiveStatLine(BaseModel):
     defensive_tds: Optional[int] = 0
     blocked_kicks: Optional[int] = 0
     points_allowed: Optional[int] = 0
+    yards_allowed: Optional[int] = 0
 
 
 class OffensiveStatLine(BaseModel):
@@ -179,7 +203,7 @@ class OffensiveStatLine(BaseModel):
     two_pt_conversions: Optional[int] = 0
     field_goals_made: list[int] = []  # list of field goal distances made
     num_field_goals_missed: Optional[int] = 0
-    extra_points_points_made: Optional[int] = 0
+    extra_points_made: Optional[int] = 0
 
 
 class PlayerWeekData(OffensiveStatLine, DefensiveStatLine):

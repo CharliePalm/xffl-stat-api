@@ -44,10 +44,15 @@ def test_tank01_get_url_matches_fixture_game_id():
     assert f"gameID={body['gameID']}" in url
 
 
-# DJ Uiagalelei already gets a Player row from his passing/rushing lines
-# (via `search`, tank_id-keyed); his two-point-conversion credit must land
-# on that same row, not a second one, so route both through the same id.
-_TWO_POINT_NAME_TO_TANK_ID = {"DJ Uiagalelei": "4429020"}
+# The same player rows are already created from tank01's playerStats rows.
+# For free-text scoring credits (two-point conversions and field goals), the
+# lookup must return that same source-specific player instead of minting a
+# second in-memory `Player` with the same name but a different id.
+_NAME_TO_TANK_ID = {
+    "DJ Uiagalelei": "4429020",
+    "Eddy Pineiro": "4034949",
+    "Cameron Dicker": "4362081",
+}
 
 
 def _fake_get_by_full_name(fake_players):
@@ -56,7 +61,7 @@ def _fake_get_by_full_name(fake_players):
     name (tank01 gives no id for a conversion's participants at all)."""
 
     def get_by_full_name(name, team):
-        tank_id = _TWO_POINT_NAME_TO_TANK_ID.get(name)
+        tank_id = _NAME_TO_TANK_ID.get(name)
         if tank_id:
             return fake_players.by_tank_id(tank_id)
         return fake_players.by_name(name, team)
@@ -83,10 +88,13 @@ def test_tank01_scrape(monkeypatch, fake_players, sf_vs_lac):
     assert line.rushing_tds == 1
 
     pineiro = fake_players.by_tank_id("4034949", NFLPosition.K)
-    assert by_id[pineiro.id].points == 11.0
+    assert by_id[pineiro.id].points == 15.0
+    assert by_id[pineiro.id].field_goals_made == [48, 45]
+    assert by_id[pineiro.id].extra_points_made == 5
 
     dicker = fake_players.by_tank_id("4362081", NFLPosition.K)
     assert by_id[dicker.id].points == 3.0
+    assert by_id[dicker.id].field_goals_made == [21]
 
     sf_defense = by_id[NFLTeam.SAN_FRANCISCO_49ERS.player_defense_id]
     lac_defense = by_id[NFLTeam.LOS_ANGELES_CHARGERS.player_defense_id]

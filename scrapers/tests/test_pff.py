@@ -40,11 +40,13 @@ def test_pff_scrape(tmp_path, monkeypatch, fake_players, sf_vs_lac):
         "Eddy Piñeiro", NFLTeam.SAN_FRANCISCO_49ERS, NFLPosition.K
     )
     assert by_id[pineiro.id].points == 11.0
+    assert by_id[pineiro.id].field_goals_made == [48, 45]
 
     dicker = fake_players.by_name(
         "Cameron Dicker", NFLTeam.LOS_ANGELES_CHARGERS, NFLPosition.K
     )
     assert by_id[dicker.id].points == 3.0
+    assert by_id[dicker.id].field_goals_made == [21]
 
     # regression check: `scrape` used to attribute both teams' defensive
     # stats to `game.home`, silently dropping the away team's defense
@@ -83,7 +85,9 @@ def test_pff_missing_player_is_skipped(tmp_path, monkeypatch, sf_vs_lac):
     monkeypatch.chdir(tmp_path)
 
     scraper = PFFScraper()
-    monkeypatch.setattr(scraper.player_service, "get_by_full_name", lambda name, team: None)
+    monkeypatch.setattr(
+        scraper.player_service, "get_by_full_name", lambda name, team: None
+    )
 
     soup = json.loads(FIXTURE.read_text())
     result = scraper.scrape(soup, sf_vs_lac)

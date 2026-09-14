@@ -1,8 +1,11 @@
 from abc import ABC, abstractmethod
 from typing import TypeVar
 from bs4 import BeautifulSoup
+from shared.boxscore import Stat
 from shared.model import Game, ScrapedPageInfo
 from curl_cffi import requests
+
+from shared.parsing import to_float
 
 T = TypeVar("T")
 
@@ -38,3 +41,10 @@ class Scraper[T = BeautifulSoup](ABC):
         for player in sorted(page.player_week_data, key=lambda p: -p.points):
             lines.append(f"{player.points:>7.2f} | {player.player_id:<4}")
         return "\n".join(lines)
+
+    def _parse_stat_cols(
+        self, line: dict[str, str], columns: dict[Stat, str]
+    ) -> dict[Stat, float]:
+        # this is for extra points - e.g. 3/3 means 3 xps made of 3 attempted
+        clean = lambda x: to_float(x if "/" not in x else x.split("/")[0])
+        return {stat: clean(line.get(column)) for stat, column in columns.items()}
