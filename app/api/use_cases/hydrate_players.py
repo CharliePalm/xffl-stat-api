@@ -15,12 +15,7 @@ SLEEPER_KEYS = ["first_name", "last_name", "team", "number", "active", "position
 
 # tank01's player list carries cross-referenced IDs for most other sources; it
 # only shares sleeperBotID with the sleeper roster above, so that's the join key
-TANK01_PLAYERS_PATH = (
-    Path(__file__).resolve().parent.parent
-    / "scrapers"
-    / "test_html"
-    / "tank01_players.json"
-)
+TANK01_PLAYERS_PATH = "./scrapers/test_html/tank01_players.json"
 # our field name -> tank01's field name
 TANK01_ID_COLUMNS = {
     "tank_id": "playerID",

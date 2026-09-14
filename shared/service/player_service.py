@@ -100,7 +100,8 @@ class PlayerService(Service[PlayerModel, Player]):
             if len(narrowed) == 1:
                 return narrowed[0]
             candidates = narrowed
-
+        logger.warning("unable to find player from name")
+        return None
         raise DataIntegrityException(
             f"get_by_name bad response for first_name={first_name!r} "
             f"last_name={last_name!r} team={team!r}: {candidates!r}"

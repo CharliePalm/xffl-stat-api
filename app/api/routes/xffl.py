@@ -18,6 +18,7 @@ from shared.service.player_statline_service import PlayerStatlineFilters
 from shared.service.player_week_service import PlayerWeekFilters
 from shared.service.provider import ProviderFilters
 from app.api.use_cases.job import run_job
+from app.api.use_cases.hydrate_players import main as hydrate_main
 
 router = APIRouter(tags=["stats"])
 
@@ -91,3 +92,8 @@ def job(
     providers: ProviderServiceDep,
 ):
     run_job()
+
+
+@router.put("/hydrate")
+def hydrate():
+    hydrate_main()

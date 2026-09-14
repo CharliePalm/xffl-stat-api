@@ -1,4 +1,4 @@
-from typing import Any, Callable
+from typing import Any, Callable, Optional
 
 from scrapers.scraper import Scraper
 from shared.model import Game, Provider
@@ -29,7 +29,7 @@ class ScrapeManager:
             raise Exception("no provider returned from query")
         return provider
 
-    def run(self, game: Game) -> None:
+    def run(self, game: Game, provider: Optional[Provider] = None) -> None:
         # One session, one transaction, for this run only: opening it as a
         # `with` block is what makes it actually commit (and close) when
         # `run` returns, rather than holding an open write transaction —
@@ -40,7 +40,7 @@ class ScrapeManager:
             provider_service = ProviderService(session)
             stat_service = PlayerWeekService(session)
 
-            provider = self._pick_provider(provider_service)
+            provider = provider or self._pick_provider(provider_service)
             scraper = providers[provider.name]()
             html = scraper.get_html(scraper.get_url(game))
             res = scraper.scrape(scraper.parse_html(html), game)
@@ -50,3 +50,12 @@ class ScrapeManager:
             provider.last_used = now_str()
             provider.uses += 1
             provider_service.put(id=None, data=provider)
+
+
+if __name__ == "__main__":
+    m = ScrapeManager()
+    with SessionLocal() as session, session.begin():
+        g = GameService(session)
+        game = g.search(Criterion.eq("week", 1) & Criterion.eq("home", "LAR")).items[0]
+
+    m.run(game)
