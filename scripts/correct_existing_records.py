@@ -15,8 +15,6 @@ def main():
         while True:
             results = statline_service.search(page=Page(limit=200, offset=offset))
             for line in results.items:
-                if line.position != NFLPosition.K:
-                    continue
                 if line.position == NFLPosition.D:
                     points = calculate_defense_score(line)
                 else:

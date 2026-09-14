@@ -142,7 +142,6 @@ class BoxscoreBuilder:
     def _score_players(self) -> list[PlayerWeekData]:
         scored: list[PlayerWeekData] = []
         for id, stat_line in self._players.items():
-            stats = OffensiveStatLine()
             stats = OffensiveStatLine(
                 **{
                     stat.value: value
@@ -184,6 +183,20 @@ class BoxscoreBuilder:
             for team, line in self._defenses.items()
         }
 
+        # each team's total offensive yards, so a defense's yards_allowed
+        # can be read off its *opponent's* total rather than requiring
+        # every scraper to separately locate and map a "total yards" field
+        total_offensive_yards: dict[NFLTeam, float] = {}
+        for stat_line in self._players.values():
+            team = stat_line.player.team
+            if team is None:
+                continue
+            total_offensive_yards[team] = (
+                total_offensive_yards.get(team, 0.0)
+                + stat_line.stats.get(Stat.passing_yards, 0.0)
+                + stat_line.stats.get(Stat.rushing_yards, 0.0)
+            )
+
         defenses: list[PlayerWeekData] = []
         for team, line in self._defenses.items():
             # a defense allows whatever its opponent scored, minus any of
@@ -200,6 +213,7 @@ class BoxscoreBuilder:
             allowed = other_score - DEFENSIVE_TD_POINTS * total_defensive_tds.get(
                 other_team, 0
             )
+            yards_allowed = int(total_offensive_yards.get(other_team, 0.0))
 
             # build values dict and coalesce special-teams return TDs into
             # `defensive_tds` so scoring (DEFENSIVE_MULTIPLIERS) counts them
@@ -210,7 +224,9 @@ class BoxscoreBuilder:
                 values.get("defensive_tds", 0) + punt_ret + kick_ret
             )
 
-            stat_line = DefensiveStatLine(points_allowed=allowed, **values)
+            stat_line = DefensiveStatLine(
+                points_allowed=allowed, yards_allowed=yards_allowed, **values
+            )
             defenses.append(
                 PlayerWeekData(
                     player_id=team.player_defense_id,
