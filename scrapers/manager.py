@@ -23,7 +23,7 @@ providers: dict[str, Callable[[], Scraper[Any]]] = {
 class ScrapeManager:
     def _pick_provider(self, provider_service: ProviderService) -> Provider:
         provider = provider_service.search(
-            Criterion.eq("name", "pff"),
+            Criterion.ne("name", "sleeper"),
             sort=Sort(field="pos", direction="desc"),
             page=Page(limit=1),
         ).items[0]
