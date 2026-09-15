@@ -34,6 +34,7 @@ OFFENSE_COLUMNS: dict[str, dict[Stat, str]] = {
         Stat.passing_yards: "passYds",
         Stat.passing_tds: "passTD",
         Stat.interceptions_thrown: "int",
+        Stat.sack_yards: "sacked",
     },
     "Rushing": {
         Stat.rushing_attempts: "carries",
@@ -45,8 +46,9 @@ OFFENSE_COLUMNS: dict[str, dict[Stat, str]] = {
         Stat.receiving_yards: "recYds",
         Stat.receiving_tds: "recTD",
     },
-    "Kicking": {Stat.extra_points_made: "xpMade"},
+    "Kicking": {Stat.extra_points_made: "xpMade", Stat.field_goals_missed: "fgMissed"},
 }
+
 # a player who fumbled (offense or special teams) carries it on their own
 # "Defense" category rather than on the category the fumble happened in
 FUMBLES_LOST_COLUMN = "fumblesLost"

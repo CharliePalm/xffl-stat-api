@@ -25,5 +25,5 @@ class ProviderService(Service[ProviderModel, Provider]):
 
     def _criterion_for(self, field: str, value: Any) -> Filter:
         if field == "name":
-            return Criterion.like("name", f"%{value}%")
+            return Criterion.like("name", value)
         return super()._criterion_for(field, value)

@@ -46,5 +46,14 @@ class Scraper[T = BeautifulSoup](ABC):
         self, line: dict[str, str], columns: dict[Stat, str]
     ) -> dict[Stat, float]:
         # this is for extra points - e.g. 3/3 means 3 xps made of 3 attempted
-        clean = lambda x: to_float(x if "/" not in x else x.split("/")[0])
-        return {stat: clean(line.get(column)) for stat, column in columns.items()}
+        def clean(to_clean: str, stat: Stat) -> float:
+            if stat == Stat.field_goals_missed:
+                split = to_clean.split("/")
+                to_clean = (
+                    str(int(split[1]) - int(split[0])) if len(split) == 2 else to_clean
+                )
+            elif stat == Stat.sack_yards:
+                to_clean = to_clean.split("-")[1]
+            return to_float(to_clean if "/" not in to_clean else to_clean.split("/")[0])
+
+        return {stat: clean(line.get(column), stat) for stat, column in columns.items()}

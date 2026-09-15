@@ -54,7 +54,9 @@ DEFENSE_COLUMNS: dict[Stat, str] = {
     Stat.sacks: "sacks",
     Stat.interceptions: "interception_returns",
     Stat.fumbles_recovered: "fumbles_recovered",
+    Stat.sack_yards: "times_sacked_yards",
 }
+
 # a defensive/special-teams TD of any of these kinds counts the same way
 DEFENSIVE_TD_COLUMNS = (
     "interception_return_touchdowns",
@@ -100,6 +102,8 @@ class PFFScraper(Scraper[dict[str, Any]]):
         return json.loads(html)
 
     def scrape(self, soup: dict[str, Any], game: Game) -> ScrapedPageInfo:
+        with open("./pff.json", "w") as fp:
+            fp.write(json.dumps(soup, indent=2))
         if "away_player_stats" not in soup and "home_player_stats" not in soup:
             return ScrapedPageInfo(game=game, player_week_data=[])
         with open("./pff.json", "w") as fp:
@@ -141,6 +145,8 @@ class PFFScraper(Scraper[dict[str, Any]]):
                         {
                             Stat.extra_points_made: player.get("extra_points_made", 0)
                             * EXTRA_POINT_POINTS,
+                            Stat.field_goals_missed: player.get("field_goals_attempted")
+                            - player.get("field_goals_made"),
                         },
                     )
                 elif any(player.get(field) for field in OFFENSE_SIGNAL_FIELDS):

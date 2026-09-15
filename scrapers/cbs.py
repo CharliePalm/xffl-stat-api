@@ -20,6 +20,7 @@ COLUMNS: dict[str, dict[Stat, str]] = {
         Stat.passing_yards: "YDS",
         Stat.passing_tds: "TD",
         Stat.interceptions_thrown: "INT",
+        Stat.sack_yards: "SACKS",
     },
     "rushing-ctr": {
         Stat.rushing_attempts: "ATT",
@@ -31,7 +32,7 @@ COLUMNS: dict[str, dict[Stat, str]] = {
         Stat.receiving_yards: "YDS",
         Stat.receiving_tds: "TD",
     },
-    "kicking-ctr": {Stat.extra_points_made: "XP"},
+    "kicking-ctr": {Stat.extra_points_made: "XP", Stat.field_goals_missed: "FG"},
 }
 # CBS lists per-defender sacks/interceptions here; that's a complete,
 # correct team total on its own, with no team-summary table involved —
@@ -56,31 +57,6 @@ DEFENSE_COLUMNS: dict[Stat, str] = {
 _TEAM_HREF = re.compile(r"/nfl/teams/([A-Z]+)/")
 _TWO_POINT_PASS = re.compile(r"\d+-([A-Z])\.(\w+)\s+pass to\s+\d+-([A-Z])\.(\w+)")
 _TWO_POINT_RUSH = re.compile(r"\d+-([A-Z])\.(\w+)\s+run\b")
-
-# CBS's boxscore has no per-player fumbles column at all (only a team
-# total) — the only place a specific player is charged with a lost fumble
-# is the play-by-play page's free text, e.g.:
-#   "16-M.Gronowski FUMBLES (Aborted) at ATL 11 touched at ATL 18
-#   RECOVERED by ATL-46-J.Woods at ATL 22."
-# or, forced by a tackler rather than fumbled on the snap:
-#   "24O-D.Ross to LAC 21 for 15 yards (45-N.Martin). FUMBLES
-#   (45-N.Martin) RECOVERED by SF-86-K.Hodge at LAC 20."
-# Players are given as "<jersey><optional letter>-<initial>.<lastname>",
-# so this is matched and looked up by jersey number, not name. Which team
-# the fumbler is on is *not* inferred from the drive/possession context —
-# CBS nests a drive-transition play (a kickoff, a turnover) inside the
-# card of whichever drive just ended, so that card's own team is not a
-# reliable signal for who's actually on the field for it. A jersey number
-# is only unique within one team, so trying the fumble's number against
-# both of the game's teams and keeping whichever one actually has a
-# player there is unambiguous instead.
-_PLAYER_TAG = re.compile(r"(\d+)[A-Z]?-([A-Z])\.(\w+)")
-# a tackler/forcer credited in parens right before "FUMBLES" is not the
-# fumbler — the actual fumbler is whoever was last mentioned carrying the
-# ball, so that trailing credit has to be stripped before taking the last
-# player mention as the fumbler
-_TRAILING_PAREN = re.compile(r"\([^()]*\)[.\s]*$")
-_RECOVERED_BY = re.compile(r"RECOVERED by\s+(?:([A-Z]{2,3})-)?(\d+)-([A-Z])\.(\w+)")
 
 # CBS's scoring summary has no explicit "this was a defensive/special-
 # teams touchdown" marker — a return TD is just a "Touchdown" scoring
@@ -133,7 +109,8 @@ class CBSScraper(Scraper):
                     if player is None:
                         print("not found: ", (team, name))
                         continue
-                    builder.add_player(player, self._parse_stat_cols(line, columns))
+                    res = self._parse_stat_cols(line, columns)
+                    builder.add_player(player, res)
             for team, _name, _pos, line in self._parse_section(
                 container, "defense-ctr"
             ):
@@ -243,40 +220,45 @@ class CBSScraper(Scraper):
             if len(cells) < 2:
                 continue
             text = cells[1].get_text(" ", strip=True)
-
-            fumble_index = text.find("FUMBLES")
-            if fumble_index == -1:
+            reversed_idx = text.find("REVERSED")
+            if reversed_idx != -1:
+                text = text[reversed_idx:]
+            idx = text.find("FUMBLES")
+            if idx == -1:
                 continue
-            before = _TRAILING_PAREN.sub("", text[:fumble_index])
-            fumbler_matches = list(_PLAYER_TAG.finditer(before))
-            if not fumbler_matches:
+            before, after = text[:idx], text[idx:]
+
+            # Strip parentheticals (e.g. "(C.Young)") so tacklers/forcers
+            # aren't mistaken for the fumbler
+            before_clean = re.sub(r"\([^)]*\)", "", before)
+            names = re.findall(r"[A-Z]\.[A-Z][a-zA-Z']+", before_clean)
+            fumbled_by = names[-1] if names else None
+
+            m = re.search(r"(?:recovered|RECOVERED)\s+by\s+([\w.'\-]+)", after)
+            recovered_by = m.group(1) if m else None
+
+            if not fumbled_by or not recovered_by:
+                print("this should never happen")
                 continue
-            number = int(fumbler_matches[-1].group(1))
-
-            recovery_match = _RECOVERED_BY.search(text[fumble_index:])
-            recovering_team_abbr = recovery_match.group(1) if recovery_match else None
-            if not recovering_team_abbr:
-                continue  # no team named = recovered by the fumbling team
-
-            player = None
-            fumbler_team = None
-            for candidate_team in (game.home, game.away):
-                try:
-                    player = self.player_service.get_by_number(number, candidate_team)
-                except DataIntegrityException:
-                    continue
-                fumbler_team = candidate_team
-                break
-            if player is None or fumbler_team is None:
-                print("not found: ", number)
+            first_name, last_name = fumbled_by.split(".")
+            player = self.player_service.get_by_name(
+                first_name, last_name, [game.home, game.away]
+            )
+            if not player:
+                print("not found: ", text)
+                print(player)
                 continue
 
-            if recovering_team_abbr == fumbler_team.abbreviation:
+            fumbler_team = player.team
+
+            recovering_team = NFLTeam(recovered_by.split("-")[0])
+
+            if recovering_team == fumbler_team:
                 continue  # recovered by their own team - not lost
 
             builder.add_player(player, {Stat.fumbles_lost: 1})
             builder.add_team_defense(
-                NFLTeam.from_abbreviation(recovering_team_abbr),
+                recovering_team,
                 {Stat.fumbles_recovered: 1},
             )
 

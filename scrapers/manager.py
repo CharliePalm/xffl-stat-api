@@ -23,7 +23,9 @@ providers: dict[str, Callable[[], Scraper[Any]]] = {
 class ScrapeManager:
     def _pick_provider(self, provider_service: ProviderService) -> Provider:
         provider = provider_service.search(
-            sort=Sort(field="pos", direction="desc"), page=Page(limit=1)
+            Criterion.eq("name", "pff"),
+            sort=Sort(field="pos", direction="desc"),
+            page=Page(limit=1),
         ).items[0]
         if not provider:
             raise Exception("no provider returned from query")
@@ -56,6 +58,6 @@ if __name__ == "__main__":
     m = ScrapeManager()
     with SessionLocal() as session, session.begin():
         g = GameService(session)
-        game = g.search(Criterion.eq("week", 1) & Criterion.eq("home", "LAR")).items[0]
-
-    m.run(game)
+        games = g.search(Criterion.eq("week", 1))
+    for game in games.items:
+        m.run(game)

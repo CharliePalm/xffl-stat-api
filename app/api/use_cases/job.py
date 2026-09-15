@@ -21,6 +21,7 @@ def get_games() -> list[Game]:
         & Criterion.lte("date_time", upper.strftime("%Y-%m-%d %H:%M:%S"))
         & Criterion.eq("in_progress", 0)
     ).items
+    # return service.search(Criterion.eq("week", 1) & (Criterion.ne("home", "PIT"))).items
 
 
 def process_game(game: Game) -> None:
@@ -34,7 +35,7 @@ def run_job():
     for idx, g in enumerate(games):
         if idx >= 1:
             # little delay to prevent providers getting mad with our usage
-            sleep(5)
+            sleep(4)
         process_game(g)
 
 

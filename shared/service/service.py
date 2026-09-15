@@ -205,7 +205,7 @@ class Criterion(Combinable):
 
     @classmethod
     def like(cls, field: str, pattern: str) -> "Criterion":
-        return cls(field, pattern, Op.LIKE)
+        return cls(field, f"%{pattern}%", Op.LIKE)
 
     @classmethod
     def is_null(cls, field: str, null: bool = True) -> "Criterion":
@@ -605,6 +605,7 @@ class Service[RowT: DeclarativeBase, SchemaT: BaseModel](ABC):
 
         limit = max(1, min(page.limit, self.max_limit))
         offset = max(0, page.offset)
+
         return Results(
             items=self._rows_to_schemas(stmt.limit(limit).offset(offset)),
             total=self._count(*conditions),

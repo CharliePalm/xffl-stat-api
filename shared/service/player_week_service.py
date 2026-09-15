@@ -34,8 +34,9 @@ class PlayerWeekDataColumns:
     fumbles_lost: Mapped[Optional[int]] = mapped_column(default=0)
     two_pt_conversions: Mapped[Optional[int]] = mapped_column(default=0)
     field_goals_made: Mapped[list[int]] = mapped_column(JSON, default=list)
-    num_field_goals_missed: Mapped[Optional[int]] = mapped_column(default=0)
     extra_points_made: Mapped[Optional[int]] = mapped_column(default=0)
+    field_goals_missed: Mapped[Optional[int]] = mapped_column(default=0)
+    sacked_yards: Mapped[Optional[int]] = mapped_column(default=0)
 
     # defensive stat line
     sacks: Mapped[Optional[int]] = mapped_column(default=0)
@@ -45,6 +46,8 @@ class PlayerWeekDataColumns:
     defensive_tds: Mapped[Optional[int]] = mapped_column(default=0)
     blocked_kicks: Mapped[Optional[int]] = mapped_column(default=0)
     points_allowed: Mapped[Optional[int]] = mapped_column(default=0)
+    yards_allowed: Mapped[Optional[int]] = mapped_column(default=0)
+    tds_allowed: Mapped[Optional[int]] = mapped_column(default=0)
 
 
 class PlayerWeekDataModel(PlayerWeekDataColumns, BaseSQLModel):

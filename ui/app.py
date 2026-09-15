@@ -35,7 +35,6 @@ STAT_CATEGORIES = [
     ("fumbles_lost", "Fumbles Lost"),
     ("two_pt_conversions", "2pt Conversions"),
     ("field_goals_made", "Field Goals Made"),
-    ("num_field_goals_missed", "Field Goals Missed"),
     ("extra_points_made", "Extra Points Made"),
     ("sacks", "Sacks"),
     ("interceptions", "Interceptions"),
@@ -44,6 +43,9 @@ STAT_CATEGORIES = [
     ("defensive_tds", "Defensive TDs"),
     ("blocked_kicks", "Blocked Kicks"),
     ("points_allowed", "Points Allowed"),
+    ("tds_allowed", "TDs Allowed"),
+    ("yards_allowed", "Yards Allowed"),
+    {"field_goals_missed", "FG Missed"},
 ]
 
 
@@ -51,9 +53,10 @@ def _stat_categories(entry: dict[str, Any]) -> list[dict[str, Any]]:
     stats = []
     for key, label in STAT_CATEGORIES:
         value = entry.get(key)
-        if isinstance(value, list):
+        if isinstance(value, list) and value:
             value = ", ".join(str(v) for v in value) if value else "-"
-        stats.append({"label": label, "value": value})
+        if value:
+            stats.append({"label": label, "value": value})
     return stats
 
 

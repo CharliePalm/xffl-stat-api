@@ -61,13 +61,15 @@ class PlayerService(Service[PlayerModel, Player]):
         return Criterion.like(column, f"%{clean_name(str(value))}%")
 
     def get_by_name(
-        self, first_name: str, last_name: str, team: str | NFLTeam
+        self, first_name: str, last_name: str, team: str | NFLTeam | list[str | NFLTeam]
     ) -> Optional[Player]:
         first_norm = clean_name(first_name)
+        if not isinstance(team, list):
+            team = [team]
         res = self.search(
-            Criterion.eq("first_name_norm", first_norm)
-            & Criterion.eq("last_name_norm", clean_name(last_name))
-            & Criterion.eq("team", str(team))
+            Criterion.like("first_name_norm", first_norm)
+            & Criterion.like("last_name_norm", clean_name(last_name))
+            & Criterion.in_("team", [str(t) for t in team])
         )
         if len(res.items) == 1:
             return res.items[0]
@@ -75,7 +77,7 @@ class PlayerService(Service[PlayerModel, Player]):
             raise DataIntegrityException("get_by_name bad response: " + str(res.items))
 
         logger.warning(
-            "unable to find player from full name - trying last name / team / looser first name"
+            f"unable to find player from full name - trying last name / team / looser first name {first_norm} {clean_name(last_name)}"
         )
         # last_name + team is the distinctive part; first_name is where
         # sources disagree (nicknames, "Greg" vs "Gregory"), so drop it
@@ -112,7 +114,16 @@ class PlayerService(Service[PlayerModel, Player]):
         if not parts:
             return None
         first_name = parts[0]
-        last_name = " ".join(parts[1:]) if len(parts) > 1 else ""
+        if len(parts) > 1:
+            last_name = parts[
+                (
+                    -1
+                    if clean_name(parts[-1]) not in ("jr", "sr", "iii", "iv", "v", "vi")
+                    else -2
+                )
+            ]
+        else:
+            last_name = " ".join(parts[1:])
         return self.get_by_name(first_name, last_name, team)
 
     def get_by_number(self, number: int, team: str | NFLTeam) -> Player:

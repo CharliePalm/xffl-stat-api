@@ -12,6 +12,7 @@ from typing import Literal
 
 from pydantic import BaseModel
 
+from shared.exceptions import DataIntegrityException
 from shared.model import (
     Game,
     NFLPosition,
@@ -33,6 +34,7 @@ class Stat(StrEnum):
 
     passing_yards = "passing_yards"
     passing_tds = "passing_tds"
+    sack_yards = "sack_yards"
     interceptions_thrown = "interceptions_thrown"
     rushing_attempts = "rushing_attempts"
     rushing_yards = "rushing_yards"
@@ -55,6 +57,8 @@ class Stat(StrEnum):
     kick_return_tds = "kick_return_tds"
     safeties = "safeties"
     blocked_kicks = "blocked_kicks"
+    tds_allowed = "tds_allowed"
+    field_goals_missed = "field_goals_missed"
 
     @property
     def is_offensive(self) -> bool:
@@ -75,6 +79,7 @@ _OFFENSIVE_STATS = frozenset(
         Stat.fumbles_lost,
         Stat.two_pt_conversions,
         Stat.extra_points_made,
+        Stat.field_goals_missed,
     }
 )
 
@@ -109,8 +114,15 @@ class BoxscoreBuilder:
     def add_player(
         self,
         player: Player,
-        stats: Mapping[Stat, float],
+        stats: dict[Stat, float],
     ) -> None:
+        if player.position != "D" and stats.get(Stat.sack_yards, 0):
+            stats[Stat.sack_yards] = 0
+            if player.team:
+                self._defenses[player.team][Stat.sack_yards] = stats[
+                    Stat.sack_yards
+                ] + (self._defenses[player.team][Stat.sack_yards] or 0)
+
         """Merge one stat-category row into a player's line. Safe to call repeatedly."""
         line = self._players.setdefault(
             player.id, StatLine(**{"player": player, "stats": {}})
@@ -187,6 +199,7 @@ class BoxscoreBuilder:
         # can be read off its *opponent's* total rather than requiring
         # every scraper to separately locate and map a "total yards" field
         total_offensive_yards: dict[NFLTeam, float] = {}
+        total_tds_scored: dict[NFLTeam, float] = {}
         for stat_line in self._players.values():
             team = stat_line.player.team
             if team is None:
@@ -195,6 +208,13 @@ class BoxscoreBuilder:
                 total_offensive_yards.get(team, 0.0)
                 + stat_line.stats.get(Stat.passing_yards, 0.0)
                 + stat_line.stats.get(Stat.rushing_yards, 0.0)
+            )
+            total_tds_scored[team] = (
+                total_tds_scored.get(team, 0.0)
+                + stat_line.stats.get(Stat.passing_tds, 0.0)
+                + stat_line.stats.get(Stat.rushing_tds, 0.0)
+                + stat_line.stats.get(Stat.punt_return_tds, 0)
+                + stat_line.stats.get(Stat.kick_return_tds, 0)
             )
 
         defenses: list[PlayerWeekData] = []
@@ -213,8 +233,10 @@ class BoxscoreBuilder:
             allowed = other_score - DEFENSIVE_TD_POINTS * total_defensive_tds.get(
                 other_team, 0
             )
-            yards_allowed = int(total_offensive_yards.get(other_team, 0.0))
-
+            yards_allowed = int(
+                total_offensive_yards.get(other_team, 0.0) - line[Stat.sack_yards]
+            )
+            tds_allowed = int(total_tds_scored.get(other_team, 0))
             # build values dict and coalesce special-teams return TDs into
             # `defensive_tds` so scoring (DEFENSIVE_MULTIPLIERS) counts them
             values = {stat.value: int(value) for stat, value in line.items()}
@@ -225,7 +247,10 @@ class BoxscoreBuilder:
             )
 
             stat_line = DefensiveStatLine(
-                points_allowed=allowed, yards_allowed=yards_allowed, **values
+                points_allowed=allowed,
+                yards_allowed=yards_allowed,
+                tds_allowed=tds_allowed,
+                **values,
             )
             defenses.append(
                 PlayerWeekData(

@@ -188,6 +188,8 @@ class DefensiveStatLine(BaseModel):
     blocked_kicks: Optional[int] = 0
     points_allowed: Optional[int] = 0
     yards_allowed: Optional[int] = 0
+    tds_allowed: Optional[int] = 0
+    sacked_yards: Optional[int] = 0
 
 
 class OffensiveStatLine(BaseModel):
@@ -202,7 +204,7 @@ class OffensiveStatLine(BaseModel):
     fumbles_lost: Optional[int] = 0
     two_pt_conversions: Optional[int] = 0
     field_goals_made: list[int] = []  # list of field goal distances made
-    num_field_goals_missed: Optional[int] = 0
+    field_goals_missed: Optional[int] = 0
     extra_points_made: Optional[int] = 0
 
 

@@ -19,6 +19,7 @@ COLUMNS: dict[str, dict[Stat, str]] = {
         Stat.passing_yards: "YDS",
         Stat.passing_tds: "TD",
         Stat.interceptions_thrown: "INT",
+        Stat.sack_yards: "SACKS",
     },
     "Rushing": {
         Stat.rushing_attempts: "CAR",
@@ -31,7 +32,7 @@ COLUMNS: dict[str, dict[Stat, str]] = {
         Stat.receiving_tds: "TD",
     },
     "Fumbles": {Stat.fumbles_lost: "LOST"},
-    "Kicking": {Stat.extra_points_made: "XP"},
+    "Kicking": {Stat.extra_points_made: "XP", Stat.field_goals_missed: "FG"},
 }
 # sections whose team-totals row feeds D/ST rather than individual players.
 # "Defense"'s own TD column is already that team's *total* defensive/
